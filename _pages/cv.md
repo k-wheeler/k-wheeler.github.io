@@ -12,12 +12,12 @@ redirect_from:
 Education
 ======
 * Ph.D. in Earth and Environment, Boston University, September 2017-expected August 2022
-	*Certificate in Biogeosciences
-	*Lab Safety Coordinator (July 2019 - August 2022)
-	*Dissertation: “Cold-deciduous broadleaf phenology: monitoring using a geostationary satellite and predicting using trigger-less dynamic models,” Advisor: Dr. Michael Dietze
+   *Certificate in Biogeosciences
+   *Lab Safety Coordinator (July 2019 - August 2022)
+   *Dissertation: “Cold-deciduous broadleaf phenology: monitoring using a geostationary satellite and predicting using trigger-less dynamic models,” Advisor: Dr. Michael Dietze
 * Honors B.S. with Distinction in Environmental Science, summa cum laude, University of Delaware, 2017
-	*GPA: 3.95/4.0
-	*Honors Thesis: “Relationship between autumnal changes in leaf light reflectance and differences in nitrogen resorption efficiencies,” Advisor: Dr. Delphis Levia 
+   *GPA: 3.95/4.0
+   *Honors Thesis: “Relationship between autumnal changes in leaf light reflectance and differences in nitrogen resorption efficiencies,” Advisor: Dr. Delphis Levia 
 * North Carolina School of Science and Mathematics (Public residential high school specializing in science, technology, engineering, and mathematics), 2012
 
   
@@ -49,11 +49,26 @@ Publications
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Talks
+Professional Conference Presentations
 ======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
+1. K. Wheeler, M. Dietze, “A trigger may not be necessary to cause leaf senescence in deciduous broadleaf forests.” Ecological Society of America, 2022. Oral. (Accepted). 
+2. K. Wheeler, M. Dietze, “Is a trigger necessary to predict senescence in a deciduous canopy?: Considering chlorophyll cycling in phenology process models.” American Geophysical Union, 2021. Oral. 
+3. K. Wheeler, C. Jones, M. Dietze, K. Gerst, A. Richardson, B. Seyednasrollah, “Open community forecasts of deciduous forest phenology.” Ecological Society of America, 2021, Invited talk.
+4. K. Wheeler, M. Dietze, “Towards improving phenology in carbon models: monitoring using Geostationary Operational Environmental Satellite (GOES).” North American Carbon Program Meeting, 2021. Poster.
+5. Q. Thomas, C. Boettiger, C. Carey, M. Dietze, A. Fox, M. Kenney, C. Laney, J. McLachlan, J. Peters, J. Weltzin, W. Woelmer, J. Forest, J. Guinnip, A. Spiers, S. Ryan, K. Wheeler, A. Young, L. Johnson, “Introducing the NEON Ecological Forecasting Challenge hosted by the Ecological Forecasting Initiative Research Coordination Network.” American Geophysical Union, 2021. Oral. 
+6. M. Dietze, P. Adler, C. Averill, C. Boettiger, J. Brentrup, J. Bhatnagar, D. Cameron, C. Carey, J. Foster, A. Fox, L. Johnson, M. Kenney, S. LaDeau, C. Laney, M. Lofton, J. McLachlan, J. Peters, W. Pearse, A. Shiklomanov, Q. Thomas, K. Weathers, J. Weltzin, Z. Werbin, K. Wheeler, W. Woelmer, K. Zarada, “Improving ecological prediction: The role of cross-network data fusion in iterative ecological forecasting.” Ecological Society of America, 2021. Oral. 
+7. K. Wheeler, K. Zarada, M. Dietze, “Iterative vegetation spring phenology forecasting at a landscape scale.” Ecological Society of America, 2019. Invited talk. 
+8. M. Dietze, K. Wheeler, C. Averill, J. Bhatnagar, J. Foster, S. LaDeau, K. Weathers, Z. Werbin, K. Zarada. “Linking iterative forecasting to hypothesis testing: a case study for how to do this in practice.” Ecological Society of America, 2019. Oral. 
+9. K. Wheeler, M. Dietze. “Improving the Monitoring of Vegetation Phenology Using the New Geostationary Operational Environmental Satellite (GOES-16).” American Geophysical Union, 2018. Oral. 
+10. M. Dietze, A.R. Desai, H. Dokoohaki, L. Dramko, I. Fer, A. Raiho, S. Serbin, A.N. Shiklomanov, T. Viskari, K.I. Wheeler, K. Zarada. “Forecasting forest response in real-time: How close are we and how do we get there?” American Geophysical Union, 2018. Oral. 
+11. M. Dietze, A.R. Desai, H. Dokoohaki, I. Fer, A. Raiho, S. Serbin, A.N. Shiklomanov, T. Viskari, K.I. Wheeler. “Forecasting forest responses to climate variability in real-time: How close are we and how do we get there?” Ecological Society of America Annual Meeting, 2018. Oral. 
+12. K. Wheeler, D. Levia, J. Hudson. “Using Parallel Factor Analysis Modeling (PARAFAC) and Self-Organizing Maps to Track Senescence-Induced Patterns in Leaf Litter Leachate.” American Geophysical Union, 2017. Poster.
+Award: Outstanding Student Paper Award in Biogeosciences
+13. J.E. Hudson, D.F. Levia, K.I. Wheeler, C.G. Winters, M.C.H. Vaughan, J. Chace, R. Sleeper. “American Beech Leaf-litter Leachate Chemistry: Effects of Geography and Phenophase.” American Geophysical Union, 2017. Poster
+14. K. Wheeler, D. Levia, R. Vargas. “Changes in Autumnal Leaf Reflectance Measurements of Deciduous Trees in Relation to Nitrogen Resorption Efficiencies.” American Geophysical Union, 2016. Poster. 
+15. K. Wheeler, J. Hudson, D. Levia, C. Winters, S. Inamdar, M. Vaughan & J. Chace. “Leaf Leachate Chemistry: Regional Variation Across Three Watersheds in the Northeastern United States.” American Geophysical Union, 2015. Poster. 
+Award: Outstanding Student Paper Award in Hydrology 
+
   
 Teaching
 ======
