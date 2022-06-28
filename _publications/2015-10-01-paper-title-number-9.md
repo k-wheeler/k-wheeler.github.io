@@ -1,7 +1,7 @@
 ---
 title: "Ecological Forecasting"
 collection: publications
-permalink: /publication/2015-10-01-paper-title-number-3
+permalink: /publication/2015-10-01-paper-title-number-9
 excerpt: 'Annotated bibliography'
 date: 2018-09-25
 venue: 'Oxford Bibliographies'

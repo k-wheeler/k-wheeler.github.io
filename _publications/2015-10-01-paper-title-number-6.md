@@ -1,7 +1,7 @@
 ---
 title: "American beech leaf‐litter leachate chemistry: Effects of geography and phenophase"
 collection: publications
-permalink: /publication/2015-10-01-paper-title-number-3
+permalink: /publication/2015-10-01-paper-title-number-6
 excerpt: ''
 date: 2018-01-31
 venue: 'Journal of Plant Nutrition and Soil Science'

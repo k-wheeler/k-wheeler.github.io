@@ -1,7 +1,7 @@
 ---
 title: "Canopy structure metrics governing stemflow funnelling differ between leafed and leafless states: Insights from a large‐scale rainfall simulator"
 collection: publications
-permalink: /publication/2015-10-01-paper-title-number-3
+permalink: /publication/2015-10-01-paper-title-number-7
 excerpt: ''
 date: 2021-06-25
 venue: 'Hydrological Processes'

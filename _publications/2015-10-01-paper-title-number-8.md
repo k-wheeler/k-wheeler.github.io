@@ -1,7 +1,7 @@
 ---
 title: "Ten simple rules for training yourself in an emerging field"
 collection: publications
-permalink: /publication/2015-10-01-paper-title-number-3
+permalink: /publication/2015-10-01-paper-title-number-8
 excerpt: ''
 date: 2021-10-28
 venue: 'PLoS Computational Biology'

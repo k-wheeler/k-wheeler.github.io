@@ -1,7 +1,7 @@
 ---
 title: "A statistical model for estimating midday NDVI from the geostationary operational environmental satellite (GOES) 16 and 17"
 collection: publications
-permalink: /publication/2015-10-01-paper-title-number-3
+permalink: /publication/2015-10-01-paper-title-number-4
 excerpt: ''
 date: 2019-10-26
 venue: 'Remote Sensing'

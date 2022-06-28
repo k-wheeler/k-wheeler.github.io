@@ -1,7 +1,7 @@
 ---
 title: "Visible and near-infrared hyperspectral indices explain more variation in lower-crown leaf nitrogen concentrations in autumn than in summer"
 collection: publications
-permalink: /publication/2015-10-01-paper-title-number-3
+permalink: /publication/2015-10-01-paper-title-number-5
 excerpt: ''
 date: 2019-11-27
 venue: 'Oecologia'
