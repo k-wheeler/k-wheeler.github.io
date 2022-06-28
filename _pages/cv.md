@@ -72,9 +72,16 @@ Award: Outstanding Student Paper Award in Hydrology
   
 Teaching
 ======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+* Teaching Fellow for Introduction to Quantitative Environmental Modeling (EE375), Spring 2022
+* edX The Inclusive STEM Teaching Project Training (7 weeks of 2 3 hours per week), Fall 2021
+* Mentored undergraduate Victor Feagins through BU Bioinformatics Research and Interdisciplinary Training Experience REU, Summer 2021
+* Ecological Forecasting Initiative Student Association Annual Meeting Tutorial on Forecast Covariate Data Products, June 2021
+* Near-term Ecological Forecasting Summer Short Course Teacher Assistant, July 2018, July 2019, July 2020, June 2022
+    - Lectured on Bayesian Statistics, July 2019
+    - Lectured on State-Space Models, July 2020
+* General Computer Science for Engineers Course Teacher Assistant, Aug 2016-Dec 2016
+* General Computer Science for Engineers Course Lab Assistant, Aug 2014-May 2016
+
   
 Service and leadership
 ======
