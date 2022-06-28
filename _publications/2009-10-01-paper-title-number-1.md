@@ -2,6 +2,7 @@
 title: "Tracking senescence‐induced patterns in leaf litter leachate using parallel factor analysis (PARAFAC) modeling and self‐organizing maps"
 collection: publications
 permalink: /publication/2009-10-01-paper-title-number-1
+excerpt: ''
 date: 2017-09-05
 venue: 'Journal of Geophysical Research- Biogeosciences'
 paperurl: 'https://agupubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/2016JG003677'
