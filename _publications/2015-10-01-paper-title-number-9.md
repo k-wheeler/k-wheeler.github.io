@@ -10,5 +10,3 @@ citation: 'M.C. Dietze, C. Averill, J. Foster, K. Wheeler (2018). &quot;Ecologic
 
 ---
 Annotated bibliography of ecological forecasting peer-reviewed literature. 
-
-Recommended citation: M.C. Dietze, C. Averill, J. Foster, K. Wheeler (2018). “Ecological Forecasting.” <i>Oxford Bibliographies</i>. DOI: 10.1093/OBO/9780199830060-0205.
