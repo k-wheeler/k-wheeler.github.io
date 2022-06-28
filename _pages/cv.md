@@ -12,12 +12,12 @@ redirect_from:
 Education
 ======
 * Ph.D. in Earth and Environment, Boston University, September 2017-expected August 2022
-   *Certificate in Biogeosciences
-   *Lab Safety Coordinator (July 2019 - August 2022)
-   *Dissertation: “Cold-deciduous broadleaf phenology: monitoring using a geostationary satellite and predicting using trigger-less dynamic models,” Advisor: Dr. Michael Dietze
+- Certificate in Biogeosciences
+- Lab Safety Coordinator (July 2019 - August 2022)
+- Dissertation: “Cold-deciduous broadleaf phenology: monitoring using a geostationary satellite and predicting using trigger-less dynamic models,” Advisor: Dr. Michael Dietze
 * Honors B.S. with Distinction in Environmental Science, summa cum laude, University of Delaware, 2017
-   *GPA: 3.95/4.0
-   *Honors Thesis: “Relationship between autumnal changes in leaf light reflectance and differences in nitrogen resorption efficiencies,” Advisor: Dr. Delphis Levia 
+- GPA: 3.95/4.0
+- Honors Thesis: “Relationship between autumnal changes in leaf light reflectance and differences in nitrogen resorption efficiencies,” Advisor: Dr. Delphis Levia 
 * North Carolina School of Science and Mathematics (Public residential high school specializing in science, technology, engineering, and mathematics), 2012
 
   
