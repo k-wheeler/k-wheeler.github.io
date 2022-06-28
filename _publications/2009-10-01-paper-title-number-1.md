@@ -13,4 +13,3 @@ In autumn, the dissolved organic matter (DOM) contribution of leaf litter leacha
 
 
 Recommended citation: K.I. Wheeler, D.F. Levia, J.E. Hudson (2017). "Tracking senescence-induced patterns in leaf litter leachate using parallel factor analysis modeling (PARAFAC) and self-organizing maps." <i>Journal of Geophysical Research- Biogeosciences<i> 122(9):2233-2250.
-
