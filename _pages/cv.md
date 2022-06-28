@@ -48,7 +48,8 @@ Publications
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
+ 
+ 
 Professional Conference Presentations
 ======
 1. K. Wheeler, M. Dietze, “A trigger may not be necessary to cause leaf senescence in deciduous broadleaf forests.” Ecological Society of America, 2022. Oral. (Accepted). 
@@ -68,7 +69,6 @@ Award: Outstanding Student Paper Award in Biogeosciences
 14. K. Wheeler, D. Levia, R. Vargas. “Changes in Autumnal Leaf Reflectance Measurements of Deciduous Trees in Relation to Nitrogen Resorption Efficiencies.” American Geophysical Union, 2016. Poster. 
 15. K. Wheeler, J. Hudson, D. Levia, C. Winters, S. Inamdar, M. Vaughan & J. Chace. “Leaf Leachate Chemistry: Regional Variation Across Three Watersheds in the Northeastern United States.” American Geophysical Union, 2015. Poster. 
 Award: Outstanding Student Paper Award in Hydrology 
-
   
 Teaching
 ======
