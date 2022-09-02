@@ -9,9 +9,10 @@ redirect_from:
 
 {% include base_path %}
 
-Education
+Education and Work
 ======
-* Ph.D. in Earth and Environment, Boston University, September 2017-expected August 2022
+* NOAA Climate and Global Change Postdoctoral Fellow, Massachusetts Institute of Technology, September 2022-present
+* Ph.D. in Earth and Environment, Boston University, September 2017-January 2023
     - Certificate in Biogeosciences
     - Lab Safety Coordinator (July 2019 - August 2022)
     - Dissertation: “Cold-deciduous broadleaf phenology: monitoring using a geostationary satellite and predicting using trigger-less dynamic models,” Advisor: Dr. Michael Dietze
@@ -52,7 +53,7 @@ Publications
  
 Professional Conference Presentations
 ======
-1. K. Wheeler, M. Dietze, “A trigger may not be necessary to cause leaf senescence in deciduous broadleaf forests.” Ecological Society of America, 2022. Oral. (Accepted). 
+1. K. Wheeler, M. Dietze, “A trigger may not be necessary to cause leaf senescence in deciduous broadleaf forests.” Ecological Society of America, 2022. Oral. 
 2. K. Wheeler, M. Dietze, “Is a trigger necessary to predict senescence in a deciduous canopy?: Considering chlorophyll cycling in phenology process models.” American Geophysical Union, 2021. Oral. 
 3. K. Wheeler, C. Jones, M. Dietze, K. Gerst, A. Richardson, B. Seyednasrollah, “Open community forecasts of deciduous forest phenology.” Ecological Society of America, 2021, Invited talk.
 4. K. Wheeler, M. Dietze, “Towards improving phenology in carbon models: monitoring using Geostationary Operational Environmental Satellite (GOES).” North American Carbon Program Meeting, 2021. Poster.
