@@ -12,6 +12,7 @@ redirect_from:
 Education and Work
 ======
 * NOAA Climate and Global Change Postdoctoral Fellow, Massachusetts Institute of Technology, September 2022-present
+    - Sponsor: Dr. Cesar Terrer
 * Ph.D. in Earth and Environment, Boston University, September 2017-January 2023
     - Certificate in Biogeosciences
     - Lab Safety Coordinator (July 2019 - August 2022)
