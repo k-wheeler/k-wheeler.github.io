@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-I am currently a PhD Candidate at Boston University in Earth and Environment, expected finish August 2022. I work with Dr. Michael Dietze on monitoring, modeling, and forecasting vegetation foliar phenology. Starting September 2022, I will be a postdoc at the Massachusetts Institute of Technology funded through a NOAA Climate and Global Change Postdoctoral Fellowship and will be working with Dr. Cesar Terrer. This website is currently still being built. 
+I started a NOAA Climate and Global Change Postdoctoral Fellowship September of 2022 working with Dr. Cesar Terrer at MIT after finish a PhD in Earth and Environment from Boston University. This website is currently still being built. 
 
 Research Interests
 ======
@@ -18,7 +18,9 @@ I am an ecosystem ecologist with a current and previous focus on various aspects
 
 Leaf Phenology and Mycorrhizae
 ------
-For my postdoc I will be investigating relationships between plant mycorrhizal association and leaf phenology. 
+As the global climate changes, it is becoming more important to understand the uncertain role that the terrestrial biosphere has on carbon storage. Since warmer temperatures affect the timing of phenology transitions in plants, plant phenology is a primary ecological indicator of climate change. Furthermore, how sensitive phenology transitions are to different drivers (e.g., temperature, photoperiod, water availability, leaf age limitations) is highly variable and depends on species and latitude. Without understanding how sensitive phenology is to drivers, we cannot make accurate predictions of phenology and, thus, annual primary productivity. 
+Over 80% of plant species associate with soil fungi called mycorrhizae, which increase access to limiting resources such as nutrients (e.g., nitrogen, N) and water. Soil microbes (e.g., mycorrhizae fungi) significantly impact plant phenology events (e.g., flowering) in over 88% of published studies, but their effect on leaf phenology is rarely studied (O’Brien et al., 2021, Am. J. Bot). In this project, I will investigate if mycorrhizae association of plants affects the sensitivity of leaf phenology in plants to environmental drivers and the resultant carbon fluxes. 
+
 
 
 Modeling Senescence
@@ -27,7 +29,7 @@ For my PhD work, I developed some mechanistic models for predicting leaf and can
 
 Remote-Sensing of Phenology
 ------
-The new generation of geostationary satellites can be used to monitor landscape phenology. 
+The new generation of geostationary satellites can be used to monitor landscape phenology. During my PhD I developed a statistical model for estimating daily Normalized Difference Vegetation Index (NDVI) from Geostationary Operational Environmental Satellite (GOES) and showed that it could monitor phenological changes in deciduous broadleaf forests. 
 
 
 Leaf Phenology and Ecohydrology
