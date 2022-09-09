@@ -9,11 +9,13 @@ redirect_from:
 ---
 
 
-I started a NOAA Climate and Global Change Postdoctoral Fellowship September of 2022 working with Dr. Cesar Terrer at MIT after finish a PhD in Earth and Environment from Boston University. This website is currently still being built. 
+I started a NOAA Climate and Global Change Postdoctoral Fellowship September of 2022 working with Dr. Cesar Terrer at MIT after finishing a PhD in Earth and Environment from Boston University. 
+
+This website is currently still being built. 
 
 Research Interests
 ======
-I am an ecosystem ecologist with a current and previous focus on various aspects and effects of leaf phenology. Below are some of my general future, current, and previous projects. 
+I am an ecosystem ecologist with a current and previous focus on various aspects and effects of leaf phenology. Vegetation phenology serves as a primary ecological indicator of climate change and has numerous ecosystem and climate impacts including nutrient cycling, energy budgets, and annual primary productivity. Below are some of my general future, current, and previous projects. 
 
 
 Leaf Phenology and Mycorrhizae
@@ -25,14 +27,17 @@ Over 80% of plant species associate with soil fungi called mycorrhizae, which in
 
 Modeling Senescence
 ------
+Phenology models, especially ones of autumnal processes like senescence, are typically based on correlations between environmental threshold triggers and transition dates and less is known about the specific mechanisms behind phenological events. It is unclear if a start of senescence (SOS) trigger is needed in mechanistic models and if decreased photosynthesis drives senescence. In my PhD, I developed a dynamic Bayesian model based on the physiological process of chlorophyll cycling that assumes a constant chlorophyll breakdown rate and synthesis dependent on temperature and photoperiod to predict senescence without including a SOS trigger or degree-day memory. I fit the model to greenness time series from 24 PhenoCam sites and found that for 49% of the site-years the model could predict SOS using only pre-SOS data. Furthermore, the model could regularly predict greenness at other sites better than their climatologies. I also investigated if including photosynthetic feedbacks could improve the chlorophyll synthesis model at the canopy and leaf-levels. Testing this against leaf-level measurements of photosynthetic capacity and changes in chlorophyll concentrations of Fagus grandifolia and Quercus rubra, which I collected through field work at Harvard Forest, MA, demonstrated that the model fit improved at the canopy level, but not at the leaf-level. 
 For my PhD work, I developed some mechanistic models for predicting leaf and canopy greenness during the summer and autumn.  
+
 
 Remote-Sensing of Phenology
 ------
-The new generation of geostationary satellites can be used to monitor landscape phenology. During my PhD I developed a statistical model for estimating daily Normalized Difference Vegetation Index (NDVI) from Geostationary Operational Environmental Satellite (GOES) and showed that it could monitor phenological changes in deciduous broadleaf forests. 
+Higher temporal resolution satellite data is needed to continue to identify the mechanisms at larger scales. I created and published a novel statistical model to estimate daily NDVI with uncertainty from high temporal resolution (five - ten minutes) Geostationary Operational Environmental Satellite (GOES) -16 and -17 data. I also used this data to track forest phenology by fitting double-logistic Bayesian models and comparing transition dates to those obtained from PhenoCams (digital cameras) and the Moderate Resolution Imaging Spectroradiometer (MODIS). Compared to MODIS, GOES was more correlated with PhenoCam at the start and middle of spring. 
 
+For my undergraduate thesis, I assessed how well hyperspectral indices in the visible and near-infrared wavelengths predict nitrogen concentrations in lower-canopy leaves in the autumn phenological transition as they are generally understudied in leaf trait research. 
 
 Leaf Phenology and Ecohydrology
 ------
-Leaf litter leachate changes based off of the phenological stage of the leaves. 
+In autumn, the dissolved organic matter (DOM) contribution of leaf litter leachate to streams in forested watersheds changes as trees undergo resorption, senescence, and leaf abscission. Despite its biogeochemical importance, little work has investigated how leaf litter leachate DOM changes throughout the autumn and how any changes might differ interspecifically and intraspecifically. I examined changes in leaf litter leachate fluorescent DOM from American beech leaves in Maryland, Rhode Island, Vermont, and North Carolina and from yellow poplar leaves from Maryland. I created a six-component parallel factor analysis (PARAFAC) model to identify components that accounted for the majority of the variation in the data set and used self-organizing maps to compare the PARAFAC component proportions of leachate samples.
 
