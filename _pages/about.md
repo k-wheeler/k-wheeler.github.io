@@ -42,3 +42,4 @@ Leaf Phenology and Ecohydrology
 ------
 In autumn, the dissolved organic matter (DOM) contribution of leaf litter leachate to streams in forested watersheds changes as trees undergo resorption, senescence, and leaf abscission. Despite its biogeochemical importance, little work has investigated how leaf litter leachate DOM changes throughout the autumn and how any changes might differ interspecifically and intraspecifically. I examined changes in leaf litter leachate fluorescent DOM from American beech leaves in Maryland, Rhode Island, Vermont, and North Carolina and from yellow poplar leaves from Maryland. I created a six-component parallel factor analysis (PARAFAC) model to identify components that accounted for the majority of the variation in the data set and used self-organizing maps to compare the PARAFAC component proportions of leachate samples.
 
+<img src='/images/fall1.JPG'>
