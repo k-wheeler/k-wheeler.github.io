@@ -17,6 +17,7 @@ Research Interests
 ======
 I am an ecosystem ecologist with a current and previous focus on various aspects and effects of leaf phenology. Vegetation phenology serves as a primary ecological indicator of climate change and has numerous ecosystem and climate impacts including nutrient cycling, energy budgets, and annual primary productivity. Below are some of my general future, current, and previous projects. 
 
+<img src='/images/fallWoods.JPG'>
 
 Leaf Phenology and Mycorrhizae
 ------
