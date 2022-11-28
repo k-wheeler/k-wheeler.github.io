@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-I started a NOAA Climate and Global Change Postdoctoral Fellowship September of 2022 working with Dr. Cesar Terrer at MIT after finishing a PhD in Earth and Environment from Boston University. 
+I started a NOAA Climate and Global Change Postdoctoral Fellowship September of 2022 working with Dr. Cesar Terrer at the Massachusetts Institute of Technology after finishing a PhD in Earth and Environment from Boston University. 
 
 This website is currently still being built. 
 
