@@ -9,6 +9,16 @@ redirect_from:
 
 {% include base_path %}
 
+Contact
+======
+wheelerk@mit.edu
+kwheeler@ucar.edu
+kwheelerecology@gmail.com
+
+PDF of CV
+======
+<embed src="{{ site.baseurl }}/files/KathrynWheeler_CV.pdf" width="600" height="700" type='application/pdf'> 
+
 Education and Work
 ======
 * NOAA Climate and Global Change Postdoctoral Fellow, Massachusetts Institute of Technology, September 2022-present
@@ -22,7 +32,7 @@ Education and Work
     - Honors Thesis: “Relationship between autumnal changes in leaf light reflectance and differences in nitrogen resorption efficiencies,” Advisor: Dr. Delphis Levia 
 * North Carolina School of Science and Mathematics (Public residential high school specializing in science, technology, engineering, and mathematics), 2012
 
-  
+
 Fellowships and Awards
 ======
 * NOAA Climate and Global Change Postdoctoral Fellowship, March 2022
@@ -34,6 +44,7 @@ Fellowships and Awards
 * AGU Outstanding Student Paper Award in Hydrology, Dec 2015
 * NOAA Ernest F. Hollings Scholarship (total of $19,000), April 2015
 * Eugene G. duPont Distinguished Scholar (full four-year scholarship to UD), April 2012
+
 
 Research and Travel Grants
 ======
@@ -72,8 +83,10 @@ Award: Outstanding Student Paper Award in Biogeosciences
 15. K. Wheeler, J. Hudson, D. Levia, C. Winters, S. Inamdar, M. Vaughan & J. Chace. “Leaf Leachate Chemistry: Regional Variation Across Three Watersheds in the Northeastern United States.” American Geophysical Union, 2015. Poster. 
 Award: Outstanding Student Paper Award in Hydrology 
   
+  
 Teaching
 ======
+* Guest Lecturer on Photosynthesis for_Introduction to the Terrestrial Carbon Cycle and Ecosystem Ecology_ at the Massachusetts Institute of Technology (MIT 1.845), March 2023
 * Teaching Fellow for Introduction to Quantitative Environmental Modeling (EE375), Spring 2022
 * edX The Inclusive STEM Teaching Project Training (7 weeks of 2 3 hours per week), Fall 2021
 * Mentored undergraduate Victor Feagins through BU Bioinformatics Research and Interdisciplinary Training Experience REU, Summer 2021
