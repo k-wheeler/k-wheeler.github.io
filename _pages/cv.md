@@ -9,15 +9,9 @@ redirect_from:
 
 {% include base_path %}
 
-Contact
-======
-wheelerk@mit.edu
-kwheeler@ucar.edu
-kwheelerecology@gmail.com
-
-PDF of CV
-======
 <embed src="{{ site.baseurl }}/files/KathrynWheeler_CV.pdf" width="600" height="700" type='application/pdf'> 
+
+
 
 Education and Work
 ======
