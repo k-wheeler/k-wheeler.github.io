@@ -13,14 +13,21 @@ I started a NOAA Climate and Global Change Postdoctoral Fellowship September of 
 
 Research Interests
 ======
-I am an ecosystem ecologist with a current and previous focus on various aspects and effects of leaf phenology. Vegetation phenology serves as a primary ecological indicator of climate change and has numerous ecosystem and climate impacts including nutrient cycling, energy budgets, and annual primary productivity. Below are some of my general future, current, and previous projects. Broadly I am interested in many topics related to ecophysiology and carbon and energy cycling. I have expertise in Bayesian modeling, programming (R, Python, Matlab,C++, GIS), ecological forecasting, and remote sensing. 
+I am an ecosystem ecologist and ecophysiologist interested in how plants and their role in ecosystems are shifting under and impacting global climate change. In particular, I am interested in the role of plants in the carbon and water cycles, such as through leaf phenology, impacts of droughts and heat stress, and changes to photosynthesis and stomata from CO2 fertilization. Below are some of my general current and previous interests/projects. 
 
-<img src='/images/fallWoods.JPG'>
+
+Tropical Forests Under Drought and Effects on Biomass
+------
+With global climate change, the impacts of droughts on tropical forests are becoming more severe, contributing to potential shifts in tropical forests from carbon sinks to carbon sources. However, there are still unexplained and uncertain regional differences in the impacts of droughts. One of the potential reasons for differences is the previous growth conditions of forests. CO2 fertilization as well as other factors such as warming temperatures have caused increased growth in much of the tropics, evident through greening trends. Trees having favorable growth conditions sometimes “overshoot” and are not able to support increased aboveground biomass in unfavorable conditions, such as under droughts. However, trees that undergo minor droughts might acclimate and, thus, be more resilient to future droughts. Using Google Earth Engine, I am studying how the previous growth conditions of tropical forests impacts drought effects and recovery. 
+
+<img src='/images/tropicalForest.JPG'>
 
 Leaf Phenology and Soil Properties
 ------
 As the global climate changes, it is becoming more important to understand the uncertain role that the terrestrial biosphere has on carbon storage. Since warmer temperatures affect the timing of phenology transitions in plants, plant phenology is a primary ecological indicator of climate change. Furthermore, how sensitive phenology transitions are to different drivers (e.g., temperature, photoperiod, water availability, leaf age limitations) is highly variable and depends on species and latitude. Without understanding how sensitive phenology is to drivers, we cannot make accurate predictions of phenology and, thus, annual primary productivity. 
 In my current fellowship work, I am interested in how various soil properties including carbon to nitrogen ratios, soil moisture, and soil fungi called mycorrhizae impact phenology. Over 80% of plant species associate with soil fungi called mycorrhizae, which increase access to limiting resources such as nutrients (e.g., nitrogen, N) and water. Soil microbes (e.g., mycorrhizae fungi) significantly impact plant phenology events (e.g., flowering) in over 88% of published studies, but their effect on leaf phenology is rarely studied (O’Brien et al., 2021, Am. J. Bot). In this project, I will investigate if mycorrhizae association of plants affects the sensitivity of leaf phenology in plants to environmental drivers and the resultant carbon fluxes. 
+
+<img src='/images/fallWoods.JPG'>
 
 Modeling Senescence
 ------
