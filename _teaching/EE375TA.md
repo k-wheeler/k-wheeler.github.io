@@ -8,7 +8,7 @@ date: Spring 2022
 location: "Boston, MA, USA"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+I served as the teacher assistant for
 
 Heading 1
 ======
