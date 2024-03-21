@@ -9,10 +9,4 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D. in Earth and Environment, Boston University, 2023
-
-More coming soon
-
-
+<embed src="{{ site.baseurl }}/files/KathrynWheeler_resume.pdf" width="600" height="700" type='application/pdf'>
