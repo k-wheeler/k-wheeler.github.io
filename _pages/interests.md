@@ -9,7 +9,7 @@ redirect_from:
 
 I enjoy spending time outdoors and reading. I grew up in the mountains of North Carolina in Boone, NC, which started my love of nature. I have run three marathons. My favorite outdoors activities involve running, cycling, hiking, and backpacking/trekking. I also love traveling and have been to 49 US States and 16 other countries, including China where I spent a year through a Department of State language scholarship. 
 
-<img src="/images/backpacking_KWheeler.JPG">
+<img src="/images/backpacking_KWheeler.JPG" width="200" height="90">
 
 <img src="/images/KWheeler_Backpacking2.jpeg">
 
@@ -25,7 +25,7 @@ I enjoy spending time outdoors and reading. I grew up in the mountains of North 
 
 <img src="/images/KWheeler_Peru.jpeg">
 
-<img src="/images/KWheeler_Sweden.jpeg">
+<img src="/images/KWheeler_Sweden.jpg">
 
 <img src="/images/KWheeler_China.JPG">
 
