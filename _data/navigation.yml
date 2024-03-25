@@ -11,3 +11,6 @@ main:
     
   - title: "Resume"
     url: /resume/
+
+  - title: "Interests"
+    url: /interests/

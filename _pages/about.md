@@ -48,9 +48,3 @@ In autumn, the dissolved organic matter (DOM) contribution of leaf litter leacha
 
 <img src='/images/fall1.JPG'>
 
-
-Outside of the Academy
-------
-Outside of research, I enjoy spending time outdoors and reading. My favorite outdoors activities involve running, cycling, hiking, and backpacking/trekking. I grew up in the mountains of North Carolina in Boone, NC, which started my love of nature, forests, and phenology.
-
-<img src="/images/backpacking_KWheeler.JPG">
