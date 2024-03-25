@@ -11,19 +11,19 @@ I enjoy spending time outdoors and reading. I grew up in the mountains of North 
 
 <img src="/images/backpacking_KWheeler.JPG" width="600" height="270">
 
-<img src="/images/KWheeler_Backpacking2.jpeg" width="270" height="600">
+<img src="/images/KWheeler_Backpacking2.jpeg" width="600" height="270">
 
-<img src="/images/KWheeler_Backpacking3.jpeg" width="270" height="600">
+<img src="/images/KWheeler_Backpacking3.jpeg" width="600" height="270">
 
-<img src="/images/KWheeler_Cycling.jpeg" width="270" height="600">
+<img src="/images/KWheeler_Cycling.jpeg" width="600" height="270">
 
-<img src="/images/KWheeler_FallenSnow.jpeg" width="270" height="600">
+<img src="/images/KWheeler_FallenSnow.jpeg" width="600" height="270">
 
-<img src="/images/KWheeler_icelandGlacier.jpeg" width="270" height="600">
+<img src="/images/KWheeler_icelandGlacier.jpeg" width="600" height="270">
 
-<img src="/images/KWheeler_IcelandHike.jpeg" width="300" height="600">
+<img src="/images/KWheeler_IcelandHike.jpeg" width="600" height="270">
 
-<img src="/images/KWheeler_Peru.jpeg" width="270" height="600">
+<img src="/images/KWheeler_Peru.jpeg" width="600" height="270">
 
 <img src="/images/KWheeler_Sweden.jpg" width="600" height="270">
 
