@@ -7,14 +7,11 @@ redirect_from:
   - /research
 ---
 
-I am an ecosystem ecologist and ecophysiologist interested in how plants and their role in ecosystems are shifting under and impacting global climate change. In particular, I am interested in the role of plants in the carbon and water cycles, such as through leaf phenology, impacts of droughts and heat stress, and changes to photosynthesis and stomata from CO2 fertilization. Below are some of my general current and previous interests/projects. 
+I am an ecosystem ecologist and ecophysiologist interested in how plants and their role in ecosystems are shifting under and impacting 
+global climate change. In particular, I am interested in the role of plants in the carbon and water cycles, such as through leaf 
+phenology, impacts of droughts and heat stress, and changes to photosynthesis and stomata from CO2 fertilization. Below are some of my 
+previous research projects. 
 
-
-Tropical Forests Under Drought and Effects on Biomass
-------
-With global climate change, the impacts of droughts on tropical forests are becoming more severe, contributing to potential shifts in tropical forests from carbon sinks to carbon sources. However, there are still unexplained and uncertain regional differences in the impacts of droughts. One of the potential reasons for differences is the previous growth conditions of forests. CO2 fertilization as well as other factors such as warming temperatures have caused increased growth in much of the tropics, evident through greening trends. Trees having favorable growth conditions sometimes “overshoot” and are not able to support increased aboveground biomass in unfavorable conditions, such as under droughts. However, trees that undergo minor droughts might acclimate and, thus, be more resilient to future droughts. Using Google Earth Engine, I am studying how the previous growth conditions of tropical forests impacts drought effects and recovery. 
-
-<img src='/images/tropicalForest.JPG'>
 
 Leaf Phenology and Soil Properties
 ------
