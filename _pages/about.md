@@ -9,15 +9,13 @@ redirect_from:
 ---
 
 
-I am an environmental data scientist interested in using my strong quantitative experience to answer questions related to how 
-the 
-environment is changing. I am currently an associate at the environmental consulting company Industrial Economics, Inc, where 
-I provide assistance on Natural Resource Damagement Assessments. Before that, I was  a postdoctoral fellow at 
-the Massachusetts Institute of Technology, funded through a 
-highly competitive NOAA Climate and Global Change Fellowship. My past research utilized remote sensing, Bayesian statistics, 
-machine learning, high performance computing, coding (primarily in R), and ecological forecasting. Much of my research has focused on various aspects of leaf seasonality and carbon cycling in forests. Leaf seasonality (called phenology) serves as a primary ecological indicator of climate change and has numerous ecosystem and climate impacts including nutrient cycling, energy budgets, and annual primary productivity. 
+I am an Environmental and Geospatial Data Scientist passionate about using data-driven approaches to better understand how human activity impacts our planet’s ecosystems. My work bridges environmental science, remote sensing, and advanced statistical modeling to uncover patterns in how Earth’s systems respond to change—and how we can use that insight to protect them.
 
-Before starting at MIT, I earned my PhD in Earth and the Environment from Boston University, where my dissertation was titled “Cold-deciduous broadleaf phenology: monitoring using a geostationary satellite and predicting using trigger-less dynamic models.” During my PhD, I was funded with a highly competitive National Science Foundation Graduate Research Fellowship. I earned a B.S. in Environmental Science (concentration in Water Science) from the University of Delaware, where I was funded with a full merit scholarship. I have TAed courses on environmental modeling, ecological forecasting, and general computer science. 
+I earned my Ph.D. in Earth and Environment from Boston University, where I developed novel Bayesian models and automated workflows for analyzing 30 TB of satellite data to predict forest leaf phenology. As a NOAA Climate and Global Change Fellow at MIT, I expanded this work globally by integrating LiDAR, eddy covariance, and MODIS data to assess various impacts to the carbon cycle. 
 
-Looking forward, I strive to use my experience in environmental science, data science, and programming to perform impactful work and solve real-world problems.  
+Currently, at Industrial Economics, Inc., I apply my expertise in spatial and temporal data analysis, ecological modeling, and machine learning to real-world environmental challenges, including assessing contaminant impacts at Superfund sites and guiding natural resource restoration decisions.
+Across my career, I’ve combined technical rigor (R, Python, GIS, Bayesian and machine learning models) with environmental purpose—from forecasting ecosystem dynamics to helping clients interpret complex spatial data. I believe that actionable, transparent, and reproducible environmental data science is key to addressing the climate and ecological crises of our time.
+
+Specialties: Environmental and geospatial data science, remote sensing, forest carbon, ecological forecasting, spatial analysis, Bayesian modeling, machine learning, and high-performance computing
+  
 
