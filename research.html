@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research – Kathryn I. Wheeler</title>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: { 50:'#EAF3DE', 100:'#C0DD97', 400:'#639922', 600:'#3B6D11', 800:'#27500A' }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-white border-b-2 border-forest-400 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div>
+        <div class="font-semibold text-gray-900 text-base leading-tight">Kathryn I. Wheeler</div>
+        <div class="text-xs text-gray-500">Environmental &amp; Geospatial Data Scientist</div>
+      </div>
+      <div class="flex items-center gap-1 flex-wrap justify-end">
+        <a href="index.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">About</a>
+        <a href="resume.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Resume</a>
+        <a href="research.html" class="px-3 py-1.5 rounded text-sm font-medium bg-forest-50 text-forest-600">Previous Research</a>
+        <a href="publications.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Publications</a>
+        <a href="news.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">News</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Body -->
+  <div class="max-w-6xl mx-auto px-6 py-10 flex gap-8">
+
+    <!-- Sidebar -->
+    <aside class="w-52 shrink-0">
+      <div class="sticky top-24 flex flex-col items-center gap-3 text-center">
+        <img src="images/profile_professional.jpg" alt="Kathryn Wheeler" class="w-32 h-32 rounded-full object-cover border-4 border-forest-100">
+        <div>
+          <div class="font-semibold text-gray-900 text-sm leading-tight">Kathryn I. Wheeler</div>
+          <div class="text-xs text-gray-500 mt-1 leading-snug">Environmental &amp; Geospatial<br>Data Scientist</div>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-gray-500">
+          <i class="ti ti-map-pin text-forest-400"></i>
+          Williamstown, MA
+        </div>
+        <div class="w-full border-t border-gray-200 pt-3 flex flex-col gap-2 text-left">
+          <a href="mailto:kwheelerecology@gmail.com" class="flex items-start gap-2 text-xs text-gray-600 hover:text-forest-600 break-all">
+            <i class="ti ti-mail text-forest-400 mt-0.5 shrink-0"></i>
+            kwheelerecology@gmail.com
+          </a>
+          <a href="https://github.com/k-wheeler" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-brand-github text-forest-400 shrink-0"></i>
+            k-wheeler
+          </a>
+          <a href="https://www.linkedin.com/in/kathryn-wheeler-aa06659a" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-brand-linkedin text-forest-400 shrink-0"></i>
+            LinkedIn
+          </a>
+          <a href="https://scholar.google.com/citations?user=u70ni9sAAAAJ&hl=en" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-school text-forest-400 shrink-0"></i>
+            Google Scholar
+          </a>
+          <a href="https://www.researchgate.net/profile/Kathryn-Wheeler-3" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-flask text-forest-400 shrink-0"></i>
+            ResearchGate
+          </a>
+          <a href="https://orcid.org/0000-0003-3931-7489" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-id text-forest-400 shrink-0"></i>
+            ORCID
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <div class="text-base font-semibold tracking-widest text-forest-400 uppercase mb-3">Previous Research</div>
+
+      <p class="text-gray-700 leading-relaxed mb-8">
+        I am an ecosystem ecologist and ecophysiologist interested in how plants and their role in ecosystems are shifting under and impacting global climate change. In particular, I am interested in the role of plants in the carbon and water cycles, such as through leaf phenology, impacts of droughts and heat stress, and changes to photosynthesis and stomata from CO<sub>2</sub> fertilization. Below are some of my previous research projects.
+      </p>
+
+      <!-- Section 1 -->
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-900 mb-1 pb-1 border-b border-forest-100">Leaf Phenology and Soil Properties</h2>
+        <p class="text-gray-700 leading-relaxed mt-4 mb-4">
+          As the global climate changes, it is becoming more important to understand the uncertain role that the terrestrial biosphere has on carbon storage. Since warmer temperatures affect the timing of phenology transitions in plants, plant phenology is a primary ecological indicator of climate change. Furthermore, how sensitive phenology transitions are to different drivers (e.g., temperature, photoperiod, water availability, leaf age limitations) is highly variable and depends on species and latitude. Without understanding how sensitive phenology is to drivers, we cannot make accurate predictions of phenology and, thus, annual primary productivity.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          In my current fellowship work, I am interested in how various soil properties including carbon to nitrogen ratios, soil moisture, and soil fungi called mycorrhizae impact phenology. Over 80% of plant species associate with soil fungi called mycorrhizae, which increase access to limiting resources such as nutrients (e.g., nitrogen, N) and water. Soil microbes (e.g., mycorrhizae fungi) significantly impact plant phenology events (e.g., flowering) in over 88% of published studies, but their effect on leaf phenology is rarely studied (O'Brien et al., 2021, Am. J. Bot). In this project, I will investigate if mycorrhizae association of plants affects the sensitivity of leaf phenology in plants to environmental drivers and the resultant carbon fluxes.
+        </p>
+        <img src="images/fallWoods.JPG" alt="Fall woods" class="rounded-lg w-full max-w-lg mt-2 object-cover">
+      </section>
+
+      <!-- Section 2 -->
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-900 mb-1 pb-1 border-b border-forest-100">Modeling Senescence</h2>
+        <p class="text-gray-700 leading-relaxed mt-4 mb-4">
+          Phenology models, especially ones of autumnal processes like senescence, are typically based on correlations between environmental threshold triggers and transition dates and less is known about the specific mechanisms behind phenological events. It is unclear if a start of senescence (SOS) trigger is needed in mechanistic models and if decreased photosynthesis drives senescence. In my PhD, I developed a dynamic Bayesian model based on the physiological process of chlorophyll cycling that assumes a constant chlorophyll breakdown rate and synthesis dependent on temperature and photoperiod to predict senescence without including a SOS trigger or degree-day memory. I fit the model to greenness time series from 24 PhenoCam sites and found that for 49% of the site-years the model could predict SOS using only pre-SOS data. Furthermore, the model could regularly predict greenness at other sites better than their climatologies. I also investigated if including photosynthetic feedbacks could improve the chlorophyll synthesis model at the canopy and leaf-levels. Testing this against leaf-level measurements of photosynthetic capacity and changes in chlorophyll concentrations of <em>Fagus grandifolia</em> and <em>Quercus rubra</em>, which I collected through field work at Harvard Forest, MA, demonstrated that the model fit improved at the canopy level, but not at the leaf-level.
+        </p>
+        <img src="images/harvardForestTower.png" alt="Harvard Forest tower" class="rounded-lg w-full max-w-lg mt-2 object-cover">
+      </section>
+
+      <!-- Section 3 -->
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-900 mb-1 pb-1 border-b border-forest-100">Remote Sensing of Phenology</h2>
+        <p class="text-gray-700 leading-relaxed mt-4 mb-4">
+          Higher temporal resolution satellite data is needed to continue to identify the mechanisms at larger scales. I created and published a novel statistical model to estimate daily NDVI with uncertainty from high temporal resolution (five – ten minutes) Geostationary Operational Environmental Satellite (GOES) -16 and -17 data. I also used this data to track forest phenology by fitting double-logistic Bayesian models and comparing transition dates to those obtained from PhenoCams (digital cameras) and the Moderate Resolution Imaging Spectroradiometer (MODIS). Compared to MODIS, GOES was more correlated with PhenoCam at the start and middle of spring.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          For my undergraduate thesis, I assessed how well hyperspectral indices in the visible and near-infrared wavelengths predict nitrogen concentrations in lower-canopy leaves in the autumn phenological transition as they are generally understudied in leaf trait research.
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-gray-900 mb-1 pb-1 border-b border-forest-100">Leaf Phenology and Ecohydrology</h2>
+        <p class="text-gray-700 leading-relaxed mt-4 mb-4">
+          In autumn, the dissolved organic matter (DOM) contribution of leaf litter leachate to streams in forested watersheds changes as trees undergo resorption, senescence, and leaf abscission. Despite its biogeochemical importance, little work has investigated how leaf litter leachate DOM changes throughout the autumn and how any changes might differ interspecifically and intraspecifically. I examined changes in leaf litter leachate fluorescent DOM from American beech leaves in Maryland, Rhode Island, Vermont, and North Carolina and from yellow poplar leaves from Maryland. I created a six-component parallel factor analysis (PARAFAC) model to identify components that accounted for the majority of the variation in the data set and used self-organizing maps to compare the PARAFAC component proportions of leachate samples.
+        </p>
+        <img src="images/fall1.JPG" alt="Fall foliage" class="rounded-lg w-full max-w-lg mt-2 object-cover">
+      </section>
+    </main>
+  </div>
+</body>
+</html>

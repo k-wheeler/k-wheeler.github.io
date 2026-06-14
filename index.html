@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kathryn I. Wheeler</title>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: { 50:'#EAF3DE', 100:'#C0DD97', 400:'#639922', 600:'#3B6D11', 800:'#27500A' }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-white border-b-2 border-forest-400 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div>
+        <div class="font-semibold text-gray-900 text-base leading-tight">Kathryn I. Wheeler</div>
+        <div class="text-xs text-gray-500">Environmental &amp; Geospatial Data Scientist</div>
+      </div>
+      <div class="flex items-center gap-1 flex-wrap justify-end">
+        <a href="index.html" class="px-3 py-1.5 rounded text-sm font-medium bg-forest-50 text-forest-600">About</a>
+        <a href="resume.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Resume</a>
+        <a href="research.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Previous Research</a>
+        <a href="publications.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Publications</a>
+        <a href="news.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">News</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Body -->
+  <div class="max-w-6xl mx-auto px-6 py-10 flex gap-8">
+
+    <!-- Sidebar -->
+    <aside class="w-52 shrink-0">
+      <div class="sticky top-24 flex flex-col items-center gap-3 text-center">
+        <img src="images/profile_professional.jpg" alt="Kathryn Wheeler" class="w-32 h-32 rounded-full object-cover border-4 border-forest-100">
+        <div>
+          <div class="font-semibold text-gray-900 text-sm leading-tight">Kathryn I. Wheeler</div>
+          <div class="text-xs text-gray-500 mt-1 leading-snug">Environmental &amp; Geospatial<br>Data Scientist</div>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-gray-500">
+          <i class="ti ti-map-pin text-forest-400"></i>
+          Williamstown, MA
+        </div>
+        <div class="w-full border-t border-gray-200 pt-3 flex flex-col gap-2 text-left">
+          <a href="mailto:kwheelerecology@gmail.com" class="flex items-start gap-2 text-xs text-gray-600 hover:text-forest-600 break-all">
+            <i class="ti ti-mail text-forest-400 mt-0.5 shrink-0"></i>
+            kwheelerecology@gmail.com
+          </a>
+          <a href="https://github.com/k-wheeler" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-brand-github text-forest-400 shrink-0"></i>
+            k-wheeler
+          </a>
+          <a href="https://www.linkedin.com/in/kathryn-wheeler-aa06659a" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-brand-linkedin text-forest-400 shrink-0"></i>
+            LinkedIn
+          </a>
+          <a href="https://scholar.google.com/citations?user=u70ni9sAAAAJ&hl=en" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-school text-forest-400 shrink-0"></i>
+            Google Scholar
+          </a>
+          <a href="https://www.researchgate.net/profile/Kathryn-Wheeler-3" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-flask text-forest-400 shrink-0"></i>
+            ResearchGate
+          </a>
+          <a href="https://orcid.org/0000-0003-3931-7489" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
+            <i class="ti ti-id text-forest-400 shrink-0"></i>
+            ORCID
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <div class="text-base font-semibold tracking-widest text-forest-400 uppercase mb-3">About me</div>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+        I am an Environmental and Geospatial Data Scientist passionate about using data-driven approaches to better understand how human activity impacts our planet's ecosystems. My work bridges environmental science, remote sensing, and advanced statistical modeling to uncover patterns in how Earth's systems respond to change—and how we can use that insight to protect them.
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        I earned my Ph.D. in Earth and Environment from Boston University, where I developed novel Bayesian models and automated workflows for analyzing 30 TB of satellite data to predict forest leaf phenology. As a NOAA Climate and Global Change Fellow at MIT, I expanded this work globally by integrating LiDAR, eddy covariance, and MODIS data to assess various impacts to the carbon cycle.
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Currently, at Industrial Economics, Inc., I apply my expertise in spatial and temporal data analysis, ecological modeling, and machine learning to real-world environmental challenges, including assessing contaminant impacts at Superfund sites and guiding natural resource restoration decisions. Across my career, I've combined technical rigor (R, Python, GIS, Bayesian and machine learning models) with environmental purpose—from forecasting ecosystem dynamics to helping clients interpret complex spatial data. I believe that actionable, transparent, and reproducible environmental data science is key to addressing the climate and ecological crises of our time.
+      </p>
+
+      <hr class="border-gray-200 my-6">
+
+      <div class="text-base font-semibold tracking-widest text-forest-400 uppercase mb-3">Specialties</div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Environmental data science</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Geospatial analysis</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Remote sensing</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Forest carbon</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Ecological forecasting</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Spatial analysis</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Bayesian modeling</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Machine learning</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">High-performance computing</span>
+        <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R &amp; Python</span>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
