@@ -91,30 +91,30 @@ function showTab(name, el) {
 }
 
 // Today's prediction map
-var mapToday = L.map('map-today').setView([np.float64(42.39696765924086), np.float64(-73.29413756048595)], 10);
+var mapToday = L.map('map-today').setView([42.39696765924086, -73.29413756048595], 10);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapToday);
-L.imageOverlay('current_pred.png', [[np.float64(42.04537600218568), np.float64(-73.4560865378196)], [np.float64(42.748559316296046), np.float64(-73.1321885831523)]], {opacity: 1.0}).addTo(mapToday);
+L.imageOverlay('current_pred.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 1.0}).addTo(mapToday);
 
 // Average transition maps
 
             var mapstart = L.map('map-start', {zoomControl: false})
-                .setView([np.float64(42.39696765924086), np.float64(-73.29413756048595)], 10);
+                .setView([42.39696765924086, -73.29413756048595], 10);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
                 {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(mapstart);
-            L.imageOverlay('avg_start.png', [[np.float64(42.04537600218568), np.float64(-73.4560865378196)], [np.float64(42.748559316296046), np.float64(-73.1321885831523)]], {opacity: 0.85}).addTo(mapstart);
+            L.imageOverlay('avg_start.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(mapstart);
             
             var mapmiddle = L.map('map-middle', {zoomControl: false})
-                .setView([np.float64(42.39696765924086), np.float64(-73.29413756048595)], 10);
+                .setView([42.39696765924086, -73.29413756048595], 10);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
                 {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(mapmiddle);
-            L.imageOverlay('avg_middle.png', [[np.float64(42.04537600218568), np.float64(-73.4560865378196)], [np.float64(42.748559316296046), np.float64(-73.1321885831523)]], {opacity: 0.85}).addTo(mapmiddle);
+            L.imageOverlay('avg_middle.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(mapmiddle);
             
             var mapend = L.map('map-end', {zoomControl: false})
-                .setView([np.float64(42.39696765924086), np.float64(-73.29413756048595)], 10);
+                .setView([42.39696765924086, -73.29413756048595], 10);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
                 {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(mapend);
-            L.imageOverlay('avg_end.png', [[np.float64(42.04537600218568), np.float64(-73.4560865378196)], [np.float64(42.748559316296046), np.float64(-73.1321885831523)]], {opacity: 0.85}).addTo(mapend);
+            L.imageOverlay('avg_end.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(mapend);
             
 </script>
 </body>
