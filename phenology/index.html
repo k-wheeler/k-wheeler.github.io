@@ -88,6 +88,13 @@ function showTab(name, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
   el.classList.add('active');
+  // Force Leaflet to recalculate map size after the container becomes visible
+  if (name === 'history') {
+    ['start', 'middle', 'end'].forEach(function(p) {
+      var m = window['map' + p];
+      if (m) { m.invalidateSize(); }
+    });
+  }
 }
 
 // Today's prediction map
@@ -98,23 +105,23 @@ L.imageOverlay('current_pred.png', [[42.04537600218568, -73.4560865378196], [42.
 
 // Average transition maps
 
-            var mapstart = L.map('map-start', {zoomControl: false})
+            window['mapstart'] = L.map('map-start', {zoomControl: false})
                 .setView([42.39696765924086, -73.29413756048595], 10);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(mapstart);
-            L.imageOverlay('avg_start.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(mapstart);
+                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapstart']);
+            L.imageOverlay('avg_start.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(window['mapstart']);
             
-            var mapmiddle = L.map('map-middle', {zoomControl: false})
+            window['mapmiddle'] = L.map('map-middle', {zoomControl: false})
                 .setView([42.39696765924086, -73.29413756048595], 10);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(mapmiddle);
-            L.imageOverlay('avg_middle.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(mapmiddle);
+                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapmiddle']);
+            L.imageOverlay('avg_middle.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(window['mapmiddle']);
             
-            var mapend = L.map('map-end', {zoomControl: false})
+            window['mapend'] = L.map('map-end', {zoomControl: false})
                 .setView([42.39696765924086, -73.29413756048595], 10);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(mapend);
-            L.imageOverlay('avg_end.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(mapend);
+                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapend']);
+            L.imageOverlay('avg_end.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(window['mapend']);
             
 </script>
 </body>
