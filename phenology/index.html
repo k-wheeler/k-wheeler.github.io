@@ -103,6 +103,49 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapToday);
 L.imageOverlay('current_pred.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 1.0}).addTo(mapToday);
 
+// Pixel-click popup: load feature data once, then respond to map clicks
+var pixelData = null;
+var FEAT_LABELS = {
+  'EVI':                  'EVI',
+  'NDVI':                 'NDVI',
+  'evi_delta':            'EVI Δ1 (vs prior obs)',
+  'evi_delta2':           'EVI Δ2 (vs 2nd prior obs)',
+  'ndvi_delta':           'NDVI Δ1 (vs prior obs)',
+  'ndvi_delta2':          'NDVI Δ2 (vs 2nd prior obs)',
+  'day_length_hrs':       'Day length (hrs)',
+  'doy_minus_avg_middle': 'Days from avg mid-transition'
+};
+var LABEL_COLORS = {"before": "steelblue", "early": "green", "late": "orange", "after": "red", "unknown": "lightgray"};
+
+fetch('pixel_features.json')
+  .then(function(r) { return r.json(); })
+  .then(function(d) { pixelData = d; })
+  .catch(function(e) { console.warn('pixel_features.json not loaded:', e); });
+
+mapToday.on('click', function(e) {
+  if (!pixelData) return;
+  var lat = e.latlng.lat, lon = e.latlng.lng;
+  var south = pixelData.bounds[0][0], west = pixelData.bounds[0][1];
+  var north = pixelData.bounds[1][0], east = pixelData.bounds[1][1];
+  var row = Math.floor((north - lat) / (north - south) * pixelData.nrows);
+  var col = Math.floor((lon  - west) / (east  - west) * pixelData.ncols);
+  var key = row + ',' + col;
+  var p = pixelData.pixels[key];
+  if (!p) return;
+  var labelColor = LABEL_COLORS[p.label] || '#888';
+  var rows = Object.keys(FEAT_LABELS).map(function(k) {
+    var val = p[k] === null || p[k] === undefined ? '&mdash;' : p[k].toFixed(4);
+    return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + FEAT_LABELS[k] + '</td>' +
+           '<td style="text-align:right;font-variant-numeric:tabular-nums">' + val + '</td></tr>';
+  }).join('');
+  var html = '<div style="font-size:13px;min-width:230px">' +
+    '<b>Predicted: <span style="color:' + labelColor + '">' +
+    p.label.charAt(0).toUpperCase() + p.label.slice(1) + '</span></b>' +
+    '<table style="margin-top:6px;width:100%;border-collapse:collapse">' +
+    rows + '</table></div>';
+  L.popup().setLatLng(e.latlng).setContent(html).openOn(mapToday);
+});
+
 // Average transition maps
 
             window['mapstart'] = L.map('map-start', {zoomControl: false})
