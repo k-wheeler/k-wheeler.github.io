@@ -58,7 +58,7 @@
   <div class="sidebar">
     <div class="legend">
       <h3>Phenological State</h3>
-      <span class="swatch" style="background:steelblue"></span><span>Before</span><span class="swatch" style="background:green"></span><span>Early</span><span class="swatch" style="background:orange"></span><span>Late</span><span class="swatch" style="background:red"></span><span>After</span>
+      <span class="swatch" style="background:steelblue"></span><span>Before</span><span class="swatch" style="background:green"></span><span>Early</span><span class="swatch" style="background:orange"></span><span>Late</span><span class="swatch" style="background:red"></span><span>After</span><span class="swatch" style="background:#202020;height:3px"></span><span>Appalachian Trail</span>
     </div>
     <div class="histogram">
       <div class="bar-wrap"><div class="bar" style="height:151px;background:steelblue"></div><div class="bar-label">Before<br>5.0 mi²</div></div><div class="bar-wrap"><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early<br>0.0 mi²</div></div><div class="bar-wrap"><div class="bar" style="height:8px;background:orange"></div><div class="bar-label">Late<br>0.3 mi²</div></div><div class="bar-wrap"><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After<br>0.0 mi²</div></div>
@@ -182,6 +182,23 @@ mapToday.on('click', function(e) {
                 {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapend']);
             L.imageOverlay('avg_end.png', [[42.04537600218568, -73.4560865378196], [42.748559316296046, -73.1321885831523]], {opacity: 0.85}).addTo(window['mapend']);
             
+
+// Appalachian Trail centerline overlay on every map
+var atRoute = null;
+function addRoute(map) {
+  if (map && atRoute) {
+    L.geoJSON(atRoute, {style: {color: '#202020', weight: 1.5, opacity: 0.85}})
+      .addTo(map);
+  }
+}
+fetch('at_route.geojson')
+  .then(function(r) { return r.json(); })
+  .then(function(gj) {
+    atRoute = gj;
+    addRoute(mapToday);
+    ['start', 'middle', 'end'].forEach(function(p) { addRoute(window['map' + p]); });
+  })
+  .catch(function(e) { console.warn('at_route.geojson not loaded:', e); });
 </script>
 </body>
 </html>
