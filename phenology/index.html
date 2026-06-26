@@ -226,24 +226,101 @@ mapToday.on('click', function(e) {
 
 // Average transition maps
 
-            window['mapstart'] = L.map('map-start', {zoomControl: false})
-                .setView([42.39697850169891, -73.29410006262556], 10);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapstart']);
-            L.imageOverlay('avg_start.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapstart']);
-            
-            window['mapmiddle'] = L.map('map-middle', {zoomControl: false})
-                .setView([42.39697850169891, -73.29410006262556], 10);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapmiddle']);
-            L.imageOverlay('avg_middle.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapmiddle']);
-            
-            window['mapend'] = L.map('map-end', {zoomControl: false})
-                .setView([42.39697850169891, -73.29410006262556], 10);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapend']);
-            L.imageOverlay('avg_end.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapend']);
-            
+// Convert a fractional day-of-year to a short calendar date string (e.g. "Oct 5").
+// Uses a non-leap year as the base so DOY 1 = Jan 1.
+function doyToDate(doy) {
+  var d = new Date(2001, 0, 1);
+  d.setDate(d.getDate() + Math.round(doy) - 1);
+  return d.toLocaleDateString('en-US', {month: 'short', day: 'numeric'});
+}
+
+window['mapstart'] = L.map('map-start', {zoomControl: false})
+    .setView([42.39697850169891, -73.29410006262556], 10);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapstart']);
+L.imageOverlay('avg_start.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapstart']);
+window['mapstart'].on('click', function(e) {
+  if (!pixelArr) return;
+  var lat = e.latlng.lat, lon = e.latlng.lng;
+  var best = null, bestDist = Infinity;
+  for (var i = 0; i < pixelArr.length; i++) {
+    var px = pixelArr[i];
+    var d = (px.lat - lat) * (px.lat - lat) + (px.lon - lon) * (px.lon - lon);
+    if (d < bestDist) { bestDist = d; best = px; }
+  }
+  var p = (best && bestDist <= SNAP_SQ) ? best : null;
+  if (!p) return;
+  var phases = [['Avg Start', p.avg_start_doy], ['Avg Middle', p.avg_middle_doy], ['Avg End', p.avg_end_doy]];
+  var rows = phases.map(function(r) {
+    var ds = (r[1] !== null && r[1] !== undefined) ? doyToDate(r[1]) : '&mdash;';
+    return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + r[0] + '</td>' +
+           '<td style="text-align:right">' + ds + '</td></tr>';
+  }).join('');
+  L.popup().setLatLng(e.latlng).setContent(
+    '<div style="font-size:13px;min-width:190px">' +
+    '<b>Historical Average Transition</b>' +
+    '<table style="margin-top:6px;width:100%;border-collapse:collapse">' + rows + '</table></div>'
+  ).openOn(window['mapstart']);
+});
+
+window['mapmiddle'] = L.map('map-middle', {zoomControl: false})
+    .setView([42.39697850169891, -73.29410006262556], 10);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapmiddle']);
+L.imageOverlay('avg_middle.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapmiddle']);
+window['mapmiddle'].on('click', function(e) {
+  if (!pixelArr) return;
+  var lat = e.latlng.lat, lon = e.latlng.lng;
+  var best = null, bestDist = Infinity;
+  for (var i = 0; i < pixelArr.length; i++) {
+    var px = pixelArr[i];
+    var d = (px.lat - lat) * (px.lat - lat) + (px.lon - lon) * (px.lon - lon);
+    if (d < bestDist) { bestDist = d; best = px; }
+  }
+  var p = (best && bestDist <= SNAP_SQ) ? best : null;
+  if (!p) return;
+  var phases = [['Avg Start', p.avg_start_doy], ['Avg Middle', p.avg_middle_doy], ['Avg End', p.avg_end_doy]];
+  var rows = phases.map(function(r) {
+    var ds = (r[1] !== null && r[1] !== undefined) ? doyToDate(r[1]) : '&mdash;';
+    return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + r[0] + '</td>' +
+           '<td style="text-align:right">' + ds + '</td></tr>';
+  }).join('');
+  L.popup().setLatLng(e.latlng).setContent(
+    '<div style="font-size:13px;min-width:190px">' +
+    '<b>Historical Average Transition</b>' +
+    '<table style="margin-top:6px;width:100%;border-collapse:collapse">' + rows + '</table></div>'
+  ).openOn(window['mapmiddle']);
+});
+
+window['mapend'] = L.map('map-end', {zoomControl: false})
+    .setView([42.39697850169891, -73.29410006262556], 10);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapend']);
+L.imageOverlay('avg_end.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapend']);
+window['mapend'].on('click', function(e) {
+  if (!pixelArr) return;
+  var lat = e.latlng.lat, lon = e.latlng.lng;
+  var best = null, bestDist = Infinity;
+  for (var i = 0; i < pixelArr.length; i++) {
+    var px = pixelArr[i];
+    var d = (px.lat - lat) * (px.lat - lat) + (px.lon - lon) * (px.lon - lon);
+    if (d < bestDist) { bestDist = d; best = px; }
+  }
+  var p = (best && bestDist <= SNAP_SQ) ? best : null;
+  if (!p) return;
+  var phases = [['Avg Start', p.avg_start_doy], ['Avg Middle', p.avg_middle_doy], ['Avg End', p.avg_end_doy]];
+  var rows = phases.map(function(r) {
+    var ds = (r[1] !== null && r[1] !== undefined) ? doyToDate(r[1]) : '&mdash;';
+    return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + r[0] + '</td>' +
+           '<td style="text-align:right">' + ds + '</td></tr>';
+  }).join('');
+  L.popup().setLatLng(e.latlng).setContent(
+    '<div style="font-size:13px;min-width:190px">' +
+    '<b>Historical Average Transition</b>' +
+    '<table style="margin-top:6px;width:100%;border-collapse:collapse">' + rows + '</table></div>'
+  ).openOn(window['mapend']);
+});
+
 
 // Appalachian Trail centerline overlay on every map
 var atRoute = null;
