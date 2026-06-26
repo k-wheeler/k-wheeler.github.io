@@ -128,6 +128,7 @@ fetch('pixel_features.json')
   .catch(function(e) { console.warn('pixel_features.json failed to load:', e); });
 
 mapToday.on('click', function(e) {
+  console.log('map clicked; pixelData loaded:', pixelData !== null);
   if (!pixelData) return;
   var lat = e.latlng.lat, lon = e.latlng.lng;
   // Convert WGS84 click to the raster's projected CRS (UTM), then apply
