@@ -119,7 +119,7 @@ var FEAT_LABELS = {
 };
 var LABEL_COLORS = {"before": "steelblue", "early": "green", "late": "orange", "after": "red", "unknown": "lightgray"};
 
-fetch('pixel_features.json')
+fetch('pixel_features.json?v=' + Date.now())
   .then(function(r) { return r.json(); })
   .then(function(d) {
     pixelArr = d.pixels;
