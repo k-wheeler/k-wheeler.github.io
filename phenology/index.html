@@ -139,6 +139,8 @@ mapToday.on('click', function(e) {
   var col = Math.floor((pt[0] - t[2]) / t[0]);
   var row = Math.floor((pt[1] - t[5]) / t[4]);
   var key = row + ',' + col;
+  console.log('click lat/lon:', lat, lon, '→ UTM:', pt[0].toFixed(1), pt[1].toFixed(1),
+              '→ row:', row, 'col:', col, '→ key:', key, '→ found:', key in pixelData.pixels);
   var p = pixelData.pixels[key];
   if (!p) return;
   var labelColor = LABEL_COLORS[p.label] || '#888';
