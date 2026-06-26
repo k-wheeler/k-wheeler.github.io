@@ -27,14 +27,23 @@
   .legend h3 { margin-bottom: 8px; font-size: 0.9rem; color: #444; }
   .swatch { display: inline-block; width: 14px; height: 14px;
               border-radius: 2px; margin-right: 8px; vertical-align: middle; }
-  .legend span { font-size: 0.88rem; }
-  .legend > * { display: block; margin-bottom: 4px; }
+  .legend-item { margin-bottom: 8px; }
+  .legend-row { display: flex; align-items: center; }
+  .legend-name { font-size: 0.88rem; font-weight: 600; }
+  .legend-desc { font-size: 0.78rem; color: #888; padding-left: 22px; margin-top: 1px; }
   .histogram { display: flex; align-items: flex-end; gap: 8px;
                 background: white; border: 1px solid #ccc; border-radius: 6px;
                 padding: 16px; }
   .bar-wrap { text-align: center; }
   .bar { width: 44px; border-radius: 3px 3px 0 0; min-height: 2px; }
+  .bar-area { font-size: 0.72rem; color: #555; margin-bottom: 2px; }
   .bar-label { font-size: 0.75rem; margin-top: 4px; color: #555; }
+  #panel-about.active { display: block; max-width: 720px; }
+  .about-content h3 { color: #2c6b3f; font-size: 1rem; margin: 16px 0 6px; }
+  .about-content h3:first-child { margin-top: 0; }
+  .about-content p, .about-content li { font-size: 0.9rem; line-height: 1.5; color: #333; }
+  .about-content ol, .about-content ul { padding-left: 20px; margin-bottom: 8px; }
+  .about-content li { margin-bottom: 4px; }
   .avg-map { width: 380px; height: 320px; border-radius: 6px;
               border: 1px solid #ccc; }
   .avg-panel { display: flex; flex-direction: column; gap: 8px; }
@@ -48,20 +57,25 @@
   <h1>Appalachian Trail Fall Phenology — Massachusetts</h1>
   <p>Prediction for <strong>2026-06-26</strong> &nbsp;|&nbsp;
      Updated daily using NASA HLS 30 m satellite imagery</p>
+  <p style="margin-top:6px;font-size:0.82rem;opacity:0.75">
+     Tracking fall foliage color change along the Massachusetts Appalachian Trail
+     using 30-meter satellite imagery and a machine learning model trained on
+     10 years of observations.</p>
 </header>
 <div class="tabs">
   <div class="tab active" onclick="showTab('today', this)">Today's Prediction</div>
   <div class="tab" onclick="showTab('history', this)">Historical Averages</div>
+  <div class="tab" onclick="showTab('about', this)">About</div>
 </div>
 <div id="panel-today" class="panel active">
   <div id="map-today"></div>
   <div class="sidebar">
     <div class="legend">
       <h3>Phenological State</h3>
-      <span class="swatch" style="background:steelblue"></span><span>Before</span><span class="swatch" style="background:green"></span><span>Early</span><span class="swatch" style="background:orange"></span><span>Late</span><span class="swatch" style="background:red"></span><span>After</span><span class="swatch" style="background:#202020;height:3px"></span><span>Appalachian Trail</span>
+      <div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div>
     </div>
     <div class="histogram">
-      <div class="bar-wrap"><div class="bar" style="height:151px;background:steelblue"></div><div class="bar-label">Before<br>5.0 mi²</div></div><div class="bar-wrap"><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early<br>0.0 mi²</div></div><div class="bar-wrap"><div class="bar" style="height:8px;background:orange"></div><div class="bar-label">Late<br>0.3 mi²</div></div><div class="bar-wrap"><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After<br>0.0 mi²</div></div>
+      <div class="bar-wrap"><div class="bar-area">5.0 mi²</div><div class="bar" style="height:151px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">0.3 mi²</div><div class="bar" style="height:8px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After</div></div>
     </div>
   </div>
 </div>
@@ -82,6 +96,49 @@
               <div id="map-end" class="avg-map"></div>
               <img src="avg_end_legend.png" class="legend-img">
             </div>
+</div>
+<div id="panel-about" class="panel">
+  <div class="about-content">
+    <h3>What is this map?</h3>
+    <p>Each colored pixel represents a 30&times;30 meter patch of deciduous or mixed forest
+    along the Massachusetts Appalachian Trail. The color shows the predicted state of fall
+    foliage color change (&ldquo;greendown&rdquo;) for today.</p>
+
+    <h3>How it works</h3>
+    <ol>
+      <li><strong>Satellite imagery</strong> &mdash; NASA&rsquo;s Harmonized Landsat-Sentinel
+      (HLS) program delivers 30 m surface reflectance imagery every 2&ndash;5 days.</li>
+      <li><strong>Vegetation indices</strong> &mdash; EVI and NDVI (vegetation greenness measures)
+      are computed from the red and near-infrared bands of each image.</li>
+      <li><strong>Greendown curves</strong> &mdash; A decreasing logistic curve is fitted to each
+      pixel&rsquo;s EVI time series to estimate when foliage change starts, peaks, and ends,
+      along with 95% confidence intervals.</li>
+      <li><strong>Machine learning</strong> &mdash; A decision tree classifier trained on 10 years
+      of labeled pixel-observations uses 8 features (EVI, NDVI, their recent changes, day length,
+      and days relative to that pixel&rsquo;s historical average mid-transition date) to assign
+      one of four states: Before, Early, Late, or After.</li>
+      <li><strong>Daily update</strong> &mdash; Each morning, new imagery is fetched, a rolling
+      window of the 3 most recent valid observations is updated, and predictions are recomputed
+      for all ~15,000 forest pixels.</li>
+    </ol>
+
+    <h3>Interacting with the map</h3>
+    <ul>
+      <li>Click any colored pixel to see the raw satellite values and model features used to
+      make that prediction.</li>
+      <li>Zoom in to explore individual 30 m pixels.</li>
+      <li>The <em>Historical Averages</em> tab shows the long-term average start, middle, and
+      end of greendown, giving context for how this year compares to prior years.</li>
+    </ul>
+
+    <h3>Data sources</h3>
+    <ul>
+      <li>Satellite imagery: NASA HLS HLSL30 v002 via Google Earth Engine</li>
+      <li>Forest pixels: NLCD 2021 (deciduous &amp; mixed forest classes)</li>
+      <li>Trail corridor: 50 m buffer around the Massachusetts AT route</li>
+      <li>Spatial grid: UTM Zone 18N (EPSG:32618), 30 m resolution</li>
+    </ul>
+  </div>
 </div>
 <script>
 function showTab(name, el) {
@@ -158,7 +215,12 @@ mapToday.on('click', function(e) {
     '<b>Predicted: <span style="color:' + labelColor + '">' +
     p.label.charAt(0).toUpperCase() + p.label.slice(1) + '</span></b>' +
     '<table style="margin-top:6px;width:100%;border-collapse:collapse">' +
-    rows + '</table></div>';
+    rows + '</table>' +
+    '<p style="margin-top:8px;font-size:11px;color:#999;line-height:1.4">' +
+    'EVI/NDVI: vegetation greenness (0–1, higher = greener). ' +
+    'Δ values: change from prior satellite pass. ' +
+    'Days from avg mid-transition: negative = earlier than historical average.' +
+    '</p></div>';
   L.popup().setLatLng(e.latlng).setContent(html).openOn(mapToday);
 });
 
