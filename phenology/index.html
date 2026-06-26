@@ -129,8 +129,9 @@ fetch('pixel_features.json?v=' + Date.now())
   })
   .catch(function(e) { console.warn('pixel_features.json failed to load:', e); });
 
-// ~2 pixel snap radius (30 m pixel ≈ 0.00027° lat)
-var SNAP_SQ = 0.0006 * 0.0006;
+// ~1.5 pixel snap radius (30 m pixel ≈ 0.00027° lat); clicks farther than
+// this from any forest pixel show no popup.
+var SNAP_SQ = 0.0004 * 0.0004;
 
 mapToday.on('click', function(e) {
   if (!pixelArr) { console.log('click ignored — pixelArr not loaded yet'); return; }
