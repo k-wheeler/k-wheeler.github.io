@@ -123,7 +123,9 @@ fetch('pixel_features.json')
   .then(function(r) { return r.json(); })
   .then(function(d) {
     pixelArr = d.pixels;
-    console.log('pixel_features.json loaded:', pixelArr.length, 'forest pixels');
+    console.log('pixel_features.json loaded. type:', Object.prototype.toString.call(pixelArr),
+                'length:', pixelArr && pixelArr.length,
+                'sample:', pixelArr && pixelArr[0]);
   })
   .catch(function(e) { console.warn('pixel_features.json failed to load:', e); });
 
@@ -131,7 +133,7 @@ fetch('pixel_features.json')
 var SNAP_SQ = 0.0006 * 0.0006;
 
 mapToday.on('click', function(e) {
-  if (!pixelArr) return;
+  if (!pixelArr) { console.log('click ignored — pixelArr not loaded yet'); return; }
   var lat = e.latlng.lat, lon = e.latlng.lng;
   var best = null, bestDist = Infinity;
   for (var i = 0; i < pixelArr.length; i++) {
@@ -139,6 +141,10 @@ mapToday.on('click', function(e) {
     var d = (px.lat - lat) * (px.lat - lat) + (px.lon - lon) * (px.lon - lon);
     if (d < bestDist) { bestDist = d; best = px; }
   }
+  console.log('click', lat.toFixed(5), lon.toFixed(5),
+              '| nearest dist:', Math.sqrt(bestDist).toFixed(6),
+              '| threshold:', Math.sqrt(SNAP_SQ).toFixed(6),
+              '| nearest:', best);
   var p = (best && bestDist <= SNAP_SQ) ? best : null;
   if (!p) return;
   var labelColor = LABEL_COLORS[p.label] || '#888';
