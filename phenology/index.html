@@ -6,6 +6,7 @@
 <title>AT Phenology — Massachusetts</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: sans-serif; background: #f5f5f5; color: #222; }
@@ -129,10 +130,14 @@ fetch('pixel_features.json')
 mapToday.on('click', function(e) {
   if (!pixelData) return;
   var lat = e.latlng.lat, lon = e.latlng.lng;
-  var south = pixelData.bounds[0][0], west = pixelData.bounds[0][1];
-  var north = pixelData.bounds[1][0], east = pixelData.bounds[1][1];
-  var row = Math.floor((north - lat) / (north - south) * pixelData.nrows);
-  var col = Math.floor((lon  - west) / (east  - west) * pixelData.ncols);
+  // Convert WGS84 click to the raster's projected CRS (UTM), then apply
+  // the inverse affine transform to get exact row/col.
+  proj4.defs('RASTER_CRS', pixelData.crs_proj4);
+  var pt = proj4('EPSG:4326', 'RASTER_CRS', [lon, lat]);
+  var t = pixelData.transform;
+  // affine: x = t[2] + col*t[0],  y = t[5] + row*t[4]  (t[1]=t[3]=0 for north-up)
+  var col = Math.floor((pt[0] - t[2]) / t[0]);
+  var row = Math.floor((pt[1] - t[5]) / t[4]);
   var key = row + ',' + col;
   var p = pixelData.pixels[key];
   if (!p) return;
