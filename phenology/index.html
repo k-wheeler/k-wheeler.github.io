@@ -75,7 +75,7 @@
       <div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div>
     </div>
     <div class="histogram">
-      <div class="bar-wrap"><div class="bar-area">5.2 mi²</div><div class="bar" style="height:157px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">0.1 mi²</div><div class="bar" style="height:2px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After</div></div>
+      <div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">5.3 mi²</div><div class="bar" style="height:160px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After</div></div>
     </div>
   </div>
 </div>
@@ -113,14 +113,18 @@
       <li><strong>Greendown curves</strong> &mdash; A decreasing logistic curve is fitted to each
       pixel&rsquo;s EVI time series to estimate when foliage change starts, peaks, and ends,
       along with 95% confidence intervals.</li>
+      <li><strong>Temperature</strong> &mdash; Daily maximum and minimum air temperature
+      (gridMET, ~4 km) provide two features: accumulated cold degree-days (CDD) since
+      August 1 (each day contributes max(0, 5&minus;T<sub>mean</sub>&deg;C), capturing
+      cumulative chilling) and the most recent available daily mean temperature.</li>
       <li><strong>Machine learning</strong> &mdash; A decision tree classifier trained on 10 years
-      of labeled pixel-observations uses 9 features (EVI, NDVI, their recent changes, day length,
-      days relative to that pixel&rsquo;s historical average mid-transition date, and the most
-      common predicted label over the past 7 days) to assign one of four states: Before, Early,
-      Late, or After. The 7-day rolling history gives the model a temporal consistency signal
-      across successive predictions.</li>
-      <li><strong>Daily update</strong> &mdash; Each morning, new imagery is fetched, a rolling
-      window of the 3 most recent valid observations is updated, and predictions are recomputed
+      of labeled pixel-observations uses 11 features (EVI, NDVI, their recent changes, day length,
+      days relative to that pixel&rsquo;s historical average mid-transition date, the most
+      common predicted label over the past 7 days, accumulated cold degree-days since August 1,
+      and the most recent daily mean temperature) to assign one of four states:
+      Before, Early, Late, or After.</li>
+      <li><strong>Daily update</strong> &mdash; Each morning, new imagery and temperature data
+      are fetched, rolling observation windows are updated, and predictions are recomputed
       for all ~15,000 forest pixels. Today&rsquo;s predictions are stored and used as part of
       tomorrow&rsquo;s feature set.</li>
     </ol>
@@ -137,6 +141,7 @@
     <h3>Data sources</h3>
     <ul>
       <li>Satellite imagery: NASA HLS HLSL30 v002 via Google Earth Engine</li>
+      <li>Daily temperature: gridMET (University of Idaho / Climatology Lab), ~4 km</li>
       <li>Forest pixels: NLCD 2021 (deciduous &amp; mixed forest classes)</li>
       <li>Trail corridor: 50 m buffer around the Massachusetts AT route</li>
       <li>Spatial grid: UTM Zone 18N (EPSG:32618), 30 m resolution</li>
@@ -175,7 +180,9 @@ var FEAT_LABELS = {
   'ndvi_delta':           'NDVI Δ1 (vs prior obs)',
   'ndvi_delta2':          'NDVI Δ2 (vs 2nd prior obs)',
   'day_length_hrs':       'Day length (hrs)',
-  'doy_minus_avg_middle': 'Days from avg mid-transition'
+  'doy_minus_avg_middle': 'Days from avg mid-transition',
+  'cdd_accumulated':      'Cold degree-days (Aug 1→today)',
+  'tmean_recent':         'Recent daily mean temp (°C)'
 };
 var LABEL_COLORS = {"before": "steelblue", "early": "green", "late": "orange", "after": "red", "unknown": "lightgray"};
 var LABEL_COLORS_HEX = {
