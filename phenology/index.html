@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>AT Phenology — Massachusetts</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -55,7 +58,7 @@
 <body>
 <header>
   <h1>Appalachian Trail Fall Phenology — Massachusetts</h1>
-  <p>Prediction for <strong>2026-06-28</strong> &nbsp;|&nbsp;
+  <p>Prediction for <strong>2026-06-29</strong> &nbsp;|&nbsp;
      Updated daily using NASA HLS 30 m satellite imagery</p>
   <p style="margin-top:6px;font-size:0.82rem;opacity:0.75">
      Tracking fall foliage color change along the Massachusetts Appalachian Trail
@@ -167,7 +170,7 @@ function showTab(name, el) {
 var mapToday = L.map('map-today').setView([42.39697850169891, -73.29410006262556], 10);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapToday);
-L.imageOverlay('current_pred.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapToday);
+L.imageOverlay('current_pred.png?v=2026-06-29', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapToday);
 
 // Pixel-click popup: each pixel stores its WGS84 centre lat/lon so lookup
 // is a simple nearest-neighbour search — no coordinate transform needed.
@@ -234,7 +237,7 @@ mapToday.on('click', function(e) {
   var html = '<div style="font-size:13px;min-width:230px">' +
     '<b>Predicted: <span style="color:' + labelColor + '">' +
     p.label.charAt(0).toUpperCase() + p.label.slice(1) + '</span></b>' +
-    '<div style="margin-top:6px;font-size:11px;color:#777">7-day history (newest → oldest)</div>' +
+    '<div style="margin-top:6px;font-size:11px;color:#777">Recent observations (newest → oldest)</div>' +
     '<div style="margin-bottom:6px;font-size:12px">' + histChips + '</div>' +
     '<table style="width:100%;border-collapse:collapse">' +
     rows + '</table>' +
