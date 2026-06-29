@@ -184,7 +184,7 @@ var FEAT_LABELS = {
   'ndvi_delta2':          'NDVI Δ2 (vs 2nd prior obs)',
   'day_length_hrs':       'Day length (hrs)',
   'doy_minus_avg_middle': 'Days from avg mid-transition',
-  // 'cdd_accumulated':      'Cold degree-days (Aug 1→today)',   // CDD feature disabled
+  'cdd_accumulated':      'Cold degree-days (Aug 1→today)',
   'tmean_recent':         'Recent daily mean temp (°C)'
 };
 var LABEL_COLORS = {"before": "steelblue", "early": "green", "late": "orange", "after": "red", "unknown": "lightgray"};
@@ -223,7 +223,8 @@ mapToday.on('click', function(e) {
   if (!p) return;
   var labelColor = LABEL_COLORS[p.label] || '#888';
   var rows = Object.keys(FEAT_LABELS).map(function(k) {
-    var val = p[k] === null || p[k] === undefined ? '&mdash;' : p[k].toFixed(4);
+    var dec = (k === 'doy_minus_avg_middle') ? 0 : 2;
+    var val = p[k] === null || p[k] === undefined ? '&mdash;' : p[k].toFixed(dec);
     return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + FEAT_LABELS[k] + '</td>' +
            '<td style="text-align:right;font-variant-numeric:tabular-nums">' + val + '</td></tr>';
   }).join('');
