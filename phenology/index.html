@@ -193,8 +193,9 @@ L.imageOverlay('current_pred_dt.png?v=2026-06-29', [[42.045260157145165, -73.456
 // Neural Network prediction map
 var mapRnn = null;
 var mapRnn = L.map("map-rnn").setView([42.39697850169891, -73.29410006262556], 10);
-L.tileLayer("https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png", {{attribution: "&copy; OpenStreetMap contributors &copy; CARTO"}}).addTo(mapRnn);
-L.imageOverlay("current_pred_rnn.png?v={date_str}", {bounds}, {{opacity: 1.0}}).addTo(mapRnn);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    {attribution: "&copy; OpenStreetMap contributors &copy; CARTO"}).addTo(mapRnn);
+L.imageOverlay("current_pred_rnn.png?v=2026-06-29", [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapRnn);
 
 // Pixel-click popup: each pixel stores its WGS84 centre lat/lon so lookup
 // is a simple nearest-neighbour search — no coordinate transform needed.
