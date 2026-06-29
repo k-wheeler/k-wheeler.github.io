@@ -123,13 +123,13 @@
       <li><strong>Machine learning</strong> &mdash; A decision tree classifier trained on 10 years
       of labeled pixel-observations uses 11 features (EVI, NDVI, their recent changes, day length,
       days relative to that pixel&rsquo;s historical average mid-transition date, the most
-      common predicted label over the past 7 days, accumulated cold degree-days since August 1,
+      common predicted state over the past 7 days, accumulated cold degree-days since August 1,
       and the most recent daily mean temperature) to assign one of four states:
       Before, Early, Late, or After.</li>
       <li><strong>Daily update</strong> &mdash; Each morning, new imagery and temperature data
       are fetched, rolling observation windows are updated, and predictions are recomputed
-      for all ~15,000 forest pixels. Today&rsquo;s predictions are stored and used as part of
-      tomorrow&rsquo;s feature set.</li>
+      for all ~15,000 forest pixels. The 7-day mode feature is recomputed each run by
+      re-predicting every observation from the past week, so no predictions are stored.</li>
     </ol>
 
     <h3>Interacting with the map</h3>
