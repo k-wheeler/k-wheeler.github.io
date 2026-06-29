@@ -116,15 +116,10 @@
       <li><strong>Greendown curves</strong> &mdash; A decreasing logistic curve is fitted to each
       pixel&rsquo;s EVI time series to estimate when foliage change starts, peaks, and ends,
       along with 95% confidence intervals.</li>
-      <li><strong>Temperature</strong> &mdash; Daily maximum and minimum air temperature
-      (gridMET, ~4 km) provide two features: accumulated cold degree-days (CDD) since
-      August 1 (each day contributes max(0, 5&minus;T<sub>mean</sub>&deg;C), capturing
-      cumulative chilling) and the most recent available daily mean temperature.</li>
       <li><strong>Machine learning</strong> &mdash; A decision tree classifier trained on 10 years
-      of labeled pixel-observations uses 11 features (EVI, NDVI, their recent changes, day length,
-      days relative to that pixel&rsquo;s historical average mid-transition date, the most
-      common predicted state over the past 7 days, accumulated cold degree-days since August 1,
-      and the most recent daily mean temperature) to assign one of four states:
+      of labeled pixel-observations uses 9 features (EVI, NDVI, their recent changes, day length,
+      days relative to that pixel&rsquo;s historical average mid-transition date, and the most
+      common predicted state over the past 7 days) to assign one of four states:
       Before, Early, Late, or After.</li>
       <li><strong>Daily update</strong> &mdash; Each morning, new imagery and temperature data
       are fetched, rolling observation windows are updated, and predictions are recomputed
@@ -149,6 +144,14 @@
       <li>Trail corridor: 50 m buffer around the Massachusetts AT route</li>
       <li>Spatial grid: UTM Zone 18N (EPSG:32618), 30 m resolution</li>
     </ul>
+
+    <h3>What drives the predictions?</h3>
+    <p>The chart below shows each input signal&rsquo;s <em>feature importance</em> &mdash; how
+    often the model used that signal when splitting pixels into phenological stages during
+    training. A higher value means the model relied on that signal more heavily; values
+    sum to 1.0 across all features.</p>
+    <img src="feature_importance.png" alt="Feature importance bar chart"
+         style="width:100%;max-width:580px;margin:8px 0 4px;display:block">
   </div>
 </div>
 <script>
@@ -224,8 +227,15 @@ mapToday.on('click', function(e) {
   if (!p) return;
   var labelColor = LABEL_COLORS[p.label] || '#888';
   var rows = Object.keys(FEAT_LABELS).map(function(k) {
-    var dec = (k === 'doy_minus_avg_middle') ? 0 : 2;
-    var val = p[k] === null || p[k] === undefined ? '&mdash;' : p[k].toFixed(dec);
+    var val;
+    if (p[k] === null || p[k] === undefined) {
+      val = '&mdash;';
+    } else if (k === 'doy_minus_avg_middle') {
+      var d = Math.round(p[k]);
+      val = d < 0 ? Math.abs(d) + ' days before' : (d > 0 ? d + ' days after' : 'on avg');
+    } else {
+      val = p[k].toFixed(2);
+    }
     return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + FEAT_LABELS[k] + '</td>' +
            '<td style="text-align:right;font-variant-numeric:tabular-nums">' + val + '</td></tr>';
   }).join('');
