@@ -22,8 +22,8 @@
   .tab.active { background: #2c6b3f; color: white; }
   .panel { display: none; padding: 20px; }
   .panel.active { display: flex; gap: 20px; flex-wrap: wrap; }
-  #map-today { width: 620px; height: 480px; border-radius: 6px;
-                border: 1px solid #ccc; }
+  #map-dt, #map-rnn { width: 620px; height: 480px; border-radius: 6px;
+                       border: 1px solid #ccc; }
   .sidebar { display: flex; flex-direction: column; gap: 16px; }
   .legend { background: white; border: 1px solid #ccc; border-radius: 6px;
               padding: 12px 16px; }
@@ -41,7 +41,8 @@
   .bar { width: 44px; border-radius: 3px 3px 0 0; min-height: 2px; }
   .bar-area { font-size: 0.72rem; color: #555; margin-bottom: 2px; }
   .bar-label { font-size: 0.75rem; margin-top: 4px; color: #555; }
-  #panel-about.active { display: block; max-width: 720px; }
+  #panel-about.active, #panel-rnn.active { display: block; }
+  #panel-about.active { max-width: 720px; }
   .about-content h3 { color: #2c6b3f; font-size: 1rem; margin: 16px 0 6px; }
   .about-content h3:first-child { margin-top: 0; }
   .about-content p, .about-content li { font-size: 0.9rem; line-height: 1.5; color: #333; }
@@ -66,12 +67,13 @@
      10 years of observations.</p>
 </header>
 <div class="tabs">
-  <div class="tab active" onclick="showTab('today', this)">Today's Prediction</div>
+  <div class="tab active" onclick="showTab('dt', this)">Decision Tree</div>
+  <div class="tab" onclick="showTab('rnn', this)">Neural Network</div>
   <div class="tab" onclick="showTab('history', this)">Historical Averages</div>
   <div class="tab" onclick="showTab('about', this)">About</div>
 </div>
-<div id="panel-today" class="panel active">
-  <div id="map-today"></div>
+<div id="panel-dt" class="panel active">
+  <div id="map-dt"></div>
   <div class="sidebar">
     <div class="legend">
       <h3>Phenological State</h3>
@@ -81,6 +83,9 @@
       <div class="bar-wrap"><div class="bar-area">5.0 mi²</div><div class="bar" style="height:151px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">0.3 mi²</div><div class="bar" style="height:8px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After</div></div>
     </div>
   </div>
+</div>
+<div id="panel-rnn" class="panel">
+  <div id="map-rnn"></div><div class="sidebar"><div class="legend"><h3>Phenological State</h3><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div><div class="histogram"><div class="bar-wrap"><div class="bar-area">4.4 mi²</div><div class="bar" style="height:133px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.3 mi²</div><div class="bar" style="height:10px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.5 mi²</div><div class="bar" style="height:15px;background:red"></div><div class="bar-label">After</div></div></div></div>
 </div>
 <div id="panel-history" class="panel">
   
@@ -116,21 +121,28 @@
       <li><strong>Greendown curves</strong> &mdash; A decreasing logistic curve is fitted to each
       pixel&rsquo;s EVI time series to estimate when foliage change starts, peaks, and ends,
       along with 95% confidence intervals.</li>
-      <li><strong>Machine learning</strong> &mdash; A decision tree classifier trained on 10 years
-      of labeled pixel-observations uses 9 features (EVI, NDVI, their recent changes, day length,
+      <li><strong>Decision tree</strong> &mdash; A decision tree classifier trained on 10 years of
+      labeled pixel-observations uses 9 features (EVI, NDVI, their recent changes, day length,
       days relative to that pixel&rsquo;s historical average mid-transition date, and the most
       common predicted state over the past 7 days) to assign one of four states:
       Before, Early, Late, or After.</li>
+      <li><strong>Neural network</strong> &mdash; A two-layer LSTM (long short-term memory) network
+      processes the full sequence of satellite observations for each pixel, from the start of the
+      season to today. It uses 10 features &mdash; the same 9 as the decision tree plus daily
+      temperature signals (accumulated cool-degree-days and recent mean temperature) &mdash; and
+      learns how foliage change unfolds over time rather than treating each observation
+      independently.</li>
       <li><strong>Daily update</strong> &mdash; Each morning, new imagery and temperature data
-      are fetched, rolling observation windows are updated, and predictions are recomputed
-      for all ~15,000 forest pixels. The 7-day mode feature is recomputed each run by
-      re-predicting every observation from the past week, so no predictions are stored.</li>
+      are fetched, rolling observation windows are updated, and predictions from both models are
+      recomputed for all ~15,000 forest pixels.</li>
     </ol>
 
     <h3>Interacting with the map</h3>
     <ul>
-      <li>Click any colored pixel to see the raw satellite values, model features, and a
-      7-day prediction history for that location.</li>
+      <li>The <em>Decision Tree</em> tab shows today&rsquo;s prediction from the decision tree.
+      Click any pixel to see raw satellite values, model features, and recent observation history.</li>
+      <li>The <em>Neural Network</em> tab shows today&rsquo;s prediction from the LSTM model.
+      Click any pixel to see its predicted state and recent observation history.</li>
       <li>Zoom in to explore individual 30 m pixels.</li>
       <li>The <em>Historical Averages</em> tab shows the long-term average start, middle, and
       end of greendown, giving context for how this year compares to prior years.</li>
@@ -145,11 +157,13 @@
       <li>Spatial grid: UTM Zone 18N (EPSG:32618), 30 m resolution</li>
     </ul>
 
-    <h3>What drives the predictions?</h3>
-    <p>The chart below shows each input signal&rsquo;s <em>feature importance</em> &mdash; how
-    often the model used that signal when splitting pixels into phenological stages during
-    training. A higher value means the model relied on that signal more heavily; values
-    sum to 1.0 across all features.</p>
+    <h3>What drives the decision tree?</h3>
+    <p>The chart below shows each input signal&rsquo;s <em>feature importance</em> for the
+    decision tree &mdash; how often the model used that signal when splitting pixels into
+    phenological stages during training. A higher value means the model relied on that signal
+    more heavily; values sum to 1.0 across all features. The neural network learns its own
+    internal weighting across the full seasonal sequence and does not produce comparable
+    importance scores.</p>
     <img src="feature_importance.png" alt="Feature importance bar chart"
          style="width:100%;max-width:580px;margin:8px 0 4px;display:block">
   </div>
@@ -160,20 +174,27 @@ function showTab(name, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
   el.classList.add('active');
-  // Force Leaflet to recalculate map size after the container becomes visible
   if (name === 'history') {
     ['start', 'middle', 'end'].forEach(function(p) {
       var m = window['map' + p];
       if (m) { m.invalidateSize(); }
     });
   }
+  if (name === 'dt'  && mapDt)  { mapDt.invalidateSize();  }
+  if (name === 'rnn' && mapRnn) { mapRnn.invalidateSize(); }
 }
 
-// Today's prediction map
-var mapToday = L.map('map-today').setView([42.39697850169891, -73.29410006262556], 10);
+// Decision Tree prediction map
+var mapDt = L.map('map-dt').setView([42.39697850169891, -73.29410006262556], 10);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapToday);
-L.imageOverlay('current_pred.png?v=2026-06-29', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapToday);
+    {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapDt);
+L.imageOverlay('current_pred_dt.png?v=2026-06-29', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapDt);
+
+// Neural Network prediction map
+var mapRnn = null;
+var mapRnn = L.map("map-rnn").setView([42.39697850169891, -73.29410006262556], 10);
+L.tileLayer("https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png", {{attribution: "&copy; OpenStreetMap contributors &copy; CARTO"}}).addTo(mapRnn);
+L.imageOverlay("current_pred_rnn.png?v={date_str}", {bounds}, {{opacity: 1.0}}).addTo(mapRnn);
 
 // Pixel-click popup: each pixel stores its WGS84 centre lat/lon so lookup
 // is a simple nearest-neighbour search — no coordinate transform needed.
@@ -210,20 +231,27 @@ fetch('pixel_features.json?v=' + Date.now())
 // (or essentially on) a forest pixel — adjacent non-forest pixels won't match.
 var SNAP_SQ = 0.0002 * 0.0002;
 
-mapToday.on('click', function(e) {
-  if (!pixelArr) { console.log('click ignored — pixelArr not loaded yet'); return; }
-  var lat = e.latlng.lat, lon = e.latlng.lng;
+function findPixel(lat, lon) {
+  if (!pixelArr) return null;
   var best = null, bestDist = Infinity;
   for (var i = 0; i < pixelArr.length; i++) {
     var px = pixelArr[i];
     var d = (px.lat - lat) * (px.lat - lat) + (px.lon - lon) * (px.lon - lon);
     if (d < bestDist) { bestDist = d; best = px; }
   }
-  console.log('click', lat.toFixed(5), lon.toFixed(5),
-              '| nearest dist:', Math.sqrt(bestDist).toFixed(6),
-              '| threshold:', Math.sqrt(SNAP_SQ).toFixed(6),
-              '| nearest:', best);
-  var p = (best && bestDist <= SNAP_SQ) ? best : null;
+  return (best && bestDist <= SNAP_SQ) ? best : null;
+}
+function makeHistChips(labels) {
+  return (labels || []).map(function(l) {
+    if (!l) return '<span style="color:#bbb">&mdash;</span>';
+    var col = LABEL_COLORS_HEX[l] || '#888';
+    return '<span style="color:' + col + ';font-weight:600">' +
+           l.charAt(0).toUpperCase() + l.slice(1) + '</span>';
+  }).join('<span style="color:#ccc"> &middot; </span>');
+}
+
+mapDt.on('click', function(e) {
+  var p = findPixel(e.latlng.lat, e.latlng.lng);
   if (!p) return;
   var labelColor = LABEL_COLORS[p.label] || '#888';
   var rows = Object.keys(FEAT_LABELS).map(function(k) {
@@ -239,26 +267,32 @@ mapToday.on('click', function(e) {
     return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + FEAT_LABELS[k] + '</td>' +
            '<td style="text-align:right;font-variant-numeric:tabular-nums">' + val + '</td></tr>';
   }).join('');
-  var histArr = (p.recent_labels || []);
-  var histChips = histArr.map(function(l) {
-    if (!l) return '<span style="color:#bbb">&mdash;</span>';
-    var col = LABEL_COLORS_HEX[l] || '#888';
-    return '<span style="color:' + col + ';font-weight:600">' +
-           l.charAt(0).toUpperCase() + l.slice(1) + '</span>';
-  }).join('<span style="color:#ccc"> &middot; </span>');
   var html = '<div style="font-size:13px;min-width:230px">' +
-    '<b>Predicted: <span style="color:' + labelColor + '">' +
+    '<b>Decision Tree: <span style="color:' + labelColor + '">' +
     p.label.charAt(0).toUpperCase() + p.label.slice(1) + '</span></b>' +
     '<div style="margin-top:6px;font-size:11px;color:#777">Recent observations (newest → oldest)</div>' +
-    '<div style="margin-bottom:6px;font-size:12px">' + histChips + '</div>' +
-    '<table style="width:100%;border-collapse:collapse">' +
-    rows + '</table>' +
+    '<div style="margin-bottom:6px;font-size:12px">' + makeHistChips(p.recent_labels) + '</div>' +
+    '<table style="width:100%;border-collapse:collapse">' + rows + '</table>' +
     '<p style="margin-top:8px;font-size:11px;color:#999;line-height:1.4">' +
-    'EVI/NDVI: vegetation greenness (0–1, higher = greener). ' +
+    'EVI/NDVI: vegetation greenness (0–1, higher = greener). ' +
     'Δ values: change from prior satellite pass. ' +
-    'Days from avg mid-transition: negative = earlier than historical average.' +
+    'Days from avg mid-transition: negative = earlier than historical average.' +
     '</p></div>';
-  L.popup().setLatLng(e.latlng).setContent(html).openOn(mapToday);
+  L.popup().setLatLng(e.latlng).setContent(html).openOn(mapDt);
+});
+
+if (mapRnn) mapRnn.on('click', function(e) {
+  var p = findPixel(e.latlng.lat, e.latlng.lng);
+  if (!p) return;
+  var rnnLbl = p.rnn_label || 'unknown';
+  var labelColor = LABEL_COLORS[rnnLbl] || '#888';
+  var html = '<div style="font-size:13px;min-width:200px">' +
+    '<b>Neural Network: <span style="color:' + labelColor + '">' +
+    rnnLbl.charAt(0).toUpperCase() + rnnLbl.slice(1) + '</span></b>' +
+    '<div style="margin-top:6px;font-size:11px;color:#777">Recent observations (newest → oldest)</div>' +
+    '<div style="margin-bottom:4px;font-size:12px">' + makeHistChips(p.recent_labels) + '</div>' +
+    '<p style="margin-top:6px;font-size:11px;color:#999;line-height:1.4">The LSTM uses the full observation sequence. Individual feature values are shown on the Decision Tree tab.</p></div>';
+  L.popup().setLatLng(e.latlng).setContent(html).openOn(mapRnn);
 });
 
 // Average transition maps
@@ -371,7 +405,8 @@ fetch('at_route.geojson')
   .then(function(r) { return r.json(); })
   .then(function(gj) {
     atRoute = gj;
-    addRoute(mapToday);
+    addRoute(mapDt);
+    if (mapRnn) addRoute(mapRnn);
     ['start', 'middle', 'end'].forEach(function(p) { addRoute(window['map' + p]); });
   })
   .catch(function(e) { console.warn('at_route.geojson not loaded:', e); });
