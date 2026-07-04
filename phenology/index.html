@@ -7,19 +7,23 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>AT Phenology — Massachusetts</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/assets/site-theme.js"></script>
+<script>if (window.tailwind && tailwind.config) { tailwind.config.corePlugins = { preflight: false }; }</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: sans-serif; background: #f5f5f5; color: #222; }
-  header { background: #2c6b3f; color: white; padding: 14px 20px; }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; background: #f9fafb; color: #222; }
+  header { background: #3B6D11; color: white; padding: 14px 20px; }
   header h1 { font-size: 1.3rem; }
   header p  { font-size: 0.85rem; opacity: 0.85; }
   .tabs { display: flex; gap: 4px; padding: 12px 20px 0; background: #fff;
             border-bottom: 2px solid #ddd; }
   .tab  { padding: 8px 18px; cursor: pointer; border-radius: 4px 4px 0 0;
             background: #eee; font-size: 0.9rem; }
-  .tab.active { background: #2c6b3f; color: white; }
+  .tab.active { background: #3B6D11; color: white; }
   .panel { display: none; padding: 20px; }
   .panel.active { display: flex; gap: 20px; flex-wrap: wrap; }
   #map-dt, #map-rnn { width: 620px; height: 480px; border-radius: 6px;
@@ -46,7 +50,8 @@
   #panel-notebook.active { display: block; }
   #panel-notebook iframe { width: 100%; height: 82vh; border: 1px solid #ccc;
                             border-radius: 6px; background: white; }
-  .about-content h3 { color: #2c6b3f; font-size: 1rem; margin: 16px 0 6px; }
+  #panel-claude.active { display: block; max-width: 760px; }
+  .about-content h3 { color: #3B6D11; font-size: 1rem; margin: 16px 0 6px; }
   .about-content h3:first-child { margin-top: 0; }
   .about-content p, .about-content li { font-size: 0.9rem; line-height: 1.5; color: #333; }
   .about-content ol, .about-content ul { padding-left: 20px; margin-bottom: 8px; }
@@ -60,21 +65,23 @@
 </style>
 </head>
 <body>
+<div id="site-nav-root"></div>
+<script src="/assets/site-nav.js"></script>
 <header>
   <h1>Appalachian Trail Fall Phenology — Massachusetts</h1>
   <p>Prediction for <strong>2026-07-03</strong> &nbsp;|&nbsp;
      Updated daily using NASA HLS 30 m satellite imagery</p>
   <p style="margin-top:6px;font-size:0.82rem;opacity:0.75">
      Tracking fall foliage color change along the Massachusetts Appalachian Trail
-     using 30-meter satellite imagery and a machine learning model trained on
-     10 years of observations.</p>
+     using machine learning models trained on over 10 years of observations.</p>
 </header>
 <div class="tabs">
   <div class="tab active" onclick="showTab('dt', this)">Decision Tree</div>
   <div class="tab" onclick="showTab('rnn', this)">Neural Network</div>
   <div class="tab" onclick="showTab('history', this)">Historical Averages</div>
   <div class="tab" onclick="showTab('about', this)">About</div>
-  <div class="tab" onclick="showTab('notebook', this)">Full Analysis</div>
+  <div class="tab" onclick="showTab('notebook', this)">Analysis Summary</div>
+  <div class="tab" onclick="showTab('claude', this)">Claude Code Experience</div>
 </div>
 <div id="panel-dt" class="panel active">
   <div id="map-dt"></div>
@@ -159,20 +166,49 @@
       <li>Trail corridor: 50 m buffer around the Massachusetts AT route</li>
       <li>Spatial grid: UTM Zone 18N (EPSG:32618), 30 m resolution</li>
     </ul>
-
-    <h3>What drives the decision tree?</h3>
-    <p>The chart below shows each input signal&rsquo;s <em>feature importance</em> for the
-    decision tree &mdash; how often the model used that signal when splitting pixels into
-    phenological stages during training. A higher value means the model relied on that signal
-    more heavily; values sum to 1.0 across all features. The neural network learns its own
-    internal weighting across the full seasonal sequence and does not produce comparable
-    importance scores.</p>
-    <img src="feature_importance.png" alt="Feature importance bar chart"
-         style="width:100%;max-width:580px;margin:8px 0 4px;display:block">
   </div>
 </div>
 <div id="panel-notebook" class="panel">
-  <iframe src="notebook.html" title="Full analysis notebook" loading="lazy"></iframe>
+  <iframe src="notebook.html" title="Analysis summary notebook" loading="lazy"></iframe>
+</div>
+<div id="panel-claude" class="panel">
+  <div class="about-content">
+    <p>This project was built collaboratively with Claude Code. Below are some
+    reflections on where it helped, where it fell short, and general practices
+    that made the collaboration work.</p>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li>Claude could quickly build in data checks to confirm things are working correctly. It allowed me to complete this analysis and build a web page from scratch much faster than I could have done otherwise.</li>
+      <li>Claude could run most of the work using a lower-effort model (Sonnet 4.6), but when issues arose that Sonnet could not resolve, switching to the higher-effort model (Opus 4.8) was helpful. Opus 4.8 was also able to find bugs in Sonnet&rsquo;s work without being prompted.</li>
+      <li>Claude flagged actions that would be computationally expensive or cause storage issues. For example, when I laid out my plan to run a daily prediction via a GitHub Action, it pointed out that storing the required large data files (~2&ndash;3 GB) on GitHub would not work. I described how to split the workflow and file storage between local and GitHub. This was obvious to me, but someone less experienced with allocating computation and storage might not have thought to push back.</li>
+      <li>I enjoyed the planning feature and bouncing ideas off of it, which felt like I was collaborating with a colleague sometimes.</li>
+      <li>Claude would sometimes push back on my suggestions or questions, which I appreciated. For example, I was interested in using GEFS meteorological forecast data because the first time step in a forecast represents current conditions, which I had used in my PhD work to get meteorological data at low latency with uncertainty estimates. Claude questioned why I wanted a forecast product for what seemed like a hindcast application. Ultimately I used gridMET because it has finer spatial resolution than GEFS, but GEFS could have been a useful workaround that Claude would not have known to suggest.</li>
+      <li>Claude serves as a great learning tool, with the ability to ask questions at any point, especially about how things work and token usage.</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>Context window memory proved to be a bigger challenge than I initially expected. The conversation had to be compressed regularly, and Claude did not reliably remember key details I assumed it would retain. In the future I would rely more heavily on reference files that document key decisions and project state.</li>
+      <li>Debugging could be more challenging because I did not have the same level of ownership and understanding of the code that I would have had if I had written it myself.</li>
+      <li>This workflow required setting up several permissions on Google Earth Engine and GitHub that I had to handle myself. Claude walked me through most of it, but I still needed enough background knowledge to carry out the steps. There was also a fair amount of trial and error to get everything working correctly (missed permissions, or permissions set up incorrectly based on Claude&rsquo;s guidance).</li>
+      <li>Sometimes Claude did not fully implement changes, and the scope of what it changed varied. Sometimes it would only update a helper function without touching the main script. Sometimes it would automatically commit and push changes; other times it would not, and I would have to. These are easy to catch but require staying aware.</li>
+      <li>Sometimes Claude would inadvertently undo edits I had made when asked to change something else. For example, I had added a call to plot feature distributions before the data-editing step so I could see the raw features. Whenever I asked Claude to modify the editing function, it would move the plotting call to after the editing step and change the variable from <code>feature_df</code> to <code>feature_df_edited</code>. I had to keep reverting the change, and even after explicitly asking Claude to stop, the behavior recurred after context compression. This highlights the importance of version control and reviewing all file changes.</li>
+      <li>Some tasks took far more time and tokens than expected. For example, reorganizing outputs into separate subdirectories (which seemed straightforward) required Claude to determine which output belonged in which folder. The situation was made worse when I switched to a lower-effort model (Haiku) partway through. Haiku broke the code and reverted all changes by checking out a previous commit, forcing a restart from scratch. The main root causes were: (1) the Jupyter notebook still had outputs saved, so Claude consumed thousands of tokens reading cell outputs it did not need; and (2) <code>NotebookEdit</code> re-emits the entire cell source on every call, making edits to large code cells expensive. After that experience, I started saving the notebook without outputs before asking Claude to edit it. I also began writing smaller code chunks in the notebook, keeping larger or frequently edited logic in standalone Python files so Claude could work on them more efficiently. Saving outputs from long-running steps (such as model training) to separate files rather than keeping them in the notebook is also important.</li>
+      <li>Sometimes Claude simply did not follow the instruction given. For example, I asked it to place a new function in a specific file and provided the filename, but Claude saved it under a different name.</li>
+      <li>When asked to make formatting consistent (such as docstrings on functions), Claude noted that only about half the functions it had written had docstrings, and those that did used inconsistent styles. In the future I would include style guidelines in a reference file from the start.</li>
+      <li>It does not know everything, and the limits of its knowledge became apparent in areas where I have deep expertise. For example, the spectral delta features at the beginning of each pixel-year sequence had missing values (NAs) because there were no prior observations to calculate a change from. Claude&rsquo;s default suggestion was to fill these with the column mean, which is a reasonable general approach for randomly missing data but inappropriate here because these values should be toward the high end of the range (reflecting early-season conditions). These rows represented a small fraction of records and should be (and were) dropped instead.</li>
+      <li>Claude struggled with ensuring that spatial data from different sources were properly aligned and shared the same coordinate reference system (CRS). When working with spatial data, I always hard-code checks of the CRS. In the future I will include in a reference file what CRS I want and specify that it should be checked each time new spatial data is added. At one point some data had been projected into the Louisiana State Plane system, which should have been flagged immediately given that all analyses were in Massachusetts.</li>
+    </ul>
+
+    <h3>Many common coding practices also apply</h3>
+    <ul>
+      <li>Think about the big picture but build incrementally to debug and quality-check as you go.</li>
+      <li>Work with a smaller subset of data before expanding. Downloading new data took considerable time, and when the analysis changed, some data had to be re-downloaded.</li>
+      <li>Commit and push frequently, because Claude did occasionally break things and files sometimes needed to be reverted.</li>
+      <li>Modularize code using separate files for distinct components. Claude naturally creates helper functions but did not always place them in separate files without being prompted.</li>
+    </ul>
+  </div>
 </div>
 <script>
 console.log('[AppTrail] Page built for date:', '2026-07-03', '| rendered at:', new Date().toISOString());
