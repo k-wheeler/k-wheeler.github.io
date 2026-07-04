@@ -4,82 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV – Kathryn I. Wheeler</title>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            forest: { 50:'#EAF3DE', 100:'#C0DD97', 400:'#639922', 600:'#3B6D11', 800:'#27500A' }
-          }
-        }
-      }
-    }
-  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/site-theme.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white border-b-2 border-forest-400 shadow-sm">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <div>
-        <div class="font-semibold text-gray-900 text-base leading-tight">Kathryn I. Wheeler</div>
-        <div class="text-xs text-gray-500">Environmental &amp; Geospatial Data Scientist</div>
-      </div>
-      <div class="flex items-center gap-1 flex-wrap justify-end">
-        <a href="index.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">About</a>
-        <a href="resume.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Resume</a>
-        <a href="research.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Previous Research</a>
-        <a href="publications.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Publications</a>
-        <a href="news.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">News</a>
-      </div>
-    </div>
-  </nav>
+  <div id="site-nav-root"></div>
+  <script src="/assets/site-nav.js"></script>
 
   <!-- Body -->
-  <div class="max-w-6xl mx-auto px-6 py-10 flex gap-8">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-8">
 
     <!-- Sidebar -->
-    <aside class="w-52 shrink-0">
-      <div class="sticky top-24 flex flex-col items-center gap-3 text-center">
-        <img src="images/profile_professional.jpg" alt="Kathryn Wheeler" class="w-32 h-32 rounded-full object-cover border-4 border-forest-100">
-        <div>
-          <div class="font-semibold text-gray-900 text-sm leading-tight">Kathryn I. Wheeler</div>
-          <div class="text-xs text-gray-500 mt-1 leading-snug">Environmental &amp; Geospatial<br>Data Scientist</div>
-        </div>
-        <div class="flex items-center gap-1 text-xs text-gray-500">
-          <i class="ti ti-map-pin text-forest-400"></i>
-          Williamstown, MA
-        </div>
-        <div class="w-full border-t border-gray-200 pt-3 flex flex-col gap-2 text-left">
-          <a href="mailto:kwheelerecology@gmail.com" class="flex items-start gap-2 text-xs text-gray-600 hover:text-forest-600 break-all">
-            <i class="ti ti-mail text-forest-400 mt-0.5 shrink-0"></i>
-            kwheelerecology@gmail.com
-          </a>
-          <a href="https://github.com/k-wheeler" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
-            <i class="ti ti-brand-github text-forest-400 shrink-0"></i>
-            k-wheeler
-          </a>
-          <a href="https://www.linkedin.com/in/kathryn-wheeler-aa06659a" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
-            <i class="ti ti-brand-linkedin text-forest-400 shrink-0"></i>
-            LinkedIn
-          </a>
-          <a href="https://scholar.google.com/citations?user=u70ni9sAAAAJ&hl=en" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
-            <i class="ti ti-school text-forest-400 shrink-0"></i>
-            Google Scholar
-          </a>
-          <a href="https://www.researchgate.net/profile/Kathryn-Wheeler-3" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
-            <i class="ti ti-flask text-forest-400 shrink-0"></i>
-            ResearchGate
-          </a>
-          <a href="https://orcid.org/0000-0003-3931-7489" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-forest-600">
-            <i class="ti ti-id text-forest-400 shrink-0"></i>
-            ORCID
-          </a>
-        </div>
-      </div>
-    </aside>
+    <!-- Sidebar (shared, responsive) -->
+    <div id="site-sidebar-root"></div>
+    <script src="/assets/site-sidebar.js"></script>
 
     <!-- Main content -->
     <main class="flex-1 min-w-0">
