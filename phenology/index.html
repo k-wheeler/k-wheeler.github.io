@@ -25,26 +25,31 @@
             background: #eee; font-size: 0.9rem; }
   .tab.active { background: #3B6D11; color: white; }
   .panel { display: none; padding: 20px; }
-  .panel.active { display: flex; gap: 20px; flex-wrap: wrap; }
+  .panel.active { display: flex; flex-direction: column; gap: 16px; }
+  .map-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: stretch; }
   #map-dt, #map-rnn { width: 620px; max-width: 100%; height: 480px; border-radius: 6px;
                        border: 1px solid #ccc; }
   .sidebar { display: flex; flex-direction: column; gap: 16px; }
   .legend { background: white; border: 1px solid #ccc; border-radius: 6px;
               padding: 12px 16px; }
   .legend h3 { margin-bottom: 8px; font-size: 0.9rem; color: #444; }
+  .legend-items { display: flex; flex-wrap: wrap; gap: 8px 28px; }
   .swatch { display: inline-block; width: 14px; height: 14px;
               border-radius: 2px; margin-right: 8px; vertical-align: middle; }
-  .legend-item { margin-bottom: 8px; }
+  .legend-item { margin-bottom: 0; }
   .legend-row { display: flex; align-items: center; }
   .legend-name { font-size: 0.88rem; font-weight: 600; }
   .legend-desc { font-size: 0.78rem; color: #888; padding-left: 22px; margin-top: 1px; }
-  .histogram { display: flex; align-items: flex-end; gap: 8px;
-                background: white; border: 1px solid #ccc; border-radius: 6px;
-                padding: 16px; }
-  .bar-wrap { text-align: center; }
-  .bar { width: 44px; border-radius: 3px 3px 0 0; min-height: 2px; }
-  .bar-area { font-size: 0.72rem; color: #555; margin-bottom: 2px; }
-  .bar-label { font-size: 0.75rem; margin-top: 4px; color: #555; }
+  .histogram { flex: 1 1 260px; min-width: 260px; max-width: 620px; height: 480px;
+                display: flex; flex-direction: column; justify-content: center;
+                gap: 20px; background: white; border: 1px solid #ccc; border-radius: 6px;
+                padding: 16px 24px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { width: 60px; flex-shrink: 0; text-align: right;
+                font-size: 0.85rem; font-weight: 600; color: #444; }
+  .bar-track { flex: 1; height: 34px; border-radius: 4px; overflow: hidden; }
+  .bar { height: 100%; min-width: 2px; border-radius: 4px; }
+  .bar-area { width: 64px; flex-shrink: 0; font-size: 0.8rem; color: #555; }
   #panel-about.active { display: block; }
   #panel-about.active { max-width: 720px; }
   #panel-notebook.active { display: block; }
@@ -78,6 +83,10 @@
 <body>
 <div id="site-nav-root"></div>
 <script src="/assets/site-nav.js"></script>
+<div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-8">
+<div id="site-sidebar-root"></div>
+<script src="/assets/site-sidebar.js"></script>
+<main class="flex-1 min-w-0">
 <header>
   <h1>Appalachian Trail Fall Phenology — Massachusetts</h1>
   <p>Prediction for <strong>2026-07-04</strong> &nbsp;|&nbsp;
@@ -95,19 +104,19 @@
   <div class="tab" onclick="showTab('claude', this)">Claude Code Experience</div>
 </div>
 <div id="panel-dt" class="panel active">
-  <div id="map-dt"></div>
-  <div class="sidebar">
-    <div class="legend">
-      <h3>Phenological State</h3>
-      <div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div>
-    </div>
+  <div class="legend">
+    <h3>Predicted Current Phenological State</h3>
+    <div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div>
+  </div>
+  <div class="map-row">
+    <div id="map-dt"></div>
     <div class="histogram">
-      <div class="bar-wrap"><div class="bar-area">5.2 mi²</div><div class="bar" style="height:159px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After</div></div>
+      <div class="bar-row"><div class="bar-label">Before</div><div class="bar-track"><div class="bar" style="width:100.0%;background:steelblue"></div></div><div class="bar-area">5.2 mi²</div></div><div class="bar-row"><div class="bar-label">Early</div><div class="bar-track"><div class="bar" style="width:0.0%;background:green"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">Late</div><div class="bar-track"><div class="bar" style="width:0.0%;background:orange"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">After</div><div class="bar-track"><div class="bar" style="width:0.0%;background:red"></div></div><div class="bar-area">0.0 mi²</div></div>
     </div>
   </div>
 </div>
 <div id="panel-rnn" class="panel">
-  <div id="map-rnn"></div><div class="sidebar"><div class="legend"><h3>Phenological State</h3><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div><div class="histogram"><div class="bar-wrap"><div class="bar-area">5.2 mi²</div><div class="bar" style="height:159px;background:steelblue"></div><div class="bar-label">Before</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:green"></div><div class="bar-label">Early</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:orange"></div><div class="bar-label">Late</div></div><div class="bar-wrap"><div class="bar-area">0.0 mi²</div><div class="bar" style="height:0px;background:red"></div><div class="bar-label">After</div></div></div></div>
+  <div class="legend"><h3>Predicted Current Phenological State</h3><div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div></div><div class="map-row"><div id="map-rnn"></div><div class="histogram"><div class="bar-row"><div class="bar-label">Before</div><div class="bar-track"><div class="bar" style="width:100.0%;background:steelblue"></div></div><div class="bar-area">5.2 mi²</div></div><div class="bar-row"><div class="bar-label">Early</div><div class="bar-track"><div class="bar" style="width:0.0%;background:green"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">Late</div><div class="bar-track"><div class="bar" style="width:0.0%;background:orange"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">After</div><div class="bar-track"><div class="bar" style="width:0.0%;background:red"></div></div><div class="bar-area">0.0 mi²</div></div></div></div>
 </div>
 <div id="panel-history" class="panel">
   
@@ -466,5 +475,7 @@ fetch('at_route.geojson')
   })
   .catch(function(e) { console.warn('at_route.geojson not loaded:', e); });
 </script>
+</main>
+</div>
 </body>
 </html>
