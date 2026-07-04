@@ -7,9 +7,8 @@ redirect_from:
   - /research
 ---
 
-I am an ecosystem ecologist and ecophysiologist interested in how plants and their role in ecosystems are shifting under and impacting 
-global climate change. In particular, I am interested in the role of plants in the carbon and water cycles, such as through leaf 
-phenology, impacts of droughts and heat stress, and changes to photosynthesis and stomata from CO2 fertilization. Below are some of my 
+Throughout my career I have been interested in how plants and their role in ecosystems are shifting under and impacting 
+global climate change. During my time in academia, my research focused on plant phenology. Below are some of my 
 previous research projects. 
 
 

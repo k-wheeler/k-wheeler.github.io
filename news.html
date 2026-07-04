@@ -4,38 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News – Kathryn I. Wheeler</title>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            forest: { 50:'#EAF3DE', 100:'#C0DD97', 400:'#639922', 600:'#3B6D11', 800:'#27500A' }
-          }
-        }
-      }
-    }
-  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/site-theme.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white border-b-2 border-forest-400 shadow-sm">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <div>
-        <div class="font-semibold text-gray-900 text-base leading-tight">Kathryn I. Wheeler</div>
-        <div class="text-xs text-gray-500">Environmental &amp; Geospatial Data Scientist</div>
-      </div>
-      <div class="flex items-center gap-1 flex-wrap justify-end">
-        <a href="index.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">About</a>
-        <a href="resume.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Resume</a>
-        <a href="research.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Previous Research</a>
-        <a href="publications.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Publications</a>
-        <a href="news.html" class="px-3 py-1.5 rounded text-sm font-medium bg-forest-50 text-forest-600">News</a>
-      </div>
-    </div>
-  </nav>
+  <div id="site-nav-root"></div>
+  <script src="/assets/site-nav.js"></script>
 
   <!-- Body -->
   <div class="max-w-6xl mx-auto px-6 py-10 flex gap-8">

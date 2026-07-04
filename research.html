@@ -4,38 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research – Kathryn I. Wheeler</title>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            forest: { 50:'#EAF3DE', 100:'#C0DD97', 400:'#639922', 600:'#3B6D11', 800:'#27500A' }
-          }
-        }
-      }
-    }
-  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/site-theme.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white border-b-2 border-forest-400 shadow-sm">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <div>
-        <div class="font-semibold text-gray-900 text-base leading-tight">Kathryn I. Wheeler</div>
-        <div class="text-xs text-gray-500">Environmental &amp; Geospatial Data Scientist</div>
-      </div>
-      <div class="flex items-center gap-1 flex-wrap justify-end">
-        <a href="index.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">About</a>
-        <a href="resume.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Resume</a>
-        <a href="research.html" class="px-3 py-1.5 rounded text-sm font-medium bg-forest-50 text-forest-600">Previous Research</a>
-        <a href="publications.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">Publications</a>
-        <a href="news.html" class="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100">News</a>
-      </div>
-    </div>
-  </nav>
+  <div id="site-nav-root"></div>
+  <script src="/assets/site-nav.js"></script>
 
   <!-- Body -->
   <div class="max-w-6xl mx-auto px-6 py-10 flex gap-8">
@@ -86,7 +63,7 @@
       <div class="text-base font-semibold tracking-widest text-forest-400 uppercase mb-3">Previous Research</div>
 
       <p class="text-gray-700 leading-relaxed mb-8">
-        I am an ecosystem ecologist and ecophysiologist interested in how plants and their role in ecosystems are shifting under and impacting global climate change. In particular, I am interested in the role of plants in the carbon and water cycles, such as through leaf phenology, impacts of droughts and heat stress, and changes to photosynthesis and stomata from CO<sub>2</sub> fertilization. Below are some of my previous research projects.
+        When in academia, my research focused on ecosystem ecology and how the role of plants in their ecosystems are shifting under and impacting global climate change. I am still interested in the role of plants and soil in the carbon and water cycles. My previous research focused heavily on phenology. Below are some of my previous research projects.
       </p>
 
       <!-- Section 1 -->
@@ -96,7 +73,7 @@
           As the global climate changes, it is becoming more important to understand the uncertain role that the terrestrial biosphere has on carbon storage. Since warmer temperatures affect the timing of phenology transitions in plants, plant phenology is a primary ecological indicator of climate change. Furthermore, how sensitive phenology transitions are to different drivers (e.g., temperature, photoperiod, water availability, leaf age limitations) is highly variable and depends on species and latitude. Without understanding how sensitive phenology is to drivers, we cannot make accurate predictions of phenology and, thus, annual primary productivity.
         </p>
         <p class="text-gray-700 leading-relaxed mb-4">
-          In my current fellowship work, I am interested in how various soil properties including carbon to nitrogen ratios, soil moisture, and soil fungi called mycorrhizae impact phenology. Over 80% of plant species associate with soil fungi called mycorrhizae, which increase access to limiting resources such as nutrients (e.g., nitrogen, N) and water. Soil microbes (e.g., mycorrhizae fungi) significantly impact plant phenology events (e.g., flowering) in over 88% of published studies, but their effect on leaf phenology is rarely studied (O'Brien et al., 2021, Am. J. Bot). In this project, I will investigate if mycorrhizae association of plants affects the sensitivity of leaf phenology in plants to environmental drivers and the resultant carbon fluxes.
+          In my postdoctoral fellowship work, I was interested in how various soil properties including carbon to nitrogen ratios, soil moisture, and soil fungi called mycorrhizae impact phenology. Over 80% of plant species associate with soil fungi called mycorrhizae, which increase access to limiting resources such as nutrients (e.g., nitrogen, N) and water. Soil microbes (e.g., mycorrhizae fungi) significantly impact plant phenology events (e.g., flowering) in over 88% of published studies, but their effect on leaf phenology is rarely studied (O'Brien et al., 2021, Am. J. Bot). I investigated if mycorrhizae association of plants affects the sensitivity of leaf phenology in plants to environmental drivers and the resultant carbon fluxes.
         </p>
         <img src="images/fallWoods.JPG" alt="Fall woods" class="rounded-lg w-full max-w-lg mt-2 object-cover">
       </section>
