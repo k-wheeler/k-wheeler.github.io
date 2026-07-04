@@ -8,8 +8,7 @@
     { title: 'Resume',                      href: '/resume.html',      match: /^\/resume\.html$/ },
     { title: 'Previous Research',           href: '/research.html',    match: /^\/research\.html$/ },
     { title: 'Appalachian Trail Phenology', href: '/phenology/',       match: /^\/phenology\/(index\.html)?$/ },
-    { title: 'Publications',                href: '/publications.html', match: /^\/publications\.html$/ },
-    { title: 'News',                        href: '/news.html',        match: /^\/news\.html$/ }
+    { title: 'Publications',                href: '/publications.html', match: /^\/publications\.html$/ }
   ];
 
   var path = window.location.pathname;
