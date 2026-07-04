@@ -46,14 +46,9 @@
   .legend-desc { font-size: 0.78rem; color: #888; padding-left: 22px; margin-top: 1px; }
   .histogram { flex: 1 1 260px; min-width: 260px; max-width: 620px; height: 480px;
                 display: flex; flex-direction: column; justify-content: center;
-                gap: 20px; background: white; border: 1px solid #ccc; border-radius: 6px;
-                padding: 16px 24px; }
-  .bar-row { display: flex; align-items: center; gap: 12px; }
-  .bar-label { width: 60px; flex-shrink: 0; text-align: right;
-                font-size: 0.85rem; font-weight: 600; color: #444; }
-  .bar-track { flex: 1; height: 34px; border-radius: 4px; overflow: hidden; }
-  .bar { height: 100%; min-width: 2px; border-radius: 4px; }
-  .bar-area { width: 64px; flex-shrink: 0; font-size: 0.8rem; color: #555; }
+                align-items: center; gap: 20px; background: white; border: 1px solid #ccc;
+                border-radius: 6px; padding: 16px 24px; }
+  .pie { width: 100%; max-width: 300px; height: auto; }
   #panel-about.active { display: block; }
   #panel-about.active { max-width: 720px; }
   #panel-notebook.active { display: block; }
@@ -115,12 +110,12 @@
   <div class="map-row">
     <div id="map-dt"></div>
     <div class="histogram">
-      <div class="bar-row"><div class="bar-label">Before</div><div class="bar-track"><div class="bar" style="width:99.7%;background:steelblue"></div></div><div class="bar-area">5.2 mi²</div></div><div class="bar-row"><div class="bar-label">Early</div><div class="bar-track"><div class="bar" style="width:0.1%;background:green"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">Late</div><div class="bar-track"><div class="bar" style="width:0.3%;background:orange"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">After</div><div class="bar-track"><div class="bar" style="width:0.0%;background:red"></div></div><div class="bar-area">0.0 mi²</div></div>
+      <svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 97.69,8.03 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><text x="100.7" y="155.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">100%</text><path d="M100.0,100.0 L97.69,8.03 A92.0,92.0 0 0 1 98.27,8.02 Z" fill="green" stroke="#fff" stroke-width="1.5"/><path d="M100.0,100.0 L98.27,8.02 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="orange" stroke="#fff" stroke-width="1.5"/></svg>
     </div>
   </div>
 </div>
 <div id="panel-rnn" class="panel">
-  <div class="legend"><h3>Predicted Current Phenological State</h3><div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div></div><div class="map-row"><div id="map-rnn"></div><div class="histogram"><div class="bar-row"><div class="bar-label">Before</div><div class="bar-track"><div class="bar" style="width:99.6%;background:steelblue"></div></div><div class="bar-area">5.2 mi²</div></div><div class="bar-row"><div class="bar-label">Early</div><div class="bar-track"><div class="bar" style="width:0.0%;background:green"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">Late</div><div class="bar-track"><div class="bar" style="width:0.0%;background:orange"></div></div><div class="bar-area">0.0 mi²</div></div><div class="bar-row"><div class="bar-label">After</div><div class="bar-track"><div class="bar" style="width:0.4%;background:red"></div></div><div class="bar-area">0.0 mi²</div></div></div></div>
+  <div class="legend"><h3>Predicted Current Phenological State</h3><div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div></div><div class="map-row"><div id="map-rnn"></div><div class="histogram"><svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 97.69,8.03 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><text x="100.7" y="155.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">100%</text><path d="M100.0,100.0 L97.69,8.03 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="red" stroke="#fff" stroke-width="1.5"/></svg></div></div>
 </div>
 <div id="panel-history" class="panel">
   
