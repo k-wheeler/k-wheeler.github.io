@@ -19,14 +19,14 @@
   header { background: #3B6D11; color: white; padding: 14px 20px; }
   header h1 { font-size: 1.3rem; }
   header p  { font-size: 0.85rem; opacity: 0.85; }
-  .tabs { display: flex; gap: 4px; padding: 12px 20px 0; background: #fff;
+  .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 12px 20px 0; background: #fff;
             border-bottom: 2px solid #ddd; }
   .tab  { padding: 8px 18px; cursor: pointer; border-radius: 4px 4px 0 0;
             background: #eee; font-size: 0.9rem; }
   .tab.active { background: #3B6D11; color: white; }
   .panel { display: none; padding: 20px; }
   .panel.active { display: flex; gap: 20px; flex-wrap: wrap; }
-  #map-dt, #map-rnn { width: 620px; height: 480px; border-radius: 6px;
+  #map-dt, #map-rnn { width: 620px; max-width: 100%; height: 480px; border-radius: 6px;
                        border: 1px solid #ccc; }
   .sidebar { display: flex; flex-direction: column; gap: 16px; }
   .legend { background: white; border: 1px solid #ccc; border-radius: 6px;
@@ -56,12 +56,23 @@
   .about-content p, .about-content li { font-size: 0.9rem; line-height: 1.5; color: #333; }
   .about-content ol, .about-content ul { padding-left: 20px; margin-bottom: 8px; }
   .about-content li { margin-bottom: 4px; }
-  .avg-map { width: 380px; height: 320px; border-radius: 6px;
+  .avg-map { width: 380px; max-width: 100%; height: 320px; border-radius: 6px;
               border: 1px solid #ccc; }
   .avg-panel { display: flex; flex-direction: column; gap: 8px; }
   .avg-panel h3 { font-size: 0.95rem; color: #444; }
-  .legend-img { max-width: 300px; border-radius: 4px; }
+  .legend-img { max-width: 100%; width: 300px; border-radius: 4px; }
   .leaflet-image-layer { image-rendering: pixelated; }
+  @media (max-width: 640px) {
+    header { padding: 12px 14px; }
+    header h1 { font-size: 1.1rem; }
+    .tabs { padding: 10px 12px 0; gap: 3px; }
+    .tab { padding: 7px 11px; font-size: 0.8rem; }
+    .panel { padding: 14px 12px; }
+    .panel.active { gap: 14px; }
+    #map-dt, #map-rnn { height: 380px; }
+    .avg-panel { width: 100%; }
+    .avg-map { width: 100%; }
+  }
 </style>
 </head>
 <body>
