@@ -1,11 +1,11 @@
 name: Pages deploy auto-retry
 
-# GitHub's branch-based "pages build and deployment" workflow intermittently
-# fails at the deploy step with "Deployment failed, try again later" while the
-# build succeeds, leaving the live site stale. This workflow fires whenever a
-# Pages run completes with failure, re-runs the failed deploy with growing
-# backoff, and if re-runs won't go through, falls back to an empty retrigger
-# commit (a fresh push has always cleared this error in practice).
+# Outer safety net for Pages deploys, which intermittently fail with
+# "Deployment failed, try again later" while the build succeeds. The primary
+# deploy (deploy-pages.yml) already retries internally; this workflow fires if
+# that whole run still concludes failure, re-runs it with growing backoff, and
+# as a last resort pushes an empty retrigger commit (a fresh push has always
+# cleared this error in practice).
 #
 # It lives here (not in AppTrail_Phenology) so it covers every deploy — the
 # daily phenology push, manual edits, everything — and so it runs with this
@@ -13,10 +13,15 @@ name: Pages deploy auto-retry
 # cross-repo token used by the AppTrail workflow can push content, but its
 # re-run API calls were rejected silently (runs stayed at attempt 1), which is
 # why the retries there never actually repaired anything.
+#
+# Watches the custom deploy workflow only: GitHub's auto-generated
+# "pages build and deployment" pipeline does not emit workflow_run events
+# (observed — a watcher aimed at it never fired), which is one of the reasons
+# the deploy moved to a real workflow file.
 
 on:
   workflow_run:
-    workflows: ["pages build and deployment"]
+    workflows: ["Deploy site to Pages"]
     types: [completed]
 
 permissions:

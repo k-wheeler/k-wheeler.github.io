@@ -1,0 +1,76 @@
+name: Deploy site to Pages
+
+# GitHub's auto "pages build and deployment" pipeline has been failing
+# intermittently at its deploy step with "Deployment failed, try again later"
+# (build fine, publish flaky), and nothing outside that pipeline can reliably
+# repair it: its runs don't emit workflow_run events (observed — a watcher
+# never fired), and re-running its jobs needs credentials the cross-repo
+# token doesn't have. So this workflow owns the deploy instead: it uploads
+# the repo as-is (static site, .nojekyll) and retries the flaky deploy step
+# INSIDE the same run with growing backoff — no re-run APIs, no event
+# triggers, no special tokens.
+#
+# Note: while the repo's Pages source setting remains "Deploy from a branch",
+# GitHub's auto pipeline will also keep running in parallel. That's harmless
+# (both deploy identical content from the same push), but switching
+# Settings → Pages → Source to "GitHub Actions" silences the flaky pipeline
+# and its failure emails for good.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# A newer push supersedes any in-flight deploy of older content.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.d1.outputs.page_url || steps.d2.outputs.page_url || steps.d3.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to Pages (attempt 1)
+        id: d1
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait for Pages to recover
+        if: steps.d1.outcome == 'failure'
+        run: sleep 180
+
+      - name: Deploy to Pages (attempt 2)
+        id: d2
+        if: steps.d1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait longer
+        if: steps.d1.outcome == 'failure' && steps.d2.outcome == 'failure'
+        run: sleep 360
+
+      - name: Deploy to Pages (attempt 3)
+        id: d3
+        if: steps.d1.outcome == 'failure' && steps.d2.outcome == 'failure'
+        uses: actions/deploy-pages@v5
