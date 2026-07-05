@@ -1,0 +1,84 @@
+name: Pages deploy auto-retry
+
+# GitHub's branch-based "pages build and deployment" workflow intermittently
+# fails at the deploy step with "Deployment failed, try again later" while the
+# build succeeds, leaving the live site stale. This workflow fires whenever a
+# Pages run completes with failure, re-runs the failed deploy with growing
+# backoff, and if re-runs won't go through, falls back to an empty retrigger
+# commit (a fresh push has always cleared this error in practice).
+#
+# It lives here (not in AppTrail_Phenology) so it covers every deploy — the
+# daily phenology push, manual edits, everything — and so it runs with this
+# repo's own GITHUB_TOKEN, which can always re-run jobs in this repo. The
+# cross-repo token used by the AppTrail workflow can push content, but its
+# re-run API calls were rejected silently (runs stayed at attempt 1), which is
+# why the retries there never actually repaired anything.
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: pages-auto-retry
+  cancel-in-progress: true
+
+jobs:
+  retry:
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt < 4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Re-run failed Pages deploy (backoff, then retrigger fallback)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          WF_ID: ${{ github.event.workflow_run.workflow_id }}
+          HEAD_MSG: ${{ github.event.workflow_run.head_commit.message }}
+        run: |
+          latest() { gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$WF_ID/runs?per_page=1" --jq '.workflow_runs[0].id'; }
+          state()  { gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq '[.status, .conclusion // ""] | @tsv'; }
+
+          for attempt in 1 2 3; do
+            # A newer Pages run means a newer push superseded this deploy —
+            # re-running a superseded run can never help, so stand down.
+            if [ "$(latest)" != "$RUN_ID" ]; then
+              echo "Superseded by a newer Pages run — nothing to do."
+              exit 0
+            fi
+            backoff=$((attempt * 120))
+            echo "Waiting ${backoff}s for Pages to recover (attempt $attempt)..."
+            sleep "$backoff"
+            if gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/rerun-failed-jobs"; then
+              echo "Re-run requested."
+            else
+              echo "Re-run request was rejected (see error above)."
+            fi
+            # The deploy step settles within about a minute of starting.
+            for i in $(seq 1 60); do
+              read -r status conclusion <<< "$(state)"
+              [ "$status" = "completed" ] && break
+              sleep 10
+            done
+            echo "Attempt $attempt result: ${conclusion:-unknown}"
+            [ "$conclusion" = "success" ] && exit 0
+          done
+
+          # Loop guard: if the run we just failed to repair was itself started
+          # by our retrigger commit, stop here so we never push in a cycle.
+          case "$HEAD_MSG" in
+            "chore: retrigger Pages deploy"*)
+              echo "::error::Retrigger commit also failed to deploy — giving up to avoid a loop."
+              exit 1;;
+          esac
+
+          echo "Re-runs did not succeed; pushing an empty retrigger commit."
+          git clone --depth 1 "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" repo
+          cd repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: retrigger Pages deploy (auto-retry after repeated deploy failures)"
+          git push
