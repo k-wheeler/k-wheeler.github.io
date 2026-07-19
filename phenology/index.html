@@ -92,7 +92,7 @@
 <main class="flex-1 min-w-0">
 <header>
   <h1>Appalachian Trail Fall Phenology — Massachusetts</h1>
-  <p>Prediction for <strong>2026-07-18</strong> &nbsp;|&nbsp;
+  <p>Prediction for <strong>2026-07-19</strong> &nbsp;|&nbsp;
      Updated daily using NASA HLS 30 m satellite imagery</p>
   <p style="margin-top:6px;font-size:0.82rem;opacity:0.75">
      Tracking fall foliage color change along the Massachusetts Appalachian Trail
@@ -114,12 +114,12 @@
   <div class="map-row">
     <div id="map-dt"></div>
     <div class="histogram">
-      <svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 99.16,8.00 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><text x="100.3" y="155.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">100%</text><path d="M100.0,100.0 L99.16,8.00 A92.0,92.0 0 0 1 99.69,8.00 Z" fill="green" stroke="#fff" stroke-width="1.5"/><path d="M100.0,100.0 L99.69,8.00 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="orange" stroke="#fff" stroke-width="1.5"/></svg>
+      <svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 99.20,8.00 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><text x="100.2" y="155.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">100%</text><path d="M100.0,100.0 L99.20,8.00 A92.0,92.0 0 0 1 99.43,8.00 Z" fill="green" stroke="#fff" stroke-width="1.5"/><path d="M100.0,100.0 L99.43,8.00 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="orange" stroke="#fff" stroke-width="1.5"/></svg>
     </div>
   </div>
 </div>
 <div id="panel-rnn" class="panel">
-  <div class="legend"><h3>Predicted Current Phenological State</h3><div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div></div><div class="map-row"><div id="map-rnn"></div><div class="histogram"><svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 98.05,8.02 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><text x="100.6" y="155.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">100%</text><path d="M100.0,100.0 L98.05,8.02 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="red" stroke="#fff" stroke-width="1.5"/></svg></div></div>
+  <div class="legend"><h3>Predicted Current Phenological State</h3><div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div></div><div class="map-row"><div id="map-rnn"></div><div class="histogram"><svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 94.88,8.14 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><text x="101.5" y="155.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">99%</text><path d="M100.0,100.0 L94.88,8.14 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="red" stroke="#fff" stroke-width="1.5"/></svg></div></div>
 </div>
 <div id="panel-history" class="panel">
   
@@ -234,7 +234,7 @@
   </div>
 </div>
 <script>
-console.log('[AppTrail] Page built for date:', '2026-07-18', '| rendered at:', new Date().toISOString());
+console.log('[AppTrail] Page built for date:', '2026-07-19', '| rendered at:', new Date().toISOString());
 function showTab(name, el) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -254,14 +254,14 @@ function showTab(name, el) {
 var mapDt = L.map('map-dt').setView([42.39697850169891, -73.29410006262556], 10);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapDt);
-L.imageOverlay('current_pred_dt.png?v=2026-07-18', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapDt);
+L.imageOverlay('current_pred_dt.png?v=2026-07-19', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapDt);
 
 // Neural Network prediction map
 var mapRnn = null;
 var mapRnn = L.map("map-rnn").setView([42.39697850169891, -73.29410006262556], 10);
 L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     {attribution: "&copy; OpenStreetMap contributors &copy; CARTO"}).addTo(mapRnn);
-L.imageOverlay("current_pred_rnn.png?v=2026-07-18", [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapRnn);
+L.imageOverlay("current_pred_rnn.png?v=2026-07-19", [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapRnn);
 
 // Pixel-click popup: each pixel stores its WGS84 centre lat/lon so lookup
 // is a simple nearest-neighbour search — no coordinate transform needed.
