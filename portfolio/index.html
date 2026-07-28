@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Kathryn I. Wheeler</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/site-theme.js"></script>
+  <script src="/assets/site-analytics.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+  <!-- Nav -->
+  <div id="site-nav-root"></div>
+  <script src="/assets/site-nav.js"></script>
+
+  <!-- Body -->
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-8">
+
+    <!-- Sidebar (shared, responsive) -->
+    <div id="site-sidebar-root"></div>
+    <script src="/assets/site-sidebar.js"></script>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <div class="text-base font-semibold tracking-widest text-forest-400 uppercase mb-3">Portfolio</div>
+
+      <p class="text-gray-700 leading-relaxed mb-4">
+        My work focuses on how human impacts such as climate change and environmental contamination affect ecosystems. Much of my formal training focused on plant phenology, the timing of recurring biological events like leaf-out and senescence, which is one of the most sensitive and widely used indicators of climate change, and a key driver of the carbon, water, and energy cycles that regulate our climate. Understanding and predicting phenology means combining large, messy environmental datasets with rigorous statistical and machine learning methods, which is what drew me to data science in the first place.
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-8">
+        Below are examples of my research and applied projects, spanning Bayesian and machine learning models, custom statistical algorithms, remote sensing, and geospatial analysis.
+      </p>
+
+      <!-- Section 1: Chlorophyll Cycling / Modeling Senescence (docx, PhD): Random Forest + Bayesian State-Space -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Modeling Senescence: A Trigger-Free, Physiology-Based Approach</h2>
+            <a href="https://www.biorxiv.org/content/10.1101/2023.06.07.544057v1.full" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View preprint
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Ph.D. Dissertation Research · Preprint</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Most phenology models represent the onset of autumn senescence as a threshold response triggered by cold accumulation, but the physiological mechanisms behind that trigger remain unclear. For my Ph.D. research, I developed a dynamic <strong>Bayesian state-space model</strong> that predicts daily canopy greenness as the balance between temperature- and photoperiod-driven chlorophyll synthesis and constant breakdown, without assuming any trigger or memory of past conditions. Fit to 24 PhenoCam sites, the model successfully predicted the start of senescence using only pre-senescence data in roughly half of site-years. A <strong>random forest</strong> analysis further showed that environmental conditions in the week after a potential inflection date were more important predictors of senescence onset than conditions before it, supporting the idea that senescence is a continuous response to shifting conditions rather than a fixed, irreversible trigger.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Bayesian State-Space Modeling</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Random Forest</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Time Series</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R</span>
+          </div>
+          <img src="/images/research/senescence-random-forest.png" alt="Random forest variable importance ranking for predicting the start of senescence" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Section 2: Predicting Spring Phenology: NEON Forecasting Challenge (2024), GAMs -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Predicting Spring Phenology: NEON Forecasting Challenge</h2>
+            <a href="https://www.sciencedirect.com/science/article/pii/S0168192323005002" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View paper
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Agricultural and Forest Meteorology · 2024</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            As part of the Ecological Forecasting Initiative's NEON Phenology Forecasting Challenge, I helped coordinate and analyze an open community challenge asking researchers to forecast daily canopy greenness at eight NEON sites before the data were collected. Across 18 models and over 192,000 individual forecasts, <strong>Generalized Additive Models (GAMs)</strong> were used to characterize how forecast skill varied by lead time, forecast timing, and site. We found that skill was highest earlier in green-up, at shorter lead times, and away from the onset of budburst. The GAM framework let us tease apart these overlapping, nonlinear effects across many models simultaneously rather than fitting each comparison separately.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Generalized Additive Models (GAMs)</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Ecological Forecasting</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Community Science Coordination</span>
+          </div>
+          <img src="/images/research/spring-phenology-gam.png" alt="GAM response surfaces of forecast skill (CRPS) by lead time and site" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Section 3: Statistical Algorithm for Daily NDVI (2019), advanced stats / algorithm -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">A Statistical Algorithm for Daily NDVI from Noisy Satellite Data</h2>
+            <a href="https://www.mdpi.com/2072-4292/11/21/2507/htm" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View paper
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Remote Sensing · 2019</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            High-frequency GOES satellite data offers a new way to track vegetation greenness, but individual NDVI observations are noisy due to atmospheric scattering and cloud contamination. I designed and implemented a <strong>custom statistical algorithm</strong> that fits double-exponential curves to each day's diurnal NDVI pattern, producing a single daily NDVI estimate with a rigorous, propagated uncertainty range instead of relying on one noisy observation. Applied across 350 days at fifteen deciduous broadleaf sites, the algorithm produced confident daily estimates roughly 72% of the time, turning high-frequency but noisy raw satellite data into a usable, uncertainty-aware research product.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Custom Algorithm Development</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Bayesian Uncertainty Quantification</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Time Series Modeling</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Remote Sensing</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R</span>
+          </div>
+          <img src="/images/research/ndvi-statistical-model.png" alt="Diagram of the double-exponential daily NDVI algorithm and its parameter distributions" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Section 4: GOES Monitoring (2021) -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Monitoring Forest Phenology with Geostationary Satellites</h2>
+            <a href="https://bg.copernicus.org/articles/18/1971/2021/" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View paper
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Biogeosciences · 2021</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Ground-based PhenoCam networks provide high-frequency phenology data but limited spatial coverage, while satellites like MODIS cover the globe at only 16-day resolution. I evaluated whether the newer GOES-16 and GOES-17 geostationary satellites, which can observe vegetation every five to ten minutes, could close that gap. Fitting double-logistic <strong>Bayesian models</strong> to two years of GOES, MODIS, and PhenoCam data across many deciduous broadleaf sites, I found GOES-derived spring transition dates were more closely correlated with PhenoCam ground truth than MODIS, particularly at the start and middle of green-up, demonstrating the potential for near-real-time, broad-scale phenology monitoring.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Remote Sensing</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Bayesian Modeling</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Satellite Data Fusion</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Geospatial Analysis</span>
+          </div>
+          <img src="/images/research/goes-monitoring-comparison.png" alt="Scatter plots comparing GOES, MODIS, and PhenoCam estimates of spring and autumn transition dates" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Section 5: PARAFAC & Self-Organizing Maps (2017) -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Leaf Phenology and Ecohydrology: PARAFAC &amp; Self-Organizing Maps</h2>
+            <a href="https://agupubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/2016JG003677" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View paper
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Journal of Geophysical Research – Biogeosciences · 2017</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            As leaves senesce, the dissolved organic matter released by leaf litter into forest streams changes in ways that were poorly understood. I built a six-component parallel factor analysis (PARAFAC) model to decompose fluorescence signatures of leaf litter leachate collected from beech and yellow poplar trees across four states, then applied <strong>self-organizing maps (SOMs)</strong>, an unsupervised machine learning technique, to cluster and visualize how PARAFAC component proportions shifted across sites, species, and senescence stages. The SOM analysis revealed clear, nonlinear groupings in leachate chemistry tied to geographic origin and phenological stage that would have been difficult to detect with linear multivariate methods alone.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Self-Organizing Maps (Unsupervised ML)</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">PARAFAC Modeling</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Multivariate Statistics</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">MATLAB</span>
+          </div>
+          <img src="/images/research/parafac-som.png" alt="Self-organizing map U-matrix and component planes for PARAFAC model residuals" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Section 6: Hyperspectral Indices for Leaf Nitrogen (2019/2020, undergrad) -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Hyperspectral Indices for Predicting Leaf Nitrogen</h2>
+            <a href="https://link.springer.com/article/10.1007/s00442-019-04554-2" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View paper
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Oecologia · 2020</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            As an undergraduate thesis project, I tested how well published hyperspectral vegetation indices, spanning the visible and near-infrared spectrum, could predict leaf nitrogen concentration in the lower forest canopy, a trait that is understudied relative to sunlit upper-canopy leaves. Using a <strong>Bayesian framework</strong> applied to three species from mid-summer through senescence, I found that indices incorporating the red-edge and near-infrared wavelengths were the strongest and most consistent predictors of nitrogen decline through the autumn transition, while indices based on visible wavelengths alone performed poorly.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Hyperspectral Remote Sensing</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Bayesian Modeling</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Leaf Trait Estimation</span>
+          </div>
+          <img src="/images/research/hyperspectral-indices.png" alt="Diagram of hyperspectral index wavelength ranges tracked to leaf senescence stages" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Section 7: Leaf Phenology and Soil Properties (unchanged text, no paper) -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-1">Leaf Phenology and Soil Properties</h2>
+          <div class="text-xs text-forest-600 font-medium mb-3">NOAA Climate &amp; Global Change Fellowship · MIT</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            As the global climate changes, it is becoming more important to understand the uncertain role that the terrestrial biosphere has on carbon storage. Since warmer temperatures affect the timing of phenology transitions in plants, plant phenology is a primary ecological indicator of climate change. Furthermore, how sensitive phenology transitions are to different drivers (e.g., temperature, photoperiod, water availability, leaf age limitations) is highly variable and depends on species and latitude. Without understanding how sensitive phenology is to drivers, we cannot make accurate predictions of phenology and, thus, annual primary productivity.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            In my postdoctoral fellowship work, I was interested in how various soil properties including carbon to nitrogen ratios, soil moisture, and soil fungi called mycorrhizae impact phenology. Over 80% of plant species associate with soil fungi called mycorrhizae, which increase access to limiting resources such as nutrients (e.g., nitrogen, N) and water. Soil microbes (e.g., mycorrhizae fungi) significantly impact plant phenology events (e.g., flowering) in over 88% of published studies, but their effect on leaf phenology is rarely studied (O'Brien et al., 2021, Am. J. Bot). I investigated if mycorrhizae association of plants affects the sensitivity of leaf phenology in plants to environmental drivers and the resultant carbon fluxes.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Google Earth Engine</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">XGBoost</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Random Forest</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Python</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Bayesian Modeling</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Geospatial Analysis</span>
+          </div>
+          <img src="/images/fallWoods.JPG" alt="Fall woods" class="rounded-lg border border-gray-200 w-full max-w-sm">
+        </div>
+      </section>
+
+      <!-- Section 8: Appalachian Trail Fall Phenology (current project) -->
+      <section class="mb-10">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Appalachian Trail Fall Phenology</h2>
+            <a href="https://k-wheeler.github.io/phenology/" target="_blank"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-external-link text-sm"></i> View live project
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Personal Project · Ongoing</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            To keep building hands-on machine learning and geospatial skills, I built a live tool that predicts the current fall phenological state along the Appalachian Trail in Massachusetts. It pulls satellite imagery from <strong>Google Earth Engine</strong>, then feeds vegetation and timing features into both a <strong>decision tree</strong> classifier and a two-layer LSTM (a <strong>recursive neural network</strong>) trained on ten years of historical data, updating its predictions daily. I used <strong>Claude Code</strong> throughout development, from data pipelines to deployment, while still directing the architecture, model selection, improvement, and evaluation, and troubleshooting the Google Earth Engine and GitHub permissions myself.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Google Earth Engine</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Decision Tree</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Recursive Neural Network</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Python</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Data Pipeline</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Deployment</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Claude Code</span>
+          </div>
+          <img src="/images/AT_Pheno_Summary_Figure.png" alt="Training time, accuracy, and precision by class across decision tree and RNN model variants" class="rounded-lg border border-gray-200 w-full">
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="text-xs font-semibold tracking-widest text-forest-400 uppercase whitespace-nowrap">Outside of Phenology</div>
+        <div class="flex-1 border-t border-gray-200"></div>
+      </div>
+
+      <!-- Section 9: Natural Resource Damage Assessment (confidential) -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-1">Natural Resource Damage Assessment</h2>
+          <div class="text-xs text-forest-600 font-medium mb-3">Industrial Economics, Inc. · 2022–Present</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Natural Resource Damage Assessments (NRDAs) are the legal and scientific process used to evaluate injuries to natural resources, such as fish, wildlife, and habitats, caused by hazardous substance releases, and to determine the restoration needed to compensate the public for those losses. I use R, Python, and ArcGIS Pro to process and analyze spatial-temporal environmental data supporting NRDAs at several Superfund sites, applying advanced statistical methods, including inverse distance weighting, distributed lag time-series models, PCA, mixed-effects models, generalized estimating equations, and non-negative matrix factorization, to estimate contaminant impacts on fish populations. I also use machine learning (decision trees and k-means clustering) to identify patterns in complex environmental datasets, improved the efficiency of a client-facing R Shiny data visualization app by 5x, and automated a client-preferred workflow with Python, saving 120+ hours of manual work. I regularly translate technical findings into clear reports and presentations for clients with limited technical backgrounds. Specific findings and client details are confidential.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Spatial Statistics</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Machine Learning</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">ArcGIS Pro</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">R Shiny</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Python</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Client Communication</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Other Publications: peer-reviewed papers not detailed above as their own project cards -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-1">Other Publications</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Additional peer-reviewed publications not detailed above as their own projects. See the full list on <a href="https://scholar.google.com/citations?user=u70ni9sAAAAJ&hl=en" target="_blank" class="text-forest-600 hover:underline">Google Scholar</a>.
+          </p>
+          <div class="flex flex-col divide-y divide-gray-100">
+
+            <div class="py-3 first:pt-0 last:pb-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-sm font-medium text-gray-900">Priorities for synthesis in ecology and environmental science</p>
+                <a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecs2.4342" target="_blank" aria-label="View paper" class="shrink-0 text-forest-600 hover:text-forest-800">
+                  <i class="ti ti-external-link text-sm"></i>
+                </a>
+              </div>
+              <p class="text-xs text-forest-600 font-medium mt-0.5">Ecosphere · 2023</p>
+              <p class="text-xs text-gray-500 mt-0.5">B.S. Halpern et al. [including K.I. Wheeler] (2023). <em>Ecosphere</em>. 14(1):e4342.</p>
+            </div>
+
+            <div class="py-3 first:pt-0 last:pb-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-sm font-medium text-gray-900">Canopy structure metrics governing stemflow funnelling differ between leafed and leafless states: Insights from a large-scale rainfall simulator</p>
+                <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/hyp.14294" target="_blank" aria-label="View paper" class="shrink-0 text-forest-600 hover:text-forest-800">
+                  <i class="ti ti-external-link text-sm"></i>
+                </a>
+              </div>
+              <p class="text-xs text-forest-600 font-medium mt-0.5">Hydrological Processes · 2021</p>
+              <p class="text-xs text-gray-500 mt-0.5">S. Iida*, K.I. Wheeler*, K. Nanko, Y. Shinohara, X. Sun, N. Sakai, D.F. Levia (2021). <em>Hydrological Processes</em> 35:e14294. *Equal contribution.</p>
+            </div>
+
+            <div class="py-3 first:pt-0 last:pb-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-sm font-medium text-gray-900">Working across space and time: nonstationarity in ecological research and application</p>
+                <a href="https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1002/fee.2298" target="_blank" aria-label="View paper" class="shrink-0 text-forest-600 hover:text-forest-800">
+                  <i class="ti ti-external-link text-sm"></i>
+                </a>
+              </div>
+              <p class="text-xs text-forest-600 font-medium mt-0.5">Frontiers in Ecology and the Environment · 2021</p>
+              <p class="text-xs text-gray-500 mt-0.5">C.R. Rollinson, A. Finley, M.R. Alexander, et al. [including K. Wheeler] (2021). <em>Frontiers in Ecology and the Environment</em> 19(1): 66-72.</p>
+            </div>
+
+            <div class="py-3 first:pt-0 last:pb-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-sm font-medium text-gray-900">Ten simple rules for training yourself in an emerging field</p>
+                <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009440" target="_blank" aria-label="View paper" class="shrink-0 text-forest-600 hover:text-forest-800">
+                  <i class="ti ti-external-link text-sm"></i>
+                </a>
+              </div>
+              <p class="text-xs text-forest-600 font-medium mt-0.5">PLoS Computational Biology · 2021</p>
+              <p class="text-xs text-gray-500 mt-0.5">W.M. Woelmer, L.M. Bradley, L. Haber, D. Klinges, A.S.L. Lewis, E. Mohr, C.L. Torrens, K.I. Wheeler, A.M. Willson (2021). <em>PLoS Computational Biology</em> 17(10): e1009440.</p>
+            </div>
+
+            <div class="py-3 first:pt-0 last:pb-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-sm font-medium text-gray-900">Ecological Forecasting</p>
+                <a href="https://www.oxfordbibliographies.com/view/document/obo-9780199830060/obo-9780199830060-0205.xml" target="_blank" aria-label="View paper" class="shrink-0 text-forest-600 hover:text-forest-800">
+                  <i class="ti ti-external-link text-sm"></i>
+                </a>
+              </div>
+              <p class="text-xs text-forest-600 font-medium mt-0.5">Oxford Bibliographies · 2018</p>
+              <p class="text-xs text-gray-500 mt-0.5">M.C. Dietze, C. Averill, J. Foster, K. Wheeler (2018). <em>Oxford Bibliographies</em>. DOI: 10.1093/OBO/9780199830060-0205.</p>
+            </div>
+
+            <div class="py-3 first:pt-0 last:pb-0">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-sm font-medium text-gray-900">American beech leaf-litter leachate chemistry: Effects of geography and phenophase</p>
+                <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/jpln.201700074" target="_blank" aria-label="View paper" class="shrink-0 text-forest-600 hover:text-forest-800">
+                  <i class="ti ti-external-link text-sm"></i>
+                </a>
+              </div>
+              <p class="text-xs text-forest-600 font-medium mt-0.5">Journal of Plant Nutrition and Soil Science · 2018</p>
+              <p class="text-xs text-gray-500 mt-0.5">J.E. Hudson, D.F. Levia, K.I. Wheeler, C.G. Winters, M. Vaughan, J. Chace, R. Sleeper (2018). <em>Journal of Plant Nutrition and Soil Science</em> 181(2):287-295.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -6,11 +6,10 @@
 // on md+ screens they show inline.
 (function () {
   var NAV_ITEMS = [
-    { title: 'About',                       href: '/index.html',       match: /^\/(index\.html)?$/ },
-    { title: 'Resume',                      href: '/resume.html',      match: /^\/resume\.html$/ },
-    { title: 'Previous Research',           href: '/research.html',    match: /^\/research\.html$/ },
-    { title: 'Appalachian Trail Phenology', href: '/phenology/',       match: /^\/phenology\/(index\.html)?$/ },
-    { title: 'Publications',                href: '/publications.html', match: /^\/publications\.html$/ }
+    { title: 'About',                       href: '/about/',           match: /^\/about\/(index\.html)?$/ },
+    { title: 'Portfolio',                   href: '/portfolio/',       match: /^\/portfolio\/(index\.html)?$/ },
+    { title: 'Resume',                      href: '/resume/',          match: /^\/resume\/(index\.html)?$/ },
+    { title: 'Appalachian Trail Phenology', href: '/phenology/',       match: /^\/phenology\/(index\.html)?$/ }
   ];
 
   var path = window.location.pathname;
@@ -32,7 +31,7 @@
     '<nav class="sticky top-0 z-50 bg-white border-b-2 border-forest-400 shadow-sm">' +
     '  <div class="max-w-6xl mx-auto px-6 py-3">' +
     '    <div class="flex items-center justify-between gap-4">' +
-    '      <a href="/index.html" class="no-underline block group" aria-label="Kathryn I. Wheeler — About">' +
+    '      <a href="/about/" class="no-underline block group" aria-label="Kathryn I. Wheeler — About">' +
     '        <div class="font-semibold text-gray-900 text-base leading-tight group-hover:text-forest-600">Kathryn I. Wheeler</div>' +
     '        <div class="text-xs text-gray-500">Environmental &amp; Geospatial Data Scientist</div>' +
     '      </a>' +
