@@ -10,7 +10,7 @@
   var CONTACTS = [
     { href: 'mailto:kwheelerecology@gmail.com',                        icon: 'ti-mail',           label: 'Email',          text: 'kwheelerecology@gmail.com', external: false },
     { href: 'https://github.com/k-wheeler',                            icon: 'ti-brand-github',   label: 'GitHub',         text: 'k-wheeler',                 external: true  },
-    { href: 'https://www.linkedin.com/in/kathryn-wheeler-aa06659a',    icon: 'ti-brand-linkedin', label: 'LinkedIn',       text: 'LinkedIn',                  external: true  },
+    { href: 'https://www.linkedin.com/in/kathryn-wheeler-ph-d-aa06659a', icon: 'ti-brand-linkedin', label: 'LinkedIn',       text: 'LinkedIn',                  external: true  },
     { href: 'https://scholar.google.com/citations?user=u70ni9sAAAAJ&hl=en', icon: 'ti-school',   label: 'Google Scholar', text: 'Google Scholar',            external: true  },
     { href: 'https://www.researchgate.net/profile/Kathryn-Wheeler-3',  icon: 'ti-flask',          label: 'ResearchGate',   text: 'ResearchGate',              external: true  },
     { href: 'https://orcid.org/0000-0003-3931-7489',                   icon: 'ti-id',             label: 'ORCID',          text: 'ORCID',                     external: true  }
