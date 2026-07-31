@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapping Forest Change and Carbon Loss in Oregon – Kathryn I. Wheeler</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/site-theme.js"></script>
+  <script src="/assets/site-analytics.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+  <!-- Nav -->
+  <div id="site-nav-root"></div>
+  <script src="/assets/site-nav.js"></script>
+
+  <!-- Body -->
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-8">
+
+    <!-- Sidebar (shared, responsive) -->
+    <div id="site-sidebar-root"></div>
+    <script src="/assets/site-sidebar.js"></script>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <a href="/portfolio/" class="inline-flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium mb-4">
+        <i class="ti ti-arrow-left text-sm"></i> Back to Portfolio
+      </a>
+
+      <div class="text-base font-semibold tracking-widest text-forest-400 uppercase mb-1">Full Analysis</div>
+      <h1 class="text-2xl font-semibold text-gray-900 mb-1">Mapping Forest Change and Carbon Loss in Oregon, 2019 to 2025</h1>
+      <p class="text-sm text-gray-500 mb-6">Kathryn Wheeler, Ph.D. · Code on <a href="https://github.com/k-wheeler/PNW_LULC" target="_blank" class="text-forest-600 hover:underline">GitHub</a></p>
+
+      <!-- Headline stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-4">
+          <div class="text-xs text-gray-500 mb-1">Forest lost (bias corrected)</div>
+          <div class="text-xl font-semibold text-gray-900">827,886 ha</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-xl p-4">
+          <div class="text-xs text-gray-500 mb-1">Aboveground carbon before deforestation</div>
+          <div class="text-xl font-semibold text-gray-900">20.3 million Mg C</div>
+          <div class="text-xs text-gray-500 mt-0.5">95% CI: 14.2 to 26.4 million</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-xl p-4">
+          <div class="text-xs text-gray-500 mb-1">Map accuracy of change (three way)</div>
+          <div class="text-xl font-semibold text-gray-900">0.901 overall</div>
+        </div>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-10">
+        The goal of this analysis is to investigate land use / land cover (LULC) change in the forested ecoregions of Oregon and to estimate how much aboveground carbon was present in forests before deforestation that occurred between 2019 and 2025.
+      </p>
+
+      <!-- 1. Why Oregon -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">1. Why Oregon, and why this matters</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Oregon's forests are changing quickly and for several reasons at once. Industrial timber harvest cycles through the Coast Range and western Cascades on a few decades' rotation. Stand replacing fire has become larger and more frequent, most dramatically during the Labor Day 2020 event, when several fires ignited within 48 hours and burned hundreds of thousands of acres. Urban and exurban development converts forest along the Willamette Valley margin. Drought and insect mortality thin stands east of the crest without removing them outright.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            These changes are not interchangeable ecologically. A clearcut regenerates on a planned schedule. A stand replacing burn resets succession and can shift species composition for a century. Conversion to development removes the forest permanently. Each carries different consequences for habitat connectivity, for water yield and stream temperature, and for the carbon the landscape holds.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            This project is most interested in carbon. Standing forest holds carbon in living biomass; when forest is lost, most of that carbon is eventually released. Knowing how much area changed, and how much carbon that area was holding, is what converts a land cover map into an emissions estimate.
+          </p>
+          <h3 class="text-sm font-semibold text-gray-900 mt-5 mb-2">Why build a regional model when global products exist</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Global land cover and forest change products are widely used and well validated at global scale. But a model fit to the whole planet must compromise: the spectral signature that separates forest from shrubland in the tropics is not the one that separates a young Douglas fir plantation from regenerating shrub in the Coast Range. Accuracy that is acceptable globally can be poor in any particular place. Training on regional reference data addresses this directly. The tradeoff is that regional labels are scarce and expensive, which is the constraint that shapes much of what follows.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. The data + pipeline -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">2. The data</h2>
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">GLanCE: the reference labels</h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            GLanCE (Global Land Cover Estimation, Boston University) is a globally distributed set of human interpreted land cover reference points, each a location with a land cover class and a time span over which that class held, built by analysts reading Landsat time series and high resolution imagery. This analysis uses the 48,014 North America records, exploded into one row per location per year over 2017 to 2025. Labels stop in 2021, which is why the 2025 map is treated as extrapolation and flagged as such throughout. Only about 2,247 points fall in the Pacific Northwest, far too few to train on alone, so models are trained across all of North America and then tested specifically on Washington and Oregon points to confirm they transfer.
+          </p>
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">AlphaEarth: the predictors</h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Rather than feed raw satellite reflectance to a classifier, this analysis uses AlphaEarth Satellite Embeddings, a Google DeepMind product available in Earth Engine. For every 10 m pixel and every year from 2017, AlphaEarth provides a 64 number summary of everything the satellites saw at that location that year, learned by a foundation model trained on optical, radar, and lidar observations. Two pixels with similar vegetation, structure, and seasonality end up with similar numbers, which means the hard sensing work (cloud gaps, sensor differences, seasonal timing, multi-sensor fusion) is already done, and that comparing a pixel's 2019 and 2025 embeddings is itself a change signal, which is what the change model in Section 9 exploits.
+          </p>
+          <img src="/images/pnw_lulc/pipeline.png" alt="Pipeline diagram: GLanCE, AlphaEarth, Landsat, and COLD/LandTrendr inputs feed a land cover model and a change model, producing wall-to-wall maps and carbon by county" class="rounded-lg border border-gray-200 w-full mb-2">
+          <p class="text-xs text-gray-500">The two branches are the story. The upper path (classify each year, then difference) was built, measured, and set aside. The lower path predicts change directly and is what determines the carbon number.</p>
+        </div>
+      </section>
+
+      <!-- 3. Classifying land cover -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">3. Classifying land cover</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The first task is a per-pixel land cover classifier: given a pixel's 64 AlphaEarth numbers for a year, predict its GLanCE Level 1 class (water, developed, barren, trees, shrubs, herbaceous). Nine model variants were compared under identical conditions, from tree ensembles through neural networks, including a CNN that sees a pixel's neighborhood rather than the pixel alone. Points from the same GLanCE segment always land in the same cross-validation fold, so a model cannot be scored on a location it was fit on, and a separate evaluation holds out Washington and Oregon points entirely.
+          </p>
+          <img src="/images/pnw_lulc/landcover-model-comparison.png" alt="Accuracy metrics and training time compared across nine land cover model variants" class="rounded-lg border border-gray-200 w-full mb-4">
+          <p class="text-gray-700 leading-relaxed">
+            A tuned gradient boosted tree (XGBoost) won, at 0.950 accuracy overall. On the held-out Washington and Oregon points it reaches 0.938, confirming that a model trained across all of North America transfers to the target region. The neural networks did not beat it, which is worth stating plainly because it is the opposite of the usual expectation: AlphaEarth already did the representation learning, so once a pixel is described by 64 well separated numbers, the remaining task is ordinary tabular classification, and gradient boosted trees are extremely good at that.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. Pilot: Labor Day fires -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">4. Pilot: the Labor Day 2020 fires</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Before committing to a state sized run, the whole chain was tested on one event with independently known answers: the Holiday Farm Fire on the McKenzie River, which ignited September 8, 2020, and burned about 70,600 ha. The point of a pilot on a known disturbance, rather than an arbitrary patch, is that it tests the science and not just the plumbing. Fire severity from MTBS gives a quantitative expectation: within the perimeter, MTBS records roughly 9% unburned, 27% low, 30% moderate, and 33% high severity. Low severity underburn leaves the canopy standing, so those pixels are still forest; only stand replacing fire should flip the land cover class. A change map that flags the entire perimeter is over-detecting; one that flags about a third is behaving correctly.
+          </p>
+          <img src="/images/pnw_lulc/pilot-break-dates.png" alt="CCDC break dates by fire severity and transition type, relative to the known fire ignition date" class="rounded-lg border border-gray-200 w-full mb-4">
+          <p class="text-gray-700 leading-relaxed">
+            The pilot also confirmed that break dates land in September 2020, that the fire splits sensibly across county lines with no double counting at the border, and that containerized inference produces identical predictions locally and on the cloud VM. One reconciliation problem surfaced here and is worth flagging: MTBS's reported acreage did not initially match the area computed from its own polygon, a gap of roughly 39%. Discrepancies of that kind silently corrupt area-based carbon numbers, and finding it in a pilot rather than in a state wide run is precisely why the pilot existed.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. COLD vs CCDC -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">5. Choosing a change detection algorithm: COLD over CCDC</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The pilot also settled which time series algorithm would date change for the rest of the project. Because the Holiday Farm ignition date is known exactly, the fire is a natural benchmark: any algorithm claiming to date disturbance should land on that day. CCDC (Continuous Change Detection and Classification) is the established method and runs natively inside Earth Engine. COLD (Zhu et al. 2020) is its faster successor but runs locally through the pyxccd library. The test used 50 points: 30 drawn at random from mapped Trees to non-Trees change, plus 20 deliberate false-positive bait points (Trees to Water, Trees to Developed) that a good algorithm should decline to date.
+          </p>
+          <div class="overflow-x-auto mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-2 pr-4 font-medium text-gray-900">Method</th>
+                  <th class="text-left py-2 pr-4 font-medium text-gray-900">Breaks found</th>
+                  <th class="text-left py-2 pr-4 font-medium text-gray-900">Dated within 25 days</th>
+                  <th class="text-left py-2 font-medium text-gray-900">Median error</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4">CCDC, default</td><td class="py-2 pr-4">36 / 50</td><td class="py-2 pr-4">15</td><td class="py-2">176 days</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4">CCDC, tuned</td><td class="py-2 pr-4">41 / 50</td><td class="py-2 pr-4">22</td><td class="py-2">8 days</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4">COLD, default</td><td class="py-2 pr-4">42 / 50</td><td class="py-2 pr-4">23</td><td class="py-2">8 days</td></tr>
+                <tr><td class="py-2 pr-4 font-medium">COLD, tuned</td><td class="py-2 pr-4 font-medium">45 / 50</td><td class="py-2 pr-4 font-medium">30</td><td class="py-2 font-medium">1 day</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <img src="/images/pnw_lulc/cold-fixes-lag.png" alt="Example time series where COLD dates a fire to the exact ignition day while CCDC lags by roughly six months" class="rounded-lg border border-gray-200 w-full mb-2">
+          <p class="text-xs text-gray-500 mb-4">An unambiguous high severity fire pixel. Both COLD settings date it to the exact ignition day; both CCDC settings lag by roughly six months.</p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            COLD dated the fire markedly closer at every matched setting, with no increase in spurious pre-fire breaks. Tuned COLD put 30 of 50 points within 25 days of ignition against 22 for tuned CCDC, with a median error of a single day. CCDC costs about five to six seconds per point, almost all of it a round trip to Earth Engine; COLD pays a similar one-time cost to extract Landsat observations, but then runs in about seven milliseconds per point, roughly a thousand times faster once the data is local. That speed is what made it practical to run COLD across all 13,000 reference points and sweep its settings.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            This is one fire and one disturbance type, which tests abrupt disturbance dating specifically, so the labelling pipeline in Section 8 adds two independent trend based methods rather than relying on COLD alone. Full detail, including the per-point break table, is in <em>COLD_vs_CCDC_Comparison.md</em> in the project repository.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. Wall to wall land cover -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">6. Wall to wall land cover, 2019 and 2025</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The classifier was run across every forested pixel in Oregon for both years: twelve hand-picked ecoregions from RESOLVE Ecoregions 2017, intersected with the Oregon boundary, covering the Coast Range, Cascades, Klamath Siskiyou, Blue Mountains, and the Willamette Valley oak savanna, while excluding shrub steppe, desert, and glaciers. At 171,329 km² at 10 m resolution, that is about 1.71 billion pixels, and the 64-band embeddings come to roughly 0.44 TB per year, which does not fit on a laptop. The embeddings were exported to cloud storage, the trained model was packaged into a container, and inference ran on a temporary virtual machine in the same region.
+          </p>
+          <img src="/images/pnw_lulc/oregon-lulc-2019-2025.png" alt="Side-by-side Level 1 land cover maps of Oregon's forested ecoregions in 2019 and 2025" class="rounded-lg border border-gray-200 w-full mb-2">
+          <p class="text-xs text-gray-500">One caveat carried forward throughout: GLanCE labels end in 2021, so the 2025 map is out of sample for the classifier and every downstream use of it inherits that limitation.</p>
+        </div>
+      </section>
+
+      <!-- 7. Where conventional approach broke down -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">7. Where the conventional approach broke down</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            With two maps in hand, a natural next step is to difference them: any pixel whose class differs between 2019 and 2025 is change. This is standard practice, and here it failed. Each map is about 95% accurate, but the two maps make mistakes independently, so a pixel is flagged as changed whenever either map is wrong about it. Roughly 10% of pixels can disagree from classifier error alone, while genuine land cover change over six years affects only a few percent of the landscape. The noise is larger than the signal.
+          </p>
+          <img src="/images/pnw_lulc/oregon-candidate-change.png" alt="Naive difference of the 2019 and 2025 maps flags 14 percent of the mapped area, most of it classifier disagreement rather than real change" class="rounded-lg border border-gray-200 w-full mb-4">
+          <p class="text-gray-700 leading-relaxed">
+            The naive difference flagged 2.38 million hectares as changed, of which only about 8% carried high confidence from both years. Feeding this into a carbon calculation would have produced a large, confident, and badly wrong number. This is a well known trap in post-classification comparison, and the project's response was to stop treating the difference as an answer. It became at most a candidate mask, and was eventually replaced entirely by the change model in Section 9.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. Building trustworthy change labels -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">8. Building trustworthy change labels</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            To train a model to recognize change directly, labels are needed: locations where it is known whether change happened, in which direction, and when. GLanCE cannot supply these at the density required in Oregon, so they were built. A probability sample of 13,000 points was drawn across the study area, stratified so that both candidate change and apparently stable areas are represented. Each point's full Landsat time series was then analyzed with three independent methods: COLD (abrupt events such as fire and harvest), a model-free NDVI trend test (Theil-Sen slope with Mann-Kendall significance, for gradual change break detectors miss), and LandTrendr (multi-year decline and recovery).
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            Each point is labelled stable, increase, or decrease, with the direction taken from whichever signal dominates. A confidence score combines agreement across the three methods, margin past each threshold, consistency with the mapped transition, and corroboration from Hansen forest loss year. High confidence labels are accepted automatically; low confidence ones are reviewed by reading the time series panel by panel, initially by an LLM (Claude Sonnet) and spot-checked by hand. Across 299 points reviewed for the accuracy assessment, agreement with the automated label ran near 100% in the high confidence tier but only 51% to 59% in the low tier, exactly the pattern the confidence score was designed to predict.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9. A model that sees change directly -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">9. A model that sees change directly</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The change model takes a pixel's 2019 and 2025 embeddings together as a single input and predicts stable, increase, or decrease. Because it never forms two independent maps, it cannot compound their errors; it learns what a genuine before and after transition looks like, rather than comparing two annual snapshots that merely differ. Five architectures were compared, and the winner freezes the land cover classifier already trained on GLanCE so it cannot change, then trains only a small new head that reads its internal representation of both years and decides whether change occurred. Freezing matters: it means the change labels, the noisier of the two label sources, cannot corrupt what the model knows about land cover.
+          </p>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4 overflow-x-auto">
+            <img src="/images/pnw_lulc/change-model-architecture.svg" alt="Shared-encoder change model architecture: GLanCE and COLD change points both feed a shared per-year encoder, which drives a from-state head, a to-state head, and a change head; at inference the transition is the from and to states gated by the change head" class="w-full max-w-2xl mx-auto">
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The frozen encoder was selected on balanced accuracy (0.956) and subset balanced accuracy (0.961) rather than raw accuracy, since the landscape is overwhelmingly stable and a model that predicted "no change" everywhere would still score well on plain accuracy. These metrics average performance across classes and across the change classes only, so they measure the thing the map exists to find. The frozen encoder also trains in about a quarter of the time of the tree-based alternative.
+          </p>
+          <img src="/images/pnw_lulc/change-map.png" alt="Predicted land cover change map of Oregon's forested ecoregions, 2019 to 2025: 84.3 percent stable, 7.9 percent loss, 7.8 percent gain" class="rounded-lg border border-gray-200 w-full mb-2">
+          <p class="text-gray-700 leading-relaxed">
+            17,163,110 ha mapped: 84.3% stable, 7.9% decrease (loss), 7.8% increase (greening). Loss concentrates where it should, in the 2020 fire scars in the western Cascades and harvest units in the Coast Range; gain is mostly regrowth on older disturbance.
+          </p>
+        </div>
+      </section>
+
+      <!-- 10. Accuracy -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">10. How accurate is it, and is it actually better</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Accuracy was assessed against 396 reference points the change model never saw during training, using a design based estimator that weights each point by how much of the landscape its stratum represents (Olofsson et al. 2014). Of 397 verified points available, 279 had trained the model and were excluded; 299 fresh points were reviewed by hand to rebuild the sample, then used to score the naive map difference too, so the two are separated by nothing except which map is being judged.
+          </p>
+          <img src="/images/pnw_lulc/accuracy-comparison.png" alt="The ML change model and the naive map difference detect the same 114 real changes, but the naive difference raises 84 false alarms versus 44 for the ML model; overall accuracy, forest loss precision, and forest loss recall all favor the ML model" class="rounded-lg border border-gray-200 w-full mb-4">
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Of 144 reference points that genuinely changed, both approaches found 114 and missed 30: detection is identical. But getting there, the naive difference raised 84 false alarms against the model's 44. The improvement is almost entirely a halving of false positives, not better sensitivity. Overall accuracy improves by only 0.04, because both approaches are over 90% correct on the stable class that covers 84% of the landscape, but precision on forest loss, the quantity carbon depends on, improves by 0.25: half of what the naive map calls deforestation is not deforestation, versus about a quarter for the ML map.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            A map's pixel count is a biased estimate of true area, because commission and omission errors do not cancel. The design based estimator corrects this: forest loss is undercounted by 12.4%, so the corrected area is higher than the raw pixel count, while forest gain is overcounted by 27%.
+          </p>
+        </div>
+      </section>
+
+      <!-- 11. From area to carbon -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">11. From area to carbon</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The carbon present before deforestation is estimated as activity data times emission factor, the standard accounting form: hectares of forest lost in a county, times aboveground biomass density for that county, times 0.47 to convert biomass to carbon. Forest loss is defined conservatively, requiring two independent lines of evidence to agree (the land cover maps show trees becoming non-trees, and the change model independently calls that pixel a decrease); the naive candidate covered 954,493 ha, and requiring confirmation retains 725,168 ha, or 76%. Biomass density comes from USDA Forest Inventory and Analysis county level estimates, which carry published sampling errors, which is what makes a genuine uncertainty interval possible.
+          </p>
+          <img src="/images/pnw_lulc/carbon-by-county.png" alt="Two Oregon county maps: share of assessed forest lost, and carbon lost per hectare assessed" class="rounded-lg border border-gray-200 w-full mb-4">
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The result is 20.3 million Mg C, with a 95% confidence interval of 14.2 to 26.4 million. The interval combines uncertainty in how much area was really lost (15.1%, from the accuracy assessment) and uncertainty in biomass density (2.7%, from FIA); area dominates, so reporting only the FIA error, as is common, would have implied an interval roughly six times too narrow.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            Area and carbon are not the same map: biomass density across the study area ranges from about 24 to 89 Mg per hectare, a threefold spread. Marion County is the intensity outlier, dark in both panels, at 17.8% of its assessed forest lost and 4.96 Mg C per hectare, roughly double any other county. Lake County shows the density effect clearly, strongly colored on area lost (12.3%) yet pale on carbon, because its forest holds only about 24 Mg per hectare. Douglas County is mid-toned in both panels yet releases the most carbon of any county (3.45 million Mg C) through sheer size rather than intensity. Ranking counties by area alone would have pointed at the wrong places.
+          </p>
+        </div>
+      </section>
+
+      <!-- 12. What this supports -->
+      <section class="mb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">12. What this analysis supports, and what it does not</h2>
+
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">Supported</h3>
+          <ul class="list-disc pl-5 text-gray-700 leading-relaxed mb-4 space-y-1">
+            <li>A regionally trained classifier reaches 0.95 accuracy on Oregon forest land cover and transfers from continental training data to the target region without local retraining.</li>
+            <li>Predicting change directly beats differencing two classified maps, with the gain specifically in precision on forest loss (+0.25), measured on points neither model had seen.</li>
+            <li>Forest loss over 2019 to 2025 is 827,886 ha bias corrected, carrying 20.3 million Mg C, with an interval that prices both area and emission factor uncertainty.</li>
+            <li>Where matters as much as how much: threefold variation in biomass density means area and carbon rankings genuinely differ across counties.</li>
+          </ul>
+
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">Not supported, and why</h3>
+          <ul class="list-disc pl-5 text-gray-700 leading-relaxed mb-4 space-y-1">
+            <li>The 2025 map is extrapolation. GLanCE labels end in 2021, so nothing here validates the classifier's 2025 output against contemporaneous truth.</li>
+            <li>Only change direction is independently verified. What a pixel changed from and to still comes from the classifier's own predictions, so restricting to tree loss inherits that model's error; the correction is a uniform ratio rather than a class-specific estimate.</li>
+            <li>Forest gain is the weak class, at 0.53 precision: roughly half of mapped greening is not real.</li>
+            <li>Carbon is aboveground only (soil, roots, and dead wood are excluded) and is not a net figure, since regrowth elsewhere is mapped but not subtracted. These are estimates of carbon present before deforestation, likely greater than the amount actually lost, and county mean emission factors mix young and mature forest, so carbon per hectare here sits below what a mature stand would give.</li>
+          </ul>
+
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">Judgment calls that shaped the result</h3>
+          <ol class="list-decimal pl-5 text-gray-700 leading-relaxed space-y-1">
+            <li>Abandoning map differencing. Keeping it would have produced a confident, large, and wrong answer.</li>
+            <li>Excluding 279 contaminated reference points and reviewing 299 fresh ones. The contaminated version would have reported optimistic accuracy and a wrong correction factor.</li>
+            <li>Piloting on a fire with independently known severity, which turned validation into a falsifiable prediction rather than a visual impression.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Where to find things -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">Where to find things</h2>
+          <div class="overflow-x-auto mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-2 pr-4 font-medium text-gray-900">Notebook</th>
+                  <th class="text-left py-2 font-medium text-gray-900">What it contains</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Classification_Model_Selection.ipynb</td><td class="py-2">GLanCE loading, embedding sampling, and the nine-way land cover model comparison</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Pilot_LaborDayFires.ipynb</td><td class="py-2">Holiday Farm Fire end-to-end test against MTBS severity</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Wall_to_Wall_Maps.ipynb</td><td class="py-2">AOI construction, cloud export and inference, the 13,000-point reference sample, COLD labelling</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Change_Model_Selection.ipynb</td><td class="py-2">The five-way change model comparison, including the map differencing baseline</td></tr>
+                <tr><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Wall_to_Wall_Change_Maps.ipynb</td><td class="py-2">Change map production, accuracy assessment, and carbon accounting</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-gray-700 leading-relaxed">
+            Full code and supporting write-ups, including <em>COLD_vs_CCDC_Comparison.md</em> and setup instructions, are on <a href="https://github.com/k-wheeler/PNW_LULC" target="_blank" class="text-forest-600 hover:underline">GitHub</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

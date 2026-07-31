@@ -1,0 +1,55 @@
+<svg width="680" height="486" viewBox="0 0 680 486" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+<title>Shared-encoder change model: which data trains which head</title>
+<desc>Two data sources, GLanCE points with gold class labels and COLD change points with a gold changed label, both feed one shared per-year encoder. The encoder feeds three heads: a from-state and to-state head supervised only by GLanCE, and a change head supervised only by COLD. At inference the transition is the from and to states gated by the change head.</desc>
+<defs>
+<marker id="ah-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker>
+<marker id="ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#854F0B"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="486" fill="#FFFFFF"/>
+<rect x="150" y="24" width="14" height="14" rx="3" fill="#9FE1CB" stroke="#0F6E56"/>
+<text x="170" y="35" font-size="12" fill="#0F6E56">state path — supervised by GLanCE</text>
+<rect x="410" y="24" width="14" height="14" rx="3" fill="#FAC775" stroke="#854F0B"/>
+<text x="430" y="35" font-size="12" fill="#854F0B">change path — supervised by COLD</text>
+
+<rect x="70" y="62" width="250" height="54" rx="6" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="195" y="86" font-size="14" font-weight="500" fill="#04342C" text-anchor="middle">GLanCE points</text>
+<text x="195" y="104" font-size="12" fill="#0F6E56" text-anchor="middle">gold class labels · ~46k</text>
+
+<rect x="360" y="62" width="250" height="54" rx="6" fill="#FAEEDA" stroke="#854F0B"/>
+<text x="485" y="86" font-size="14" font-weight="500" fill="#412402" text-anchor="middle">COLD change points</text>
+<text x="485" y="104" font-size="12" fill="#854F0B" text-anchor="middle">gold ‘changed?’ · ~1–3k</text>
+
+<line x1="215" y1="116" x2="285" y2="176" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#ah-t)"/>
+<text x="196" y="150" font-size="11" fill="#0F6E56" text-anchor="end">e_year</text>
+<line x1="470" y1="116" x2="398" y2="176" stroke="#854F0B" stroke-width="1.5" marker-end="url(#ah-a)"/>
+<text x="486" y="150" font-size="11" fill="#854F0B">e₂₀₁₉, e₂₀₂₅ (siamese)</text>
+
+<rect x="205" y="180" width="270" height="54" rx="6" fill="#F1EFE8" stroke="#5F5E5A"/>
+<text x="340" y="204" font-size="14" font-weight="500" fill="#2C2C2A" text-anchor="middle">shared per-year encoder  f</text>
+<text x="340" y="222" font-size="12" fill="#5F5E5A" text-anchor="middle">siamese · updated by both losses</text>
+
+<line x1="300" y1="234" x2="150" y2="290" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#ah-t)"/>
+<line x1="340" y1="234" x2="339" y2="290" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#ah-t)"/>
+<line x1="392" y1="234" x2="532" y2="290" stroke="#854F0B" stroke-width="1.5" marker-end="url(#ah-a)"/>
+
+<rect x="62" y="294" width="168" height="54" rx="6" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="146" y="318" font-size="13" font-weight="500" fill="#04342C" text-anchor="middle">from-state head</text>
+<text x="146" y="336" font-size="11" fill="#0F6E56" text-anchor="middle">7-way softmax</text>
+
+<rect x="256" y="294" width="168" height="54" rx="6" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="340" y="318" font-size="13" font-weight="500" fill="#04342C" text-anchor="middle">to-state head</text>
+<text x="340" y="336" font-size="11" fill="#0F6E56" text-anchor="middle">7-way softmax</text>
+
+<rect x="450" y="294" width="168" height="54" rx="6" fill="#FAEEDA" stroke="#854F0B"/>
+<text x="534" y="318" font-size="13" font-weight="500" fill="#412402" text-anchor="middle">change head</text>
+<text x="534" y="336" font-size="11" fill="#854F0B" text-anchor="middle">real vs two-map noise</text>
+
+<line x1="146" y1="348" x2="215" y2="404" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#ah-t)"/>
+<line x1="340" y1="348" x2="330" y2="404" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#ah-t)"/>
+<line x1="534" y1="348" x2="465" y2="404" stroke="#854F0B" stroke-width="1.5" marker-end="url(#ah-a)"/>
+<text x="512" y="378" font-size="11" fill="#854F0B" text-anchor="end">gate</text>
+
+<rect x="95" y="408" width="490" height="54" rx="6" fill="#F1EFE8" stroke="#5F5E5A"/>
+<text x="340" y="432" font-size="14" font-weight="500" fill="#2C2C2A" text-anchor="middle">transition = (from, to), gated by the change head</text>
+<text x="340" y="450" font-size="12" fill="#5F5E5A" text-anchor="middle">trust differing states only where the gate fires; else stable</text>
+</svg>

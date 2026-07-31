@@ -235,6 +235,36 @@
         <div class="flex-1 border-t border-gray-200"></div>
       </div>
 
+      <!-- Section 8b: Mapping Forest Change and Carbon Loss in Oregon (current project) -->
+      <section class="mb-6">
+        <div class="bg-white border border-gray-200 rounded-xl p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-gray-900">Mapping Forest Change and Carbon Loss in Oregon</h2>
+            <a href="/PNW_LULC/"
+               class="shrink-0 flex items-center gap-1 text-xs text-forest-600 hover:text-forest-800 font-medium border border-forest-200 rounded-lg px-3 py-1.5 hover:bg-forest-50 transition-colors">
+              <i class="ti ti-file-text text-sm"></i> Read full analysis
+            </a>
+          </div>
+          <div class="text-xs text-forest-600 font-medium mb-3">Personal Project · Google Earth Engine</div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            I built an end-to-end geospatial machine learning pipeline to map forest cover change and estimate carbon loss across Oregon's forested ecoregions from 2019 to 2025. Using Google DeepMind's AlphaEarth satellite embeddings from Google Earth Engine, I trained and compared nine model variants for land cover classification (a tuned <strong>XGBoost</strong> model won, at 0.95 accuracy) and five architectures for change detection, where a frozen-encoder <strong>neural network</strong> that reads paired before and after embeddings directly outperformed the conventional approach of differencing two classified maps, cutting false alarms roughly in half. Applying <strong>design-based statistical estimation</strong> to correct for mapping error, the analysis estimates 827,886 ha of forest lost, holding 20.3 million Mg of aboveground carbon (95% CI 14.2 to 26.4 million) before deforestation.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Google Earth Engine</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">XGBoost</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Neural Networks</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Design-Based Statistical Estimation</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Docker</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Google Cloud Platform</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-forest-50 text-forest-600 font-medium">Remote Sensing</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <img src="/images/pnw_lulc/change-map.png" alt="Predicted land cover change in Oregon's forested ecoregions, 2019 to 2025" class="rounded-lg border border-gray-200 w-full">
+            <img src="/images/pnw_lulc/pipeline.png" alt="End-to-end pipeline from GLanCE and AlphaEarth inputs through land cover and change models to carbon-by-county output" class="rounded-lg border border-gray-200 w-full">
+          </div>
+        </div>
+      </section>
+
       <!-- Section 9: Natural Resource Damage Assessment (confidential) -->
       <section class="mb-6">
         <div class="bg-white border border-gray-200 rounded-xl p-6">
