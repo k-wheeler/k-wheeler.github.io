@@ -224,8 +224,15 @@
           <p class="text-gray-700 leading-relaxed mb-4">
             Of 144 reference points that genuinely changed, both approaches found 114 and missed 30: detection is identical. But getting there, the naive difference raised 84 false alarms against the model's 44. The improvement is almost entirely a halving of false positives, not better sensitivity. Overall accuracy improves by only 0.04, because both approaches are over 90% correct on the stable class that covers 84% of the landscape, but precision on forest loss, the quantity carbon depends on, improves by 0.25: half of what the naive map calls deforestation is not deforestation, versus about a quarter for the ML map.
           </p>
-          <p class="text-gray-700 leading-relaxed">
+          <p class="text-gray-700 leading-relaxed mb-4">
             A map's pixel count is a biased estimate of true area, because commission and omission errors do not cancel. The design based estimator corrects this: forest loss is undercounted by 12.4%, so the corrected area is higher than the raw pixel count, while forest gain is overcounted by 27%.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Everything above is an internal check. The reference labels and the map both read the same Landsat and AlphaEarth record, so a high score shows the pipeline is coherent, not that it is right about Oregon. Hansen Global Forest Change is an outside answer, built by other people from a different algorithm on a 30 m grid, and over the identical study area it puts 2019 to 2025 forest loss between 861,988 and 1,107,799 ha. That range is a bracket rather than a single number because two choices are genuinely ambiguous: whether loss during 2019 counts, since it is already partly visible in the 2019 embedding the model read, and whether Hansen is restricted to pixels holding at least 30% tree cover in 2000, since it otherwise flags loss on sparse woodland this map never called forest.
+          </p>
+          <img src="/images/pnw_lulc/hansen-benchmark.png" alt="Annual Hansen forest loss in the Oregon study area from 2001 to 2025, with the 2019 to 2025 window highlighted and this analysis's bias corrected annual mean of 138 thousand hectares per year drawn as a dashed reference line; 2020 and 2021 stand out as the Labor Day fires" class="rounded-lg border border-gray-200 w-full mb-4">
+          <p class="text-gray-700 leading-relaxed">
+            This analysis puts the figure at 827,886 ha, or 1.37% per year of the 10.09 million ha it classified as forest in 2019. Three of the four Hansen variants fall inside its 95% confidence interval, and the closest analogue, the strict 2020 to 2025 window restricted to at least 30% cover, sits 4% above at 861,988 ha. Two products sharing no algorithm and no input pipeline landing this close is the strongest evidence here that the area estimate is right rather than merely self consistent. This map does read slightly low against all four variants, which is what a stricter definition of forest would predict. The 2020 and 2021 spikes are the Labor Day fires, split across two loss years because Hansen confirms late season loss in the following year's imagery, which is why a six year mean is the honest unit here rather than any single year.
           </p>
         </div>
       </section>
@@ -258,10 +265,12 @@
             <li>Predicting change directly beats differencing two classified maps, with the gain specifically in precision on forest loss (+0.25), measured on points neither model had seen.</li>
             <li>Forest loss over 2019 to 2025 is 827,886 ha bias corrected, carrying 20.3 million Mg C, with an interval that prices both area and emission factor uncertainty.</li>
             <li>Where matters as much as how much: threefold variation in biomass density means area and carbon rankings genuinely differ across counties.</li>
+            <li>The rate holds up against an independent product. Hansen Global Forest Change brackets the same window at 861,988 to 1,107,799 ha over the identical footprint, and three of its four variants fall inside this analysis's confidence interval.</li>
           </ul>
 
           <h3 class="text-sm font-semibold text-gray-900 mb-2">Not supported, and why</h3>
           <ul class="list-disc pl-5 text-gray-700 leading-relaxed mb-4 space-y-1">
+            <li>This is canopy loss, not deforestation in the sense a carbon methodology means. In Oregon the signal is dominated by rotational harvest and by wildfire, and harvested or burned land remains forest land use because it regrows. Establishing deforestation would need a persistence test on the land use, which neither this analysis nor Hansen performs. What this produces is the activity data layer such a test consumes, with its uncertainty already quantified.</li>
             <li>The 2025 map is extrapolation. GLanCE labels end in 2021, so nothing here validates the classifier's 2025 output against contemporaneous truth.</li>
             <li>Only change direction is independently verified. What a pixel changed from and to still comes from the classifier's own predictions, so restricting to tree loss inherits that model's error; the correction is a uniform ratio rather than a class-specific estimate.</li>
             <li>Forest gain is the weak class, at 0.53 precision: roughly half of mapped greening is not real.</li>
@@ -294,7 +303,7 @@
                 <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Pilot_LaborDayFires.ipynb</td><td class="py-2">Holiday Farm Fire end-to-end test against MTBS severity</td></tr>
                 <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Wall_to_Wall_Maps.ipynb</td><td class="py-2">AOI construction, cloud export and inference, the 13,000-point reference sample, COLD labelling</td></tr>
                 <tr class="border-b border-gray-100"><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Change_Model_Selection.ipynb</td><td class="py-2">The five-way change model comparison, including the map differencing baseline</td></tr>
-                <tr><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Wall_to_Wall_Change_Maps.ipynb</td><td class="py-2">Change map production, accuracy assessment, and carbon accounting</td></tr>
+                <tr><td class="py-2 pr-4 whitespace-nowrap font-mono text-xs">Wall_to_Wall_Change_Maps.ipynb</td><td class="py-2">Change map production, accuracy assessment, the Hansen benchmark, and carbon accounting</td></tr>
               </tbody>
             </table>
           </div>
