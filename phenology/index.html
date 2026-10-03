@@ -255,15 +255,15 @@ function showTab(name, el) {
 
 // Decision Tree prediction map
 var mapDt = L.map('map-dt').setView([42.39697850169891, -73.29410006262556], 10);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    {attribution: '&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(mapDt);
+L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_48hp_1_dbc76b941cfa39e69a2f7926',
+    {attribution: '&copy; OpenStreetMap contributors, &copy; CARTO'}).addTo(mapDt);
 L.imageOverlay('current_pred_dt.png?v=2026-10-03', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapDt);
 
 // Neural Network prediction map
 var mapRnn = null;
 var mapRnn = L.map("map-rnn").setView([42.39697850169891, -73.29410006262556], 10);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    {attribution: "&copy; OpenStreetMap contributors &copy; CARTO"}).addTo(mapRnn);
+L.tileLayer("https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_48hp_1_dbc76b941cfa39e69a2f7926",
+    {attribution: "&copy; OpenStreetMap contributors, &copy; CARTO"}).addTo(mapRnn);
 L.imageOverlay("current_pred_rnn.png?v=2026-10-03", [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapRnn);
 
 // Pixel-click popup: each pixel stores its WGS84 centre lat/lon so lookup
@@ -377,8 +377,8 @@ function doyToDate(doy) {
 
 window['mapstart'] = L.map('map-start', {zoomControl: false})
     .setView([42.39697850169891, -73.29410006262556], 10);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapstart']);
+L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_48hp_1_dbc76b941cfa39e69a2f7926',
+    {attribution: '&copy; OpenStreetMap contributors, &copy; CARTO'}).addTo(window['mapstart']);
 L.imageOverlay('avg_start.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapstart']);
 window['mapstart'].on('click', function(e) {
   if (!pixelArr) return;
@@ -406,8 +406,8 @@ window['mapstart'].on('click', function(e) {
 
 window['mapmiddle'] = L.map('map-middle', {zoomControl: false})
     .setView([42.39697850169891, -73.29410006262556], 10);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapmiddle']);
+L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_48hp_1_dbc76b941cfa39e69a2f7926',
+    {attribution: '&copy; OpenStreetMap contributors, &copy; CARTO'}).addTo(window['mapmiddle']);
 L.imageOverlay('avg_middle.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapmiddle']);
 window['mapmiddle'].on('click', function(e) {
   if (!pixelArr) return;
@@ -435,8 +435,8 @@ window['mapmiddle'].on('click', function(e) {
 
 window['mapend'] = L.map('map-end', {zoomControl: false})
     .setView([42.39697850169891, -73.29410006262556], 10);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    {attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(window['mapend']);
+L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_48hp_1_dbc76b941cfa39e69a2f7926',
+    {attribution: '&copy; OpenStreetMap contributors, &copy; CARTO'}).addTo(window['mapend']);
 L.imageOverlay('avg_end.png', [[42.045260157145165, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 0.85}).addTo(window['mapend']);
 window['mapend'].on('click', function(e) {
   if (!pixelArr) return;
