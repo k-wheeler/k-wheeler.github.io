@@ -92,8 +92,8 @@
 <main class="flex-1 min-w-0">
 <header>
   <h1>Appalachian Trail Fall Phenology — Massachusetts</h1>
-  <p>Prediction for <strong>2026-11-18</strong> &nbsp;|&nbsp;
-     Updated daily using NASA HLS 30 m satellite imagery</p>
+  <p>Final prediction for the 2026 season &nbsp;|&nbsp;
+     <strong>2026-11-18</strong>, from NASA HLS 30 m satellite imagery</p>
   <p style="margin-top:6px;font-size:0.82rem;opacity:0.75">
      Tracking fall foliage color change along the Massachusetts Appalachian Trail
      using machine learning models trained on over 10 years of observations.</p>
@@ -102,26 +102,14 @@
      Read how it works</a></p>
 </header>
 <div class="tabs">
-  <div class="tab active" onclick="showTab('dt', this)">Decision Tree</div>
-  <div class="tab" onclick="showTab('rnn', this)">Neural Network</div>
+  <div class="tab active" onclick="showTab('rnn', this)">Neural Network</div>
   <div class="tab" onclick="showTab('history', this)">Historical Averages</div>
   <div class="tab" onclick="showTab('about', this)">About</div>
   <div class="tab" onclick="showTab('notebook', this)">Analysis Summary</div>
   <div class="tab" onclick="showTab('claude', this)">Claude Code Experience</div>
 </div>
-<div id="panel-dt" class="panel active">
-  <div class="legend">
-    <h3>Predicted Current Phenological State</h3>
-    <div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div>
-  </div>
-  <div class="map-row">
-    <div id="map-dt"></div>
-    <div class="histogram">
-      <svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 1 1 12.12,127.22 Z" fill="green" stroke="#fff" stroke-width="1.5"/><text x="144.4" y="132.8" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">70%</text><path d="M100.0,100.0 L12.12,127.22 A92.0,92.0 0 0 1 100.00,8.00 Z" fill="orange" stroke="#fff" stroke-width="1.5"/><text x="55.6" y="67.2" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">30%</text></svg>
-    </div>
-  </div>
-</div>
-<div id="panel-rnn" class="panel">
+<div id="panel-rnn" class="panel active">
+  <div style="background:#fff8e1;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:6px;padding:12px 16px;font-size:0.9rem;line-height:1.5;color:#5f4a00"><strong>Daily forecasting has ended for the 2026 season.</strong> Leaf color change is complete along the Massachusetts Appalachian Trail, so the map below is frozen at its final prediction for 18 November 2026 and is no longer updating. Live daily forecasts will resume next fall.</div>
   <div class="legend"><h3>Predicted Current Phenological State</h3><div class="legend-items"><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:steelblue"></span><span class="legend-name">Before</span></div><div class="legend-desc">Foliage fully green; color change not yet begun</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:green"></span><span class="legend-name">Early</span></div><div class="legend-desc">Color change beginning</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:orange"></span><span class="legend-name">Late</span></div><div class="legend-desc">Past peak color change</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:red"></span><span class="legend-name">After</span></div><div class="legend-desc">Foliage largely dropped; color change complete</div></div><div class="legend-item"><div class="legend-row"><span class="swatch" style="background:#202020;height:3px"></span><span class="legend-name">AT Trail</span></div><div class="legend-desc">Smoothed Appalachian Trail</div></div></div></div><div class="map-row"><div id="map-rnn"></div><div class="histogram"><svg class="pie" viewBox="0 0 200 200" role="img" aria-label="Predicted phenological state proportions"><path d="M100.0,100.0 L100.00,8.00 A92.0,92.0 0 0 1 109.43,8.48 Z" fill="steelblue" stroke="#fff" stroke-width="1.5"/><path d="M100.0,100.0 L109.43,8.48 A92.0,92.0 0 0 1 111.41,8.71 Z" fill="green" stroke="#fff" stroke-width="1.5"/><path d="M100.0,100.0 L111.41,8.71 A92.0,92.0 0 0 1 113.19,8.95 Z" fill="orange" stroke="#fff" stroke-width="1.5"/><path d="M100.0,100.0 L113.19,8.95 A92.0,92.0 0 1 1 100.00,8.00 Z" fill="red" stroke="#fff" stroke-width="1.5"/><text x="96.0" y="155.1" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="17" font-weight="700">98%</text></svg></div></div>
 </div>
 <div id="panel-history" class="panel">
@@ -249,15 +237,8 @@ function showTab(name, el) {
       if (m) { m.invalidateSize(); }
     });
   }
-  if (name === 'dt'  && mapDt)  { mapDt.invalidateSize();  }
   if (name === 'rnn' && mapRnn) { mapRnn.invalidateSize(); }
 }
-
-// Decision Tree prediction map
-var mapDt = L.map('map-dt').setView([42.396978501698925, -73.29410006262556], 10);
-L.tileLayer('https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_48hp_1_dbc76b941cfa39e69a2f7926',
-    {attribution: '&copy; OpenStreetMap contributors, &copy; CARTO'}).addTo(mapDt);
-L.imageOverlay('current_pred_dt.png?v=2026-11-18', [[42.04526015714519, -73.45627100497833], [42.74869684625266, -73.13192912027279]], {opacity: 1.0}).addTo(mapDt);
 
 // Neural Network prediction map
 var mapRnn = null;
@@ -319,37 +300,6 @@ function makeHistChips(labels) {
            l.charAt(0).toUpperCase() + l.slice(1) + '</span>';
   }).join('<span style="color:#ccc"> &middot; </span>');
 }
-
-mapDt.on('click', function(e) {
-  var p = findPixel(e.latlng.lat, e.latlng.lng);
-  if (!p) return;
-  var labelColor = LABEL_COLORS[p.label] || '#888';
-  var rows = Object.keys(FEAT_LABELS).map(function(k) {
-    var val;
-    if (p[k] === null || p[k] === undefined) {
-      val = '&mdash;';
-    } else if (k === 'doy_minus_avg_middle') {
-      var d = Math.round(p[k]);
-      val = d < 0 ? Math.abs(d) + ' days before' : (d > 0 ? d + ' days after' : 'on avg');
-    } else {
-      val = p[k].toFixed(2);
-    }
-    return '<tr><td style="padding:2px 10px 2px 0;color:#555">' + FEAT_LABELS[k] + '</td>' +
-           '<td style="text-align:right;font-variant-numeric:tabular-nums">' + val + '</td></tr>';
-  }).join('');
-  var html = '<div style="font-size:13px;min-width:230px">' +
-    '<b>Decision Tree: <span style="color:' + labelColor + '">' +
-    p.label.charAt(0).toUpperCase() + p.label.slice(1) + '</span></b>' +
-    '<div style="margin-top:6px;font-size:11px;color:#777">Recent observations (newest → oldest)</div>' +
-    '<div style="margin-bottom:6px;font-size:12px">' + makeHistChips(p.recent_labels) + '</div>' +
-    '<table style="width:100%;border-collapse:collapse">' + rows + '</table>' +
-    '<p style="margin-top:8px;font-size:11px;color:#999;line-height:1.4">' +
-    'EVI/NDVI: vegetation greenness (0–1, higher = greener). ' +
-    'Δ values: change from prior satellite pass. ' +
-    'Days from avg mid-transition: negative = earlier than historical average.' +
-    '</p></div>';
-  L.popup().setLatLng(e.latlng).setContent(html).openOn(mapDt);
-});
 
 if (mapRnn) mapRnn.on('click', function(e) {
   var p = findPixel(e.latlng.lat, e.latlng.lng);
@@ -475,7 +425,6 @@ fetch('at_route.geojson')
   .then(function(r) { return r.json(); })
   .then(function(gj) {
     atRoute = gj;
-    addRoute(mapDt);
     if (mapRnn) addRoute(mapRnn);
     ['start', 'middle', 'end'].forEach(function(p) { addRoute(window['map' + p]); });
   })
