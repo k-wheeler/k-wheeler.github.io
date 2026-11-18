@@ -163,9 +163,7 @@
 
     <h3>Interacting with the map</h3>
     <ul>
-      <li>The <em>Decision Tree</em> tab shows today&rsquo;s prediction from the decision tree.
-      Click any pixel to see raw satellite values, model features, and recent observation history.</li>
-      <li>The <em>Neural Network</em> tab shows today&rsquo;s prediction from the LSTM model.
+      <li>The <em>Neural Network</em> tab shows the final 2026 prediction from the LSTM model.
       Click any pixel to see its predicted state and recent observation history.</li>
       <li>Zoom in to explore individual 30 m pixels.</li>
       <li>The <em>Historical Averages</em> tab shows the long-term average start, middle, and
@@ -311,7 +309,7 @@ if (mapRnn) mapRnn.on('click', function(e) {
     rnnLbl.charAt(0).toUpperCase() + rnnLbl.slice(1) + '</span></b>' +
     '<div style="margin-top:6px;font-size:11px;color:#777">Recent observations (newest → oldest)</div>' +
     '<div style="margin-bottom:4px;font-size:12px">' + makeHistChips(p.recent_labels) + '</div>' +
-    '<p style="margin-top:6px;font-size:11px;color:#999;line-height:1.4">The LSTM uses the full observation sequence. Individual feature values are shown on the Decision Tree tab.</p></div>';
+    '<p style="margin-top:6px;font-size:11px;color:#999;line-height:1.4">The LSTM uses the full observation sequence.</p></div>';
   L.popup().setLatLng(e.latlng).setContent(html).openOn(mapRnn);
 });
 
